@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Sivakumar Perneti — Living Portfolio, Resume, Achievements, Books &amp; Blog</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c6cff'/%3E%3Cstop offset='100%25' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%2305060a'/%3E%3Cpath d='M32 8L52 20V44L32 56L12 44V20L32 8Z' fill='none' stroke='url(%23g)' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='32' r='7.5' fill='%2338bdf8'/%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -32,9 +33,11 @@
       --chip-border: rgba(255, 255, 255, 0.08);
       --hover-tint: rgba(255, 255, 255, 0.06);
       --trigger-bg: rgba(12, 15, 24, 0.92);
+      --specular-glow: rgba(167, 139, 250, 0.14);
+      --featured-glow: linear-gradient(135deg, rgba(124, 108, 255, 0.12), rgba(34, 211, 238, 0.06) 50%, rgba(8, 10, 16, 0.82));
 
       --glass-border: rgba(255, 255, 255, 0.09);
-      --glass-border-bright: rgba(255, 255, 255, 0.18);
+      --glass-border-bright: rgba(255, 255, 255, 0.19);
       --text-primary: #f4f7fc;
       --text-secondary: #a4b0c2;
       --text-muted: #6c778b;
@@ -52,6 +55,10 @@
       --cyan-pill-text: #67e8f9;
       --cyan-pill-bg: rgba(34, 211, 238, 0.12);
       --cyan-pill-border: rgba(34, 211, 238, 0.3);
+
+      --emerald-pill-text: #6ee7b7;
+      --emerald-pill-bg: rgba(16, 185, 129, 0.12);
+      --emerald-pill-border: rgba(16, 185, 129, 0.3);
 
       --nav-active-text: #ffffff;
       --nav-active-bg: rgba(124, 108, 255, 0.24);
@@ -96,6 +103,8 @@
       --chip-border: rgba(15, 23, 42, 0.09);
       --hover-tint: rgba(15, 23, 42, 0.05);
       --trigger-bg: rgba(248, 250, 252, 0.95);
+      --specular-glow: rgba(99, 102, 241, 0.10);
+      --featured-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(2, 132, 199, 0.05) 50%, rgba(255, 255, 255, 0.88));
 
       --glass-border: rgba(15, 23, 42, 0.09);
       --glass-border-bright: rgba(15, 23, 42, 0.18);
@@ -116,6 +125,10 @@
       --cyan-pill-text: #0369a1;
       --cyan-pill-bg: rgba(2, 132, 199, 0.09);
       --cyan-pill-border: rgba(2, 132, 199, 0.25);
+
+      --emerald-pill-text: #047857;
+      --emerald-pill-bg: rgba(5, 150, 105, 0.09);
+      --emerald-pill-border: rgba(5, 150, 105, 0.26);
 
       --nav-active-text: #4338ca;
       --nav-active-bg: rgba(99, 102, 241, 0.13);
@@ -350,8 +363,8 @@
       gap: 8px;
     }
 
-    /* Theme Toggle Button */
-    .theme-toggle-btn {
+    /* Quick Search Trigger & Theme Toggle */
+    .icon-pill-btn {
       display: inline-flex;
       align-items: center;
       gap: 7px;
@@ -368,9 +381,19 @@
       transition: all 0.18s ease;
     }
 
-    .theme-toggle-btn:hover {
+    .icon-pill-btn:hover {
       background: var(--hover-tint);
       transform: translateY(-1px);
+    }
+
+    .kbd-hint {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      padding: 2px 6px;
+      border-radius: 6px;
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
+      color: var(--text-muted);
     }
 
     .sync-badge {
@@ -501,6 +524,25 @@
       border-color: var(--cyan-pill-border);
     }
 
+    .tag-pill.emerald {
+      color: var(--emerald-pill-text);
+      background: var(--emerald-pill-bg);
+      border-color: var(--emerald-pill-border);
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      animation: pulseRing 2.2s infinite;
+    }
+
+    @keyframes pulseRing {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.82); }
+    }
+
     .hero-title {
       margin: 0 0 12px;
       font-size: clamp(1.85rem, 4vw, 2.85rem);
@@ -528,8 +570,28 @@
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 24px;
+    }
+
+    /* Active Chip Filter Banner */
+    .filter-banner {
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      padding: 12px 18px;
+      border-radius: 16px;
+      background: var(--violet-pill-bg);
+      border: 1px solid var(--violet-pill-border);
+      color: var(--text-primary);
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .filter-banner.visible {
+      display: flex;
     }
 
     .stats-row {
@@ -546,7 +608,12 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      transition: background-color 0.25s ease, border-color 0.25s ease;
+      transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.18s ease;
+    }
+
+    .stat-widget:hover {
+      border-color: var(--glass-border-bright);
+      transform: translateY(-1px);
     }
 
     .widget-icon {
@@ -613,7 +680,10 @@
       gap: 16px;
     }
 
+    /* Tactile Specular Glass Cards & Bento Highlight */
     .item-card {
+      position: relative;
+      overflow: hidden;
       padding: 20px;
       border-radius: 18px;
       background: var(--glass-surface);
@@ -624,9 +694,29 @@
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.25s ease;
     }
 
+    .item-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0;
+      background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--specular-glow), transparent 65%);
+      transition: opacity 0.25s ease;
+    }
+
+    .item-card:hover::after {
+      opacity: 1;
+    }
+
     .item-card:hover {
       transform: translateY(-2px);
       border-color: var(--glass-border-bright);
+    }
+
+    .item-card.featured-bento {
+      grid-column: span 2;
+      background: var(--featured-glow);
+      border-color: var(--violet-pill-border);
     }
 
     .card-meta-row {
@@ -660,11 +750,19 @@
       color: var(--text-secondary);
     }
 
+    .card-footer-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
     .chip-row {
       display: flex;
       flex-wrap: wrap;
       gap: 7px;
-      margin-top: 12px;
     }
 
     .mini-chip {
@@ -675,6 +773,34 @@
       background: var(--chip-bg);
       border: 1px solid var(--chip-border);
       color: var(--text-secondary);
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .mini-chip:hover, .mini-chip.active-chip {
+      color: var(--violet-pill-text);
+      background: var(--violet-pill-bg);
+      border-color: var(--violet-pill-border);
+    }
+
+    .read-more-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--cyan-pill-border);
+      background: var(--cyan-pill-bg);
+      color: var(--cyan-pill-text);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.16s ease;
+    }
+
+    .read-more-link:hover {
+      transform: translateX(2px);
     }
 
     /* Footer */
@@ -691,7 +817,7 @@
       color: var(--text-muted);
     }
 
-    /* Modal */
+    /* Modal & Reader Drawer */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -725,6 +851,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 12px;
       margin-bottom: 18px;
     }
 
@@ -732,6 +859,40 @@
       margin: 0;
       font-size: 1.15rem;
       font-weight: 700;
+    }
+
+    .reader-body {
+      color: var(--text-secondary);
+      font-size: 0.96rem;
+      line-height: 1.75;
+      white-space: pre-line;
+    }
+
+    .search-result-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 55vh;
+      overflow-y: auto;
+      margin-top: 12px;
+    }
+
+    .search-result-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid var(--glass-border);
+      background: var(--input-bg);
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.16s ease;
+    }
+
+    .search-result-item:hover {
+      border-color: var(--violet-pill-border);
+      background: var(--violet-pill-bg);
     }
 
     .form-grid {
@@ -799,6 +960,37 @@
       transform: translateY(0);
     }
 
+    /* Clean Recruiter Print Stylesheet */
+    @media print {
+      .ambient-bg, .grid-overlay, .topbar, .hero-actions, .stats-row,
+      #sec-achievements, #sec-books, #sec-blog, .site-footer,
+      .modal-backdrop, .toast, .filter-banner, .read-more-link {
+        display: none !important;
+      }
+      body, html {
+        background: #ffffff !important;
+        color: #0f172a !important;
+      }
+      .app-shell {
+        max-width: 100% !important;
+        padding: 0 !important;
+      }
+      .glass-panel, .item-card {
+        background: #ffffff !important;
+        border: 1px solid #cbd5e1 !important;
+        box-shadow: none !important;
+        backdrop-filter: none !important;
+        color: #0f172a !important;
+        break-inside: avoid;
+      }
+      .item-card.featured-bento {
+        grid-column: span 1 !important;
+      }
+      #sec-resume {
+        display: block !important;
+      }
+    }
+
     @media (max-width: 900px) {
       .stats-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -819,10 +1011,11 @@
         display: block;
       }
       .sync-badge .sync-text,
-      .theme-toggle-btn .theme-label {
+      .icon-pill-btn .pill-label,
+      .icon-pill-btn .kbd-hint {
         display: none;
       }
-      .theme-toggle-btn {
+      .icon-pill-btn {
         padding: 8px 10px;
       }
       .hero {
@@ -830,6 +1023,9 @@
       }
       .cards-grid-2, .cards-grid-3, .form-grid {
         grid-template-columns: 1fr;
+      }
+      .item-card.featured-bento {
+        grid-column: span 1;
       }
     }
   </style>
@@ -841,7 +1037,7 @@
   <div class="app-shell">
     <!-- Top Glass Bar -->
     <header class="topbar">
-      <a class="brand" href="#top" onclick="setSection('all'); return false;">
+      <a class="brand" href="#top" onclick="clearChipFilter(); setSection('all'); return false;">
         <span class="brand-mark" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M12 2L20.5 7V17L12 22L3.5 17V7L12 2Z" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/>
@@ -905,13 +1101,19 @@
         </div>
       </div>
 
-      <!-- Right Theme Switcher, Live Status & Admin Controls -->
+      <!-- Right Quick Search, Theme Switcher, Live Status & Admin Controls -->
       <div class="topbar-right">
-        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle pitch black and daytime theme" title="Switch between Pitch Black and Daytime mode">
+        <button type="button" class="icon-pill-btn" onclick="openSearchModal()" aria-label="Search portfolio" title="Instant Search (Ctrl+K)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <span class="pill-label">Search</span>
+          <span class="kbd-hint">Ctrl+K</span>
+        </button>
+
+        <button type="button" class="icon-pill-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle pitch black and daytime theme" title="Switch between Pitch Black and Daytime mode">
           <span id="themeToggleIcon" aria-hidden="true">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           </span>
-          <span class="theme-label" id="themeToggleText">Daytime</span>
+          <span class="pill-label" id="themeToggleText">Daytime</span>
         </button>
 
         <span class="sync-badge" id="cloudStatusBadge" title="Live Firestore status">
@@ -933,6 +1135,10 @@
       <div class="hero-top-meta">
         <span class="tag-pill violet" id="heroRoleBadge">Senior Talent Acquisition &amp; Builder</span>
         <span class="tag-pill cyan" id="heroLocationBadge">Hyderabad, India</span>
+        <span class="tag-pill emerald" id="heroCurrentlyBadge">
+          <span class="pulse-dot"></span>
+          <span id="heroCurrentlyText">Now: Designing Data-Intensive Applications &amp; Glass UIs</span>
+        </span>
       </div>
       <h1 class="hero-title" id="heroHeadline">
         Living <span class="grad">resume</span>, milestones, reading log &amp; personal notes.
@@ -943,6 +1149,10 @@
       <div class="hero-actions">
         <button type="button" class="btn-primary-glass" onclick="setSection('resume')">View Resume</button>
         <button type="button" class="btn-ghost-glass" onclick="setSection('blog')">Read Blog</button>
+        <button type="button" class="btn-ghost-glass" onclick="printResumePdf()" title="Print or save a clean recruiter-ready resume PDF">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          Print / PDF Resume
+        </button>
       </div>
 
       <div class="stats-row">
@@ -984,6 +1194,12 @@
         </div>
       </div>
     </section>
+
+    <!-- Active Skill Chip Filter Banner -->
+    <div class="filter-banner" id="chipFilterBanner">
+      <span id="chipFilterText">Filtering by topic: #Firestore</span>
+      <button type="button" class="btn-ghost-glass" onclick="clearChipFilter()">Clear Filter</button>
+    </div>
 
     <!-- Resume Section -->
     <section class="section-block" id="sec-resume" data-group="resume">
@@ -1046,6 +1262,33 @@
     </footer>
   </div>
 
+  <!-- Instant Search Command Palette (Ctrl+K) -->
+  <div class="modal-backdrop" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h3 class="modal-title" id="searchModalTitle">Quick Search</h3>
+        <button type="button" class="btn-ghost-glass" onclick="closeSearchModal()">Esc</button>
+      </div>
+      <input type="search" id="searchInput" class="input-glass" placeholder="Search experience, achievements, books, blog notes, or tags..." oninput="runSearchQuery(this.value)" />
+      <div class="search-result-list" id="searchResultsList"></div>
+    </div>
+  </div>
+
+  <!-- Full-Article & Book Takeaways Reader Modal -->
+  <div class="modal-backdrop" id="readerModal" role="dialog" aria-modal="true" aria-labelledby="readerTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <div>
+          <div class="card-meta-row" style="margin-bottom:4px;" id="readerMeta">BLOG NOTE • 2 MIN READ</div>
+          <h3 class="modal-title" id="readerTitle">Title</h3>
+        </div>
+        <button type="button" class="btn-ghost-glass" onclick="closeReaderModal()">Close</button>
+      </div>
+      <div class="reader-body" id="readerContent"></div>
+      <div class="chip-row" id="readerChips" style="margin-top:18px;"></div>
+    </div>
+  </div>
+
   <!-- Admin Studio Modal -->
   <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
     <div class="modal-card">
@@ -1081,6 +1324,10 @@
           </div>
         </div>
         <div class="form-field">
+          <label for="editCurrently">Live "Now" Status Pill</label>
+          <input type="text" id="editCurrently" class="input-glass" placeholder="Now: Reading & building..." />
+        </div>
+        <div class="form-field">
           <label for="editBio">Hero Bio</label>
           <textarea id="editBio" class="textarea-glass"></textarea>
         </div>
@@ -1107,8 +1354,12 @@
           <input type="text" id="newEntryTitle" class="input-glass" placeholder="Role, milestone, book title, or note title" />
         </div>
         <div class="form-field">
-          <label for="newEntryDesc">Details / Summary</label>
-          <textarea id="newEntryDesc" class="textarea-glass" placeholder="Write concise highlights or takeaways..."></textarea>
+          <label for="newEntryDesc">Details / Full Article</label>
+          <textarea id="newEntryDesc" class="textarea-glass" placeholder="Write concise highlights or full notes..."></textarea>
+        </div>
+        <div class="form-field">
+          <label for="newEntryChips">Tags (comma-separated)</label>
+          <input type="text" id="newEntryChips" class="input-glass" placeholder="e.g., Firebase, UI Design, Leadership" />
         </div>
 
         <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
@@ -1170,6 +1421,7 @@
       name: 'Sivakumar Perneti',
       roleBadge: 'Senior Talent Acquisition & Builder',
       locationBadge: 'Hyderabad, India',
+      currentlyStatus: 'Now: Designing Data-Intensive Applications & Glass UIs',
       headline: 'Living resume, milestones, reading log & personal notes.',
       bio: 'Personal space tracking career highlights, key achievements, books I have read, and short essays—synced live with Firebase Cloud Firestore and viewable cleanly across Android and Windows.',
       experienceLabel: '8+ Yrs',
@@ -1193,8 +1445,8 @@
         {
           title: 'Zero-Cost Cloud Portfolio Architecture',
           meta: 'Nov 2026',
-          desc: 'Deployed a responsive glassmorphic portfolio backed by Firebase Firestore with role-protected admin editing.',
-          chips: ['Firestore', 'Auth']
+          desc: 'Deployed a responsive glassmorphic portfolio backed by Firebase Firestore with role-protected admin editing and instant global edge delivery on Cloudflare Pages.',
+          chips: ['Firestore', 'Auth', 'Cloudflare Pages']
         },
         {
           title: 'Consistent Multi-Channel Sourcing Execution',
@@ -1213,19 +1465,19 @@
         {
           title: 'Atomic Habits',
           meta: 'James Clear • 5/5',
-          desc: 'Practical framework for small environmental cues, identity-based habits, and compounding daily consistency.',
+          desc: 'Practical framework for small environmental cues, identity-based habits, and compounding daily consistency.\n\nKey Takeaway: You do not rise to the level of your goals; you fall to the level of your systems. Designing friction-free defaults beats relying on daily willpower.',
           chips: ['Habits', 'Systems']
         },
         {
           title: 'Designing Data-Intensive Applications',
           meta: 'Martin Kleppmann • Notes',
-          desc: 'Clear mental models for reliability, replication, partitioning, and trade-offs in distributed systems.',
+          desc: 'Clear mental models for reliability, replication, partitioning, and trade-offs in distributed systems.\n\nKey Takeaway: Understanding how storage engines, indexes, and consensus protocols behave under failure turns black-box infrastructure into predictable engineering choices.',
           chips: ['Architecture', 'Systems']
         },
         {
           title: 'The Psychology of Money',
           meta: 'Morgan Housel • 5/5',
-          desc: 'Timeless lessons on patience, compounding, risk management, and keeping long-term perspective.',
+          desc: 'Timeless lessons on patience, compounding, risk management, and keeping long-term perspective.\n\nKey Takeaway: Financial outcomes are driven far more by behavior, margin of safety, and avoiding catastrophic interruption than by spreadsheet optimization.',
           chips: ['Mindset', 'Finance']
         }
       ],
@@ -1233,13 +1485,13 @@
         {
           title: 'Keeping a Living Portfolio Without Heavy Frameworks',
           meta: 'Nov 2026',
-          desc: 'Why a clean single-file glass interface paired with Firestore gives fast loads, zero monthly cost, and effortless mobile updates.',
-          chips: ['Portfolio', 'Notes']
+          desc: 'Why a clean single-file glass interface paired with Firestore gives fast loads, zero monthly cost, and effortless mobile updates.\n\nBy keeping layout, styling, and Firebase SDK logic inside a single self-contained HTML file hosted on Cloudflare Pages, there are zero build pipelines to break, zero server bills, and instant updates directly from a phone browser.',
+          chips: ['Portfolio', 'Notes', 'Firebase']
         },
         {
           title: 'Designing Calm Glass Interfaces for Pitch Black & Daytime',
           meta: 'Nov 2026',
-          desc: 'Balancing OLED pitch-black contrast and crisp daytime translucency so reading stays comfortable in any lighting.',
+          desc: 'Balancing OLED pitch-black contrast and crisp daytime translucency so reading stays comfortable in any lighting.\n\nTrue OLED black eliminates backlight bleed at night, while subtle 1px specular borders and soft layered blurs preserve spatial depth without visual clutter.',
           chips: ['UI Design', 'Glassmorphism']
         }
       ]
@@ -1247,6 +1499,7 @@
 
     let state = structuredClone(DEFAULT_DATA);
     let currentSection = 'all';
+    let activeChip = null;
     let isAdminSignedIn = false;
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -1295,10 +1548,29 @@
         .replace(/"/g, '&quot;');
     }
 
+    function escapeAttr(str) {
+      return escapeHtml(str).replace(/'/g, '&#39;');
+    }
+
+    function matchesChip(item) {
+      if (!activeChip) return true;
+      const chips = Array.isArray(item.chips) ? item.chips : [];
+      return chips.some(c => c.toLowerCase() === activeChip.toLowerCase());
+    }
+
+    function renderChipsHtml(chips) {
+      if (!Array.isArray(chips) || !chips.length) return '';
+      return `<div class="chip-row">${chips.map(c => {
+        const isActive = activeChip && c.toLowerCase() === activeChip.toLowerCase();
+        return `<button type="button" class="mini-chip ${isActive ? 'active-chip' : ''}" onclick="toggleChipFilter('${escapeAttr(c)}')">#${escapeHtml(c)}</button>`;
+      }).join('')}</div>`;
+    }
+
     function renderAll() {
       document.getElementById('brandName').textContent = state.name || DEFAULT_DATA.name;
       document.getElementById('heroRoleBadge').textContent = state.roleBadge || DEFAULT_DATA.roleBadge;
       document.getElementById('heroLocationBadge').textContent = state.locationBadge || DEFAULT_DATA.locationBadge;
+      document.getElementById('heroCurrentlyText').textContent = state.currentlyStatus || DEFAULT_DATA.currentlyStatus;
       document.getElementById('heroHeadline').textContent = state.headline || DEFAULT_DATA.headline;
       document.getElementById('heroBio').textContent = state.bio || DEFAULT_DATA.bio;
 
@@ -1308,7 +1580,16 @@
       document.getElementById('statPosts').textContent = String((state.blog || []).length);
       document.getElementById('footerYear').textContent = String(new Date().getFullYear());
 
-      document.getElementById('resumeGrid').innerHTML = (state.resume || []).map(item => `
+      const banner = document.getElementById('chipFilterBanner');
+      if (activeChip) {
+        banner.classList.add('visible');
+        document.getElementById('chipFilterText').textContent = `Showing items tagged #${activeChip}`;
+      } else {
+        banner.classList.remove('visible');
+      }
+
+      const resumeItems = (state.resume || []).filter(matchesChip);
+      document.getElementById('resumeGrid').innerHTML = resumeItems.length ? resumeItems.map(item => `
         <article class="item-card">
           <div class="card-meta-row">
             <span>EXPERIENCE</span>
@@ -1317,48 +1598,172 @@
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
           ${item.subtitle ? `<div class="card-subtitle">${escapeHtml(item.subtitle)}</div>` : ''}
           <p class="card-desc">${escapeHtml(item.desc || '')}</p>
-          ${Array.isArray(item.chips) && item.chips.length ? `<div class="chip-row">${item.chips.map(c => `<span class="mini-chip">${escapeHtml(c)}</span>`).join('')}</div>` : ''}
+          <div class="card-footer-row">
+            ${renderChipsHtml(item.chips)}
+          </div>
         </article>
-      `).join('');
+      `).join('') : '<p class="card-desc">No resume entries match this tag.</p>';
 
-      document.getElementById('achievementsGrid').innerHTML = (state.achievements || []).map(item => `
-        <article class="item-card">
+      const achItems = (state.achievements || []).filter(matchesChip);
+      document.getElementById('achievementsGrid').innerHTML = achItems.length ? achItems.map((item, idx) => `
+        <article class="item-card ${idx === 0 && !activeChip && achItems.length > 2 ? 'featured-bento' : ''}">
           <div class="card-meta-row">
-            <span>MILESTONE</span>
+            <span>${idx === 0 && !activeChip ? 'FEATURED MILESTONE' : 'MILESTONE'}</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
           <p class="card-desc">${escapeHtml(item.desc || '')}</p>
-          ${Array.isArray(item.chips) && item.chips.length ? `<div class="chip-row">${item.chips.map(c => `<span class="mini-chip">${escapeHtml(c)}</span>`).join('')}</div>` : ''}
+          <div class="card-footer-row">
+            ${renderChipsHtml(item.chips)}
+          </div>
         </article>
-      `).join('');
+      `).join('') : '<p class="card-desc">No achievements match this tag.</p>';
 
-      document.getElementById('booksGrid').innerHTML = (state.books || []).map(item => `
+      const bookItems = (state.books || []).filter(matchesChip);
+      document.getElementById('booksGrid').innerHTML = bookItems.length ? bookItems.map((item) => {
+        const realIdx = (state.books || []).indexOf(item);
+        const firstPara = String(item.desc || '').split('\n\n')[0];
+        return `
         <article class="item-card">
           <div class="card-meta-row">
             <span>READING LOG</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
-          <p class="card-desc">${escapeHtml(item.desc || '')}</p>
-          ${Array.isArray(item.chips) && item.chips.length ? `<div class="chip-row">${item.chips.map(c => `<span class="mini-chip">${escapeHtml(c)}</span>`).join('')}</div>` : ''}
+          <p class="card-desc">${escapeHtml(firstPara)}</p>
+          <div class="card-footer-row">
+            ${renderChipsHtml(item.chips)}
+            <button type="button" class="read-more-link" onclick="openReader('books', ${realIdx})">Notes →</button>
+          </div>
         </article>
-      `).join('');
+      `;
+      }).join('') : '<p class="card-desc">No books match this tag.</p>';
 
-      document.getElementById('blogGrid').innerHTML = (state.blog || []).map(item => `
+      const blogItems = (state.blog || []).filter(matchesChip);
+      document.getElementById('blogGrid').innerHTML = blogItems.length ? blogItems.map((item) => {
+        const realIdx = (state.blog || []).indexOf(item);
+        const firstPara = String(item.desc || '').split('\n\n')[0];
+        return `
         <article class="item-card">
           <div class="card-meta-row">
             <span>BLOG NOTE</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
-          <p class="card-desc">${escapeHtml(item.desc || '')}</p>
-          ${Array.isArray(item.chips) && item.chips.length ? `<div class="chip-row">${item.chips.map(c => `<span class="mini-chip">${escapeHtml(c)}</span>`).join('')}</div>` : ''}
+          <p class="card-desc">${escapeHtml(firstPara)}</p>
+          <div class="card-footer-row">
+            ${renderChipsHtml(item.chips)}
+            <button type="button" class="read-more-link" onclick="openReader('blog', ${realIdx})">Read Note →</button>
+          </div>
         </article>
-      `).join('');
+      `;
+      }).join('') : '<p class="card-desc">No blog notes match this tag.</p>';
 
       applySectionFilter();
     }
+
+    /* Cursor-Tracking Specular Glass Highlight */
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      const card = e.target.closest('.item-card');
+      if (!card) return;
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+    });
+
+    window.toggleChipFilter = function(tag) {
+      activeChip = (activeChip && activeChip.toLowerCase() === tag.toLowerCase()) ? null : tag;
+      renderAll();
+    };
+
+    window.clearChipFilter = function() {
+      activeChip = null;
+      renderAll();
+    };
+
+    window.printResumePdf = function() {
+      const prevSection = currentSection;
+      setSection('resume');
+      window.print();
+      setSection(prevSection);
+    };
+
+    /* Full-Article & Book Takeaways Reader */
+    window.openReader = function(group, index) {
+      const list = state[group] || [];
+      const item = list[index];
+      if (!item) return;
+      const words = String(item.desc || '').trim().split(/\s+/).filter(Boolean).length;
+      const mins = Math.max(1, Math.round(words / 180));
+      const label = group === 'books' ? 'BOOK TAKEAWAYS' : 'BLOG ESSAY';
+      document.getElementById('readerMeta').textContent = `${label} • ${item.meta || ''} • ${mins} MIN READ`;
+      document.getElementById('readerTitle').textContent = item.title || '';
+      document.getElementById('readerContent').textContent = item.desc || '';
+      document.getElementById('readerChips').innerHTML = (item.chips || []).map(c => `<span class="mini-chip">#${escapeHtml(c)}</span>`).join('');
+      document.getElementById('readerModal').classList.add('open');
+    };
+
+    window.closeReaderModal = function() {
+      document.getElementById('readerModal').classList.remove('open');
+    };
+
+    /* Instant Command Palette Search (Ctrl+K) */
+    window.openSearchModal = function() {
+      const modal = document.getElementById('searchModal');
+      const input = document.getElementById('searchInput');
+      modal.classList.add('open');
+      input.value = '';
+      runSearchQuery('');
+      setTimeout(() => input.focus(), 40);
+    };
+
+    window.closeSearchModal = function() {
+      document.getElementById('searchModal').classList.remove('open');
+    };
+
+    window.runSearchQuery = function(query) {
+      const q = String(query || '').trim().toLowerCase();
+      const entries = [];
+      ['resume', 'achievements', 'books', 'blog'].forEach(group => {
+        (state[group] || []).forEach((item, idx) => {
+          const hay = `${item.title || ''} ${item.subtitle || ''} ${item.desc || ''} ${(item.chips || []).join(' ')}`.toLowerCase();
+          if (!q || hay.includes(q)) {
+            entries.push({ group, idx, item });
+          }
+        });
+      });
+
+      const listEl = document.getElementById('searchResultsList');
+      if (!entries.length) {
+        listEl.innerHTML = '<p class="card-desc">No matching entries found.</p>';
+        return;
+      }
+
+      const labelMap = { resume: 'Resume', achievements: 'Achievement', books: 'Book', blog: 'Blog Note' };
+      listEl.innerHTML = entries.slice(0, 12).map(({ group, idx, item }) => `
+        <button type="button" class="search-result-item" onclick="handleSearchSelect('${group}', ${idx})">
+          <div class="card-meta-row" style="margin-bottom:2px;">
+            <span>${labelMap[group]}</span>
+            <span>${escapeHtml(item.meta || '')}</span>
+          </div>
+          <strong style="color:var(--text-primary);font-size:0.94rem;">${escapeHtml(item.title || '')}</strong>
+          <span style="color:var(--text-secondary);font-size:0.82rem;">${escapeHtml(String(item.desc || '').slice(0, 110))}...</span>
+        </button>
+      `).join('');
+    };
+
+    window.handleSearchSelect = function(group, idx) {
+      closeSearchModal();
+      clearChipFilter();
+      setSection(group);
+      if (group === 'books' || group === 'blog') {
+        openReader(group, idx);
+      } else {
+        const target = document.getElementById(`sec-${group}`);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
 
     function applySectionFilter() {
       const sections = document.querySelectorAll('.section-block[data-group]');
@@ -1411,11 +1816,15 @@
       if (wrap && menu && !wrap.contains(e.target)) {
         menu.classList.remove('open');
       }
+      if (e.target && e.target.classList && e.target.classList.contains('modal-backdrop')) {
+        e.target.classList.remove('open');
+      }
     });
 
     function syncEditorInputs() {
       document.getElementById('editName').value = state.name || '';
       document.getElementById('editRole').value = state.roleBadge || '';
+      document.getElementById('editCurrently').value = state.currentlyStatus || '';
       document.getElementById('editBio').value = state.bio || '';
     }
 
@@ -1463,15 +1872,18 @@
       const meta = document.getElementById('newEntryMeta').value.trim();
       const title = document.getElementById('newEntryTitle').value.trim();
       const desc = document.getElementById('newEntryDesc').value.trim();
+      const chipsRaw = document.getElementById('newEntryChips').value.trim();
       if (!title) {
         showToast('Please enter a title.');
         return;
       }
+      const chips = chipsRaw ? chipsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
       if (!Array.isArray(state[type])) state[type] = [];
-      state[type].unshift({ title, meta, desc, chips: [] });
+      state[type].unshift({ title, meta, desc, chips });
       document.getElementById('newEntryTitle').value = '';
       document.getElementById('newEntryMeta').value = '';
       document.getElementById('newEntryDesc').value = '';
+      document.getElementById('newEntryChips').value = '';
       renderAll();
       showToast('Added to draft. Click Publish Live to Firestore.');
     };
@@ -1483,6 +1895,7 @@
       }
       state.name = document.getElementById('editName').value.trim() || DEFAULT_DATA.name;
       state.roleBadge = document.getElementById('editRole').value.trim() || DEFAULT_DATA.roleBadge;
+      state.currentlyStatus = document.getElementById('editCurrently').value.trim() || DEFAULT_DATA.currentlyStatus;
       state.bio = document.getElementById('editBio').value.trim() || DEFAULT_DATA.bio;
       state.headline = `Living ${state.name.split(' ')[0]} resume, milestones, reading log & personal notes.`;
 
@@ -1512,6 +1925,13 @@
         e.preventDefault();
         document.body.classList.add('admin-unlocked');
         openAdminModal();
+      } else if ((e.ctrlKey || e.metaKey) && !e.shiftKey && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        openSearchModal();
+      } else if (e.key === 'Escape') {
+        closeSearchModal();
+        closeReaderModal();
+        closeAdminModal();
       }
     });
 
