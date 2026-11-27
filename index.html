@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en" class="dark" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -9,28 +9,125 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-void: #050609;
-      --bg-base: #080a0f;
-      --glass-surface: rgba(14, 18, 28, 0.72);
-      --glass-elevated: rgba(20, 25, 39, 0.84);
-      --glass-dropdown: rgba(10, 13, 22, 0.94);
+      /* Pitch Black (OLED Void) Mode - Default */
+      --bg-void: #000000;
+      --bg-base: #000000;
+      --ambient-grad:
+        radial-gradient(ellipse 68% 42% at 15% -4%, rgba(124, 108, 255, 0.14), transparent 65%),
+        radial-gradient(ellipse 52% 38% at 88% 10%, rgba(34, 211, 238, 0.09), transparent 65%),
+        radial-gradient(ellipse 58% 42% at 50% 104%, rgba(16, 185, 129, 0.07), transparent 70%),
+        linear-gradient(180deg, #000000 0%, #020305 55%, #000000 100%);
+      --grid-line: rgba(255, 255, 255, 0.032);
+      --grid-opacity: 0.24;
+
+      --topbar-bg: rgba(4, 5, 9, 0.84);
+      --glass-surface: rgba(8, 10, 16, 0.76);
+      --glass-elevated: rgba(14, 17, 26, 0.88);
+      --glass-dropdown: rgba(5, 7, 12, 0.96);
+      --stat-bg: rgba(5, 7, 12, 0.82);
+      --modal-bg: rgba(7, 9, 15, 0.97);
+      --modal-backdrop: rgba(0, 0, 0, 0.82);
+      --input-bg: rgba(255, 255, 255, 0.04);
+      --chip-bg: rgba(255, 255, 255, 0.05);
+      --chip-border: rgba(255, 255, 255, 0.08);
+      --hover-tint: rgba(255, 255, 255, 0.06);
+      --trigger-bg: rgba(12, 15, 24, 0.92);
+
       --glass-border: rgba(255, 255, 255, 0.09);
       --glass-border-bright: rgba(255, 255, 255, 0.18);
-      --text-primary: #f3f6fc;
-      --text-secondary: #a2adbf;
-      --text-muted: #697488;
+      --text-primary: #f4f7fc;
+      --text-secondary: #a4b0c2;
+      --text-muted: #6c778b;
+
       --accent-indigo: #7c6cff;
       --accent-cyan: #22d3ee;
       --accent-emerald: #10b981;
       --accent-amber: #f59e0b;
       --accent-rose: #fb7185;
+
+      --violet-pill-text: #c4b5fd;
+      --violet-pill-bg: rgba(124, 108, 255, 0.15);
+      --violet-pill-border: rgba(124, 108, 255, 0.35);
+
+      --cyan-pill-text: #67e8f9;
+      --cyan-pill-bg: rgba(34, 211, 238, 0.12);
+      --cyan-pill-border: rgba(34, 211, 238, 0.3);
+
+      --nav-active-text: #ffffff;
+      --nav-active-bg: rgba(124, 108, 255, 0.24);
+      --nav-active-border: rgba(124, 108, 255, 0.52);
+
+      --btn-primary-text: #ffffff;
+      --btn-primary-bg: linear-gradient(135deg, rgba(124, 108, 255, 0.38), rgba(34, 211, 238, 0.22));
+      --btn-primary-border: rgba(124, 108, 255, 0.55);
+
+      --hero-grad: linear-gradient(90deg, #a78bfa 0%, #38bdf8 55%, #34d399 100%);
       --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       --radius-pill: 999px;
       --radius-card: 20px;
       --radius-sm: 12px;
       --blur-glass: blur(22px);
-      --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      --shadow-topbar: 0 14px 36px rgba(0, 0, 0, 0.65);
+    }
+
+    html[data-theme="light"] {
+      /* Crisp Daytime / White Frosted Glass Mode */
+      --bg-void: #f7f9fc;
+      --bg-base: #ffffff;
+      --ambient-grad:
+        radial-gradient(ellipse 70% 45% at 15% -5%, rgba(99, 102, 241, 0.13), transparent 65%),
+        radial-gradient(ellipse 55% 40% at 88% 12%, rgba(6, 182, 212, 0.11), transparent 65%),
+        radial-gradient(ellipse 60% 45% at 50% 105%, rgba(16, 185, 129, 0.08), transparent 70%),
+        linear-gradient(180deg, #ffffff 0%, #f4f7fb 55%, #eef2f8 100%);
+      --grid-line: rgba(15, 23, 42, 0.045);
+      --grid-opacity: 0.55;
+
+      --topbar-bg: rgba(255, 255, 255, 0.82);
+      --glass-surface: rgba(255, 255, 255, 0.78);
+      --glass-elevated: rgba(255, 255, 255, 0.92);
+      --glass-dropdown: rgba(255, 255, 255, 0.97);
+      --stat-bg: rgba(248, 250, 252, 0.92);
+      --modal-bg: rgba(255, 255, 255, 0.98);
+      --modal-backdrop: rgba(15, 23, 42, 0.45);
+      --input-bg: rgba(15, 23, 42, 0.035);
+      --chip-bg: rgba(15, 23, 42, 0.045);
+      --chip-border: rgba(15, 23, 42, 0.09);
+      --hover-tint: rgba(15, 23, 42, 0.05);
+      --trigger-bg: rgba(248, 250, 252, 0.95);
+
+      --glass-border: rgba(15, 23, 42, 0.09);
+      --glass-border-bright: rgba(15, 23, 42, 0.18);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+
+      --accent-indigo: #5b4ce6;
+      --accent-cyan: #0284c7;
+      --accent-emerald: #059669;
+      --accent-amber: #d97706;
+      --accent-rose: #e11d48;
+
+      --violet-pill-text: #4f46e5;
+      --violet-pill-bg: rgba(99, 102, 241, 0.10);
+      --violet-pill-border: rgba(99, 102, 241, 0.28);
+
+      --cyan-pill-text: #0369a1;
+      --cyan-pill-bg: rgba(2, 132, 199, 0.09);
+      --cyan-pill-border: rgba(2, 132, 199, 0.25);
+
+      --nav-active-text: #4338ca;
+      --nav-active-bg: rgba(99, 102, 241, 0.13);
+      --nav-active-border: rgba(99, 102, 241, 0.36);
+
+      --btn-primary-text: #ffffff;
+      --btn-primary-bg: linear-gradient(135deg, #5b4ce6 0%, #0284c7 100%);
+      --btn-primary-border: rgba(79, 70, 229, 0.65);
+
+      --hero-grad: linear-gradient(90deg, #4f46e5 0%, #0284c7 55%, #059669 100%);
+      --shadow-glass: 0 14px 36px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+      --shadow-topbar: 0 10px 28px rgba(15, 23, 42, 0.08);
     }
 
     *, *::before, *::after {
@@ -47,19 +144,17 @@
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Ambient dark glass glow layers */
+    /* Ambient glass glow layers */
     .ambient-bg {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      background:
-        radial-gradient(ellipse 70% 45% at 15% -5%, rgba(124, 108, 255, 0.16), transparent 65%),
-        radial-gradient(ellipse 55% 40% at 88% 12%, rgba(34, 211, 238, 0.11), transparent 65%),
-        radial-gradient(ellipse 60% 45% at 50% 105%, rgba(16, 185, 129, 0.09), transparent 70%),
-        linear-gradient(180deg, #06070c 0%, #080a10 55%, #050609 100%);
+      background: var(--ambient-grad);
+      transition: background 0.25s ease;
     }
 
     .grid-overlay {
@@ -67,10 +162,10 @@
       inset: 0;
       pointer-events: none;
       z-index: 0;
-      opacity: 0.22;
+      opacity: var(--grid-opacity);
       background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+        linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
       background-size: 48px 48px;
       mask-image: radial-gradient(ellipse at 50% 25%, #000 35%, transparent 85%);
       -webkit-mask-image: radial-gradient(ellipse at 50% 25%, #000 35%, transparent 85%);
@@ -92,21 +187,7 @@
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-card);
       box-shadow: var(--shadow-glass);
-    }
-
-    .glass-pill {
-      background: rgba(16, 20, 32, 0.78);
-      backdrop-filter: var(--blur-glass);
-      -webkit-backdrop-filter: var(--blur-glass);
-      border: 1px solid var(--glass-border);
-      border-radius: var(--radius-pill);
-      color: var(--text-primary);
-      transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease;
-    }
-
-    .glass-pill:hover {
-      border-color: var(--glass-border-bright);
-      background: rgba(24, 30, 48, 0.9);
+      transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     /* Top Navigation Bar */
@@ -117,14 +198,15 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 10px;
       padding: 10px 14px;
       border-radius: var(--radius-pill);
-      background: rgba(10, 13, 22, 0.84);
+      background: var(--topbar-bg);
       backdrop-filter: blur(26px);
       -webkit-backdrop-filter: blur(26px);
       border: 1px solid var(--glass-border);
-      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.5);
+      box-shadow: var(--shadow-topbar);
+      transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .brand {
@@ -145,8 +227,8 @@
       border-radius: 11px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(124, 108, 255, 0.28), rgba(34, 211, 238, 0.2));
-      border: 1px solid rgba(124, 108, 255, 0.45);
+      background: linear-gradient(135deg, rgba(124, 108, 255, 0.24), rgba(34, 211, 238, 0.18));
+      border: 1px solid rgba(124, 108, 255, 0.42);
       flex-shrink: 0;
     }
 
@@ -175,14 +257,14 @@
 
     .nav-btn:hover {
       color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.05);
+      background: var(--hover-tint);
     }
 
     .nav-btn.active {
-      color: #ffffff;
-      background: rgba(124, 108, 255, 0.22);
-      border-color: rgba(124, 108, 255, 0.5);
-      box-shadow: 0 0 20px rgba(124, 108, 255, 0.22);
+      color: var(--nav-active-text);
+      background: var(--nav-active-bg);
+      border-color: var(--nav-active-border);
+      box-shadow: 0 0 20px rgba(124, 108, 255, 0.18);
     }
 
     /* Mobile Dropdown Navigation (< 768px) */
@@ -198,7 +280,7 @@
       padding: 8px 14px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border-bright);
-      background: rgba(18, 23, 38, 0.9);
+      background: var(--trigger-bg);
       color: var(--text-primary);
       font-family: var(--font-sans);
       font-size: 0.85rem;
@@ -222,7 +304,7 @@
       backdrop-filter: blur(28px);
       -webkit-backdrop-filter: blur(28px);
       border: 1px solid var(--glass-border-bright);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.78), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
       z-index: 90;
     }
 
@@ -253,19 +335,42 @@
 
     .mobile-dropdown-item:hover {
       color: var(--text-primary);
-      background: rgba(255, 255, 255, 0.06);
+      background: var(--hover-tint);
     }
 
     .mobile-dropdown-item.active {
-      color: #ffffff;
-      background: rgba(124, 108, 255, 0.24);
-      border-color: rgba(124, 108, 255, 0.45);
+      color: var(--nav-active-text);
+      background: var(--nav-active-bg);
+      border-color: var(--nav-active-border);
     }
 
     .topbar-right {
       display: flex;
       align-items: center;
       gap: 8px;
+    }
+
+    /* Theme Toggle Button */
+    .theme-toggle-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 12px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--glass-border-bright);
+      background: var(--input-bg);
+      color: var(--text-primary);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.18s ease;
+    }
+
+    .theme-toggle-btn:hover {
+      background: var(--hover-tint);
+      transform: translateY(-1px);
     }
 
     .sync-badge {
@@ -304,9 +409,9 @@
       gap: 7px;
       padding: 8px 15px;
       border-radius: var(--radius-pill);
-      border: 1px solid rgba(124, 108, 255, 0.55);
-      background: linear-gradient(135deg, rgba(124, 108, 255, 0.35), rgba(34, 211, 238, 0.2));
-      color: #ffffff;
+      border: 1px solid var(--btn-primary-border);
+      background: var(--btn-primary-bg);
+      color: var(--btn-primary-text);
       font-family: var(--font-sans);
       font-size: 0.84rem;
       font-weight: 600;
@@ -327,7 +432,7 @@
       padding: 8px 13px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--input-bg);
       color: var(--text-secondary);
       font-family: var(--font-sans);
       font-size: 0.83rem;
@@ -340,7 +445,7 @@
     .btn-ghost-glass:hover {
       color: var(--text-primary);
       border-color: var(--glass-border-bright);
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--hover-tint);
     }
 
     /* Hero Card */
@@ -359,7 +464,7 @@
       width: 280px;
       height: 280px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(124, 108, 255, 0.22), transparent 70%);
+      background: radial-gradient(circle, rgba(124, 108, 255, 0.2), transparent 70%);
       pointer-events: none;
     }
 
@@ -380,20 +485,20 @@
       font-size: 0.78rem;
       font-weight: 600;
       border: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--input-bg);
       color: var(--text-secondary);
     }
 
     .tag-pill.violet {
-      color: #c4b5fd;
-      background: rgba(124, 108, 255, 0.14);
-      border-color: rgba(124, 108, 255, 0.35);
+      color: var(--violet-pill-text);
+      background: var(--violet-pill-bg);
+      border-color: var(--violet-pill-border);
     }
 
     .tag-pill.cyan {
-      color: #67e8f9;
-      background: rgba(34, 211, 238, 0.12);
-      border-color: rgba(34, 211, 238, 0.3);
+      color: var(--cyan-pill-text);
+      background: var(--cyan-pill-bg);
+      border-color: var(--cyan-pill-border);
     }
 
     .hero-title {
@@ -406,7 +511,7 @@
     }
 
     .hero-title span.grad {
-      background: linear-gradient(90deg, #a78bfa 0%, #38bdf8 55%, #34d399 100%);
+      background: var(--hero-grad);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -436,11 +541,12 @@
     .stat-widget {
       padding: 15px 16px;
       border-radius: 16px;
-      background: rgba(9, 12, 20, 0.72);
+      background: var(--stat-bg);
       border: 1px solid var(--glass-border);
       display: flex;
       align-items: center;
       gap: 12px;
+      transition: background-color 0.25s ease, border-color 0.25s ease;
     }
 
     .widget-icon {
@@ -514,7 +620,8 @@
       backdrop-filter: var(--blur-glass);
       -webkit-backdrop-filter: var(--blur-glass);
       border: 1px solid var(--glass-border);
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      box-shadow: var(--shadow-glass);
+      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.25s ease;
     }
 
     .item-card:hover {
@@ -565,8 +672,8 @@
       border-radius: var(--radius-pill);
       font-size: 0.74rem;
       font-weight: 600;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
       color: var(--text-secondary);
     }
 
@@ -590,7 +697,7 @@
       position: fixed;
       inset: 0;
       z-index: 120;
-      background: rgba(3, 4, 8, 0.78);
+      background: var(--modal-backdrop);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
       padding: 20px;
@@ -609,9 +716,9 @@
       margin: auto;
       padding: 24px;
       border-radius: 22px;
-      background: rgba(11, 14, 24, 0.96);
+      background: var(--modal-bg);
       border: 1px solid var(--glass-border-bright);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.85);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
     }
 
     .modal-head {
@@ -652,7 +759,7 @@
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid var(--glass-border);
-      background: rgba(255, 255, 255, 0.04);
+      background: var(--input-bg);
       color: var(--text-primary);
       font-family: var(--font-sans);
       font-size: 0.88rem;
@@ -675,12 +782,12 @@
       z-index: 200;
       padding: 11px 16px;
       border-radius: 14px;
-      background: rgba(15, 20, 34, 0.95);
+      background: var(--modal-bg);
       border: 1px solid rgba(16, 185, 129, 0.45);
       color: var(--text-primary);
       font-size: 0.84rem;
       font-weight: 600;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.65);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
       opacity: 0;
       transform: translateY(10px);
       pointer-events: none;
@@ -711,8 +818,12 @@
       .mobile-nav-wrap {
         display: block;
       }
-      .sync-badge .sync-text {
+      .sync-badge .sync-text,
+      .theme-toggle-btn .theme-label {
         display: none;
+      }
+      .theme-toggle-btn {
+        padding: 8px 10px;
       }
       .hero {
         padding: 20px;
@@ -794,8 +905,15 @@
         </div>
       </div>
 
-      <!-- Right Status & Admin-Only Controls -->
+      <!-- Right Theme Switcher, Live Status & Admin Controls -->
       <div class="topbar-right">
+        <button type="button" class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle pitch black and daytime theme" title="Switch between Pitch Black and Daytime mode">
+          <span id="themeToggleIcon" aria-hidden="true">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          </span>
+          <span class="theme-label" id="themeToggleText">Daytime</span>
+        </button>
+
         <span class="sync-badge" id="cloudStatusBadge" title="Live Firestore status">
           <span class="sync-dot" id="cloudStatusDot"></span>
           <span class="sync-text" id="cloudStatusText">Firestore Live</span>
@@ -1023,6 +1141,31 @@
     const db = getFirestore(app);
     const docRef = doc(db, 'portfolio', 'main');
 
+    /* Theme Persistence & Toggle (Pitch Black vs Daytime White) */
+    const THEME_KEY = 'shiva_portfolio_theme';
+    const SUN_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
+    const MOON_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+
+    function applyTheme(theme) {
+      const normalized = theme === 'light' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', normalized);
+      document.documentElement.classList.toggle('dark', normalized === 'dark');
+      const iconEl = document.getElementById('themeToggleIcon');
+      const textEl = document.getElementById('themeToggleText');
+      if (iconEl) iconEl.innerHTML = normalized === 'dark' ? SUN_ICON : MOON_ICON;
+      if (textEl) textEl.textContent = normalized === 'dark' ? 'Daytime' : 'Pitch Black';
+    }
+
+    window.toggleTheme = function() {
+      const current = document.documentElement.getAttribute('data-theme') || 'dark';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next);
+      showToast(next === 'light' ? 'Switched to Daytime mode' : 'Switched to Pitch Black mode');
+    };
+
+    applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+
     const DEFAULT_DATA = {
       name: 'Sivakumar Perneti',
       roleBadge: 'Senior Talent Acquisition & Builder',
@@ -1043,7 +1186,7 @@
           meta: '2025 – Present • Personal Lab',
           subtitle: 'Glassmorphic UIs, Static Hosting & Personal Media',
           desc: 'Building lightweight browser tools, clean dark-glass interfaces, and self-hosted utilities tailored for mobile and desktop productivity.',
-          chips: ['HTML/CSS/JS', 'Firebase', 'GitHub Pages']
+          chips: ['HTML/CSS/JS', 'Firebase', 'Cloudflare Pages']
         }
       ],
       achievements: [
@@ -1094,9 +1237,9 @@
           chips: ['Portfolio', 'Notes']
         },
         {
-          title: 'Designing Calm Dark-Glass Interfaces for Mobile & Desktop',
+          title: 'Designing Calm Glass Interfaces for Pitch Black & Daytime',
           meta: 'Nov 2026',
-          desc: 'Balancing translucent surfaces, legible contrast, and single-line dropdown menus so small screens stay uncluttered.',
+          desc: 'Balancing OLED pitch-black contrast and crisp daytime translucency so reading stays comfortable in any lighting.',
           chips: ['UI Design', 'Glassmorphism']
         }
       ]
@@ -1124,7 +1267,7 @@
       box.textContent = msg;
       box.classList.add('show');
       clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => box.classList.remove('show'), 2800);
+      window.__toastTimer = setTimeout(() => box.classList.remove('show'), 2600);
     }
 
     function setCloudBadge(mode, text) {
