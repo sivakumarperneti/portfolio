@@ -1214,13 +1214,57 @@
 
     @media (max-width: 767px) {
       .app-shell {
-        padding: 12px 14px 52px;
+        padding: 10px 12px 52px;
+      }
+      .topbar {
+        top: 8px;
+        padding: 7px 10px;
+        gap: 6px;
+        width: 100%;
+      }
+      .brand {
+        gap: 7px;
+        font-size: 0.84rem;
+        min-width: 0;
+        flex: 1 1 auto;
+      }
+      .brand #brandName {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .brand-mark {
+        width: 28px;
+        height: 28px;
+        border-radius: 9px;
+      }
+      .brand-verified {
+        display: none;
       }
       .desktop-nav {
         display: none;
       }
       .mobile-nav-wrap {
         display: block;
+        flex-shrink: 0;
+      }
+      .mobile-dropdown-trigger {
+        padding: 6px 10px;
+        font-size: 0.78rem;
+        gap: 5px;
+      }
+      .mobile-dropdown-menu {
+        left: auto;
+        right: 0;
+        transform: none;
+        min-width: 195px;
+      }
+      .topbar-right {
+        gap: 5px;
+        flex-shrink: 0;
+      }
+      .sync-badge {
+        padding: 6px 8px;
       }
       .sync-badge .sync-text,
       .icon-pill-btn .pill-label,
@@ -1228,16 +1272,86 @@
         display: none;
       }
       .icon-pill-btn {
-        padding: 8px 10px;
+        padding: 7px;
+      }
+      .btn-primary-glass, .btn-ghost-glass {
+        padding: 7px 12px;
+        font-size: 0.79rem;
       }
       .hero {
-        padding: 20px;
+        margin-top: 14px;
+        padding: 18px 16px;
+      }
+      .hero-top-meta {
+        gap: 7px;
+        margin-bottom: 12px;
+      }
+      .tag-pill {
+        font-size: 0.73rem;
+        padding: 4px 10px;
+        max-width: 100%;
+      }
+      #heroCurrentlyBadge {
+        border-radius: 14px;
+        line-height: 1.35;
+      }
+      #heroCurrentlyBadge .pulse-dot {
+        flex-shrink: 0;
+      }
+      .hero-title {
+        font-size: 1.58rem;
+        line-height: 1.2;
+      }
+      .hero-bio {
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+      }
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-bottom: 18px;
+      }
+      .hero-actions button {
+        justify-content: center;
+        width: 100%;
+      }
+      .hero-actions button:nth-child(3) {
+        grid-column: span 2;
+      }
+      .stats-row {
+        gap: 8px;
+      }
+      .stat-widget {
+        padding: 11px 10px;
+        gap: 9px;
+      }
+      .widget-icon {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+      }
+      .stat-value {
+        font-size: 1.05rem;
+      }
+      .stat-label {
+        font-size: 0.72rem;
+        line-height: 1.25;
       }
       .cards-grid-2, .cards-grid-3, .form-grid {
         grid-template-columns: 1fr;
       }
       .item-card.featured-bento {
         grid-column: span 1;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .brand #brandName {
+        max-width: 112px;
+      }
+      .topbar-right .sync-badge {
+        display: none;
       }
     }
   </style>
