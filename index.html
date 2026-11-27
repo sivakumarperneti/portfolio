@@ -1023,7 +1023,10 @@
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 16px 18px;
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
+      padding: 14px 16px;
       border-radius: 16px;
       background: var(--glass-surface);
       border: 1px solid var(--glass-border);
@@ -1032,6 +1035,13 @@
 
     .contact-tile-info {
       min-width: 0;
+      flex: 1 1 auto;
+      overflow: hidden;
+    }
+
+    .contact-tile > button,
+    .contact-tile > a {
+      flex-shrink: 0;
     }
 
     .contact-tile-label {
@@ -1505,6 +1515,13 @@
       }
       .item-card.featured-bento {
         grid-column: span 1;
+      }
+      .contact-tile {
+        padding: 12px 13px;
+        gap: 8px;
+      }
+      .contact-tile-val {
+        font-size: 0.82rem;
       }
       .timeline-list {
         padding-left: 18px;
