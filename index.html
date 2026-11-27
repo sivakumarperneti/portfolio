@@ -1,0 +1,1618 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aarav Sharma — Engineer, Reader & Digital Garden</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans, Inter, Roboto (Android Native Match) & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Roboto', 'system-ui', '-apple-system', 'sans-serif'],
+                        display: ['"Plus Jakarta Sans"', 'Roboto', 'system-ui', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        canvas: '#050507',
+                        surface: 'rgba(18, 20, 28, 0.55)',
+                        surfaceHover: 'rgba(28, 31, 44, 0.72)',
+                        borderSubtle: 'rgba(255, 255, 255, 0.09)',
+                        borderHighlight: 'rgba(255, 255, 255, 0.18)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Obsidian deep black base + Android & Windows frosted glassmorphic styling */
+        :root {
+            --glass-bg: rgba(18, 20, 28, 0.55);
+            --glass-bg-elevated: rgba(22, 25, 36, 0.78);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-border-hover: rgba(255, 255, 255, 0.22);
+        }
+
+        body {
+            background-color: #050507;
+            color: #F4F4F5;
+            font-family: 'Inter', 'Roboto', system-ui, -apple-system, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background-image: 
+                radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.12) 0%, transparent 38%),
+                radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.10) 0%, transparent 40%),
+                radial-gradient(circle at 50% 85%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+                radial-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 100% 100%, 24px 24px;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Frosted Glass Bento Cards */
+        .bento-card {
+            background: linear-gradient(145deg, rgba(24, 27, 38, 0.62) 0%, rgba(12, 13, 19, 0.72) 100%);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(20px) saturate(160%);
+            -webkit-backdrop-filter: blur(20px) saturate(160%);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.07), 0 10px 30px -15px rgba(0, 0, 0, 0.85);
+            transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .bento-card:hover {
+            border-color: var(--glass-border-hover);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.12), 0 16px 36px -14px rgba(0, 0, 0, 0.9), 0 0 28px -8px rgba(139, 92, 246, 0.16);
+        }
+
+        /* Glass Header & Dropdown Menus */
+        .glass-header {
+            background: rgba(8, 9, 13, 0.72);
+            backdrop-filter: blur(24px) saturate(180%);
+            -webkit-backdrop-filter: blur(24px) saturate(180%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+        }
+
+        .glass-dropdown {
+            background: rgba(12, 14, 22, 0.92);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.85), inset 0 1px 0 0 rgba(255, 255, 255, 0.12);
+            transform-origin: top right;
+            transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Auto-sizing mobile navigation dropdown panel & single-line items */
+        #mobile-nav-menu {
+            width: max-content;
+            min-width: 240px;
+            max-width: calc(100vw - 24px);
+            right: -36px;
+            left: auto;
+        }
+
+        #mobile-nav-menu .mob-nav-item {
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            width: 100%;
+            padding-right: 16px;
+        }
+
+        #mobile-nav-menu .mob-nav-item > span:first-child {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        /* Responsive Mobile Filter Dropdowns (Resume, Achievements, Books, Studio) */
+        .mobile-filter-select {
+            width: 100%;
+            min-width: 240px;
+            max-width: calc(100vw - 24px);
+            white-space: nowrap;
+            background: rgba(12, 14, 22, 0.92);
+            backdrop-filter: blur(28px) saturate(180%);
+            -webkit-backdrop-filter: blur(28px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65);
+        }
+
+        .hero-glow {
+            position: relative;
+        }
+        .hero-glow::before {
+            content: "";
+            position: absolute;
+            inset: -1px;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.55), rgba(6, 182, 212, 0.3), rgba(16, 185, 129, 0.25), rgba(255, 255, 255, 0.08));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050507;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.28);
+        }
+
+        /* Print styles for clean Resume export */
+        @media print {
+            body {
+                background: #ffffff !important;
+                color: #09090B !important;
+                background-image: none !important;
+            }
+            header, nav, .no-print, #toast-container {
+                display: none !important;
+            }
+            .bento-card {
+                background: #ffffff !important;
+                border: 1px solid #e4e4e7 !important;
+                box-shadow: none !important;
+                backdrop-filter: none !important;
+                color: #09090B !important;
+                break-inside: avoid;
+            }
+            .text-zinc-400, .text-zinc-300 {
+                color: #3f3f46 !important;
+            }
+            .text-white {
+                color: #09090B !important;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-violet-500/30 selection:text-violet-200 min-h-screen flex flex-col">
+
+    <!-- Dynamic Ambient Glow Orbs -->
+    <div class="fixed top-[-60px] left-1/2 -translate-x-1/2 w-[90vw] max-w-[860px] h-[260px] bg-gradient-to-r from-violet-600/20 via-cyan-500/15 to-emerald-500/15 blur-[120px] pointer-events-none z-0"></div>
+
+    <!-- Sticky Frosted Glass Header (Adapts seamlessly between Android Mobile & Windows Desktop) -->
+    <header class="sticky top-0 z-40 glass-header">
+        <div class="max-w-6xl mx-auto px-3.5 sm:px-6 h-16 flex items-center justify-between gap-2 sm:gap-4">
+            
+            <!-- Brand / Identity -->
+            <div class="flex items-center gap-2.5 min-w-0">
+                <button onclick="switchTab('overview')" class="flex items-center gap-2.5 text-left group focus:outline-none min-w-0">
+                    <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-violet-500 via-cyan-400 to-emerald-400 p-[1.5px] shadow-lg shadow-violet-500/25 shrink-0">
+                        <div class="w-full h-full bg-[#08090D]/90 backdrop-blur-md rounded-[10.5px] flex items-center justify-center group-hover:bg-transparent transition-colors">
+                            <!-- Custom Designer Monogram / Spark Icon -->
+                            <svg class="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2L14.8 9.2L22 12L14.8 14.8L12 22L9.2 14.8L2 12L9.2 9.2L12 2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                <circle cx="12" cy="12" r="2.2" fill="#38BDF8"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="truncate">
+                        <span id="header-name" class="font-display font-bold text-sm sm:text-base text-white tracking-tight block leading-none truncate">Aarav Sharma</span>
+                        <span id="header-role" class="font-mono text-[11px] text-zinc-400 hidden sm:block mt-1 truncate">Systems & Product Engineer</span>
+                    </div>
+                </button>
+
+                <!-- Status Pill (Desktop) -->
+                <div class="hidden xl:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-400/25 text-emerald-300 text-xs font-mono ml-2 backdrop-blur-md">
+                    <span class="relative flex h-2 w-2">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+                    </span>
+                    <span id="header-status">Open to Connect</span>
+                </div>
+            </div>
+
+            <!-- ANDROID / MOBILE INTERACTIVE NAVIGATION DROPDOWN (< 768px) -->
+            <div class="relative md:hidden flex-1 max-w-[190px]" id="mobile-nav-wrapper">
+                <button id="mobile-nav-trigger" onclick="toggleMobileNav()" aria-expanded="false" class="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-full bg-white/[0.07] hover:bg-white/[0.12] active:scale-[0.98] border border-white/15 backdrop-blur-xl text-xs font-medium text-white shadow-lg transition-all">
+                    <span class="flex items-center gap-2 truncate">
+                        <span id="mobile-nav-current-icon" class="text-violet-400 shrink-0"></span>
+                        <span id="mobile-nav-current-label" class="truncate font-display font-semibold">Overview</span>
+                    </span>
+                    <svg id="mobile-nav-chevron" class="w-3.5 h-3.5 text-zinc-400 transition-transform duration-200 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+
+                <!-- Frosted Glass Dropdown Menu -->
+                <div id="mobile-nav-menu" class="hidden glass-dropdown absolute mt-2.5 rounded-2xl p-2 z-50 space-y-1">
+                    <button data-mob-tab="overview" onclick="selectMobileTab('overview')" class="mob-nav-item px-3 py-2.5 rounded-xl text-xs font-medium text-white bg-white/10">
+                        <span>
+                            <span class="w-7 h-7 rounded-lg bg-violet-500/20 border border-violet-400/30 flex items-center justify-center text-violet-300 shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+                            </span>
+                            <span>Overview</span>
+                        </span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-violet-400 mob-active-dot shrink-0"></span>
+                    </button>
+
+                    <button data-mob-tab="resume" onclick="selectMobileTab('resume')" class="mob-nav-item px-3 py-2.5 rounded-xl text-xs font-medium text-zinc-200 hover:bg-white/10">
+                        <span>
+                            <span class="w-7 h-7 rounded-lg bg-cyan-500/20 border border-cyan-400/30 flex items-center justify-center text-cyan-300 shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                            </span>
+                            <span>Resume & CV</span>
+                        </span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 mob-active-dot hidden shrink-0"></span>
+                    </button>
+
+                    <button data-mob-tab="achievements" onclick="selectMobileTab('achievements')" class="mob-nav-item px-3 py-2.5 rounded-xl text-xs font-medium text-zinc-200 hover:bg-white/10">
+                        <span>
+                            <span class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300 shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                            </span>
+                            <span>Achievements</span>
+                        </span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mob-active-dot hidden shrink-0"></span>
+                    </button>
+
+                    <button data-mob-tab="bookshelf" onclick="selectMobileTab('bookshelf')" class="mob-nav-item px-3 py-2.5 rounded-xl text-xs font-medium text-zinc-200 hover:bg-white/10">
+                        <span>
+                            <span class="w-7 h-7 rounded-lg bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-amber-300 shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                            </span>
+                            <span>Books Read</span>
+                        </span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-amber-400 mob-active-dot hidden shrink-0"></span>
+                    </button>
+
+                    <button data-mob-tab="blog" onclick="selectMobileTab('blog')" class="mob-nav-item px-3 py-2.5 rounded-xl text-xs font-medium text-zinc-200 hover:bg-white/10">
+                        <span>
+                            <span class="w-7 h-7 rounded-lg bg-rose-500/20 border border-rose-400/30 flex items-center justify-center text-rose-300 shrink-0">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                            </span>
+                            <span>Personal Blog</span>
+                        </span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-rose-400 mob-active-dot hidden shrink-0"></span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- WINDOWS / DESKTOP GLASS PILL NAVIGATION (>= 768px) -->
+            <nav class="hidden md:flex items-center gap-1 bg-white/[0.04] p-1 rounded-full border border-white/10 backdrop-blur-xl">
+                <button data-tab="overview" onclick="switchTab('overview')" class="nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-all whitespace-nowrap bg-white/12 text-white shadow-sm">
+                    <svg class="w-3.5 h-3.5 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>
+                    Overview
+                </button>
+                <button data-tab="resume" onclick="switchTab('resume')" class="nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-all whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    Resume
+                </button>
+                <button data-tab="achievements" onclick="switchTab('achievements')" class="nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-all whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    Achievements
+                </button>
+                <button data-tab="bookshelf" onclick="switchTab('bookshelf')" class="nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-all whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                    Bookshelf
+                </button>
+                <button data-tab="blog" onclick="switchTab('blog')" class="nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-all whitespace-nowrap">
+                    <svg class="w-3.5 h-3.5 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    Blog
+                </button>
+            </nav>
+
+            <!-- Action Controls: Self-Host Guide & Quick Studio -->
+            <div class="flex items-center gap-1.5 sm:gap-2 no-print shrink-0">
+                <button onclick="openModal('host-modal')" title="Hosting & Setup Guide" class="p-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/15 backdrop-blur-md text-zinc-300 hover:text-cyan-300 transition-all">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path></svg>
+                </button>
+                <button onclick="openModal('editor-modal')" class="flex items-center gap-1.5 px-3 py-2 rounded-full bg-gradient-to-r from-violet-600/90 to-indigo-600/90 hover:from-violet-500 hover:to-indigo-500 border border-violet-400/30 text-white text-xs font-medium transition-all shadow-lg shadow-violet-600/25">
+                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    <span class="hidden sm:inline">Customize</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-1 max-w-6xl w-full mx-auto px-3.5 sm:px-6 py-6 sm:py-10 relative z-10">
+
+        <!-- ==================== 1. OVERVIEW (BENTO GRID) ==================== -->
+        <section id="view-overview" class="space-y-5 sm:space-y-6">
+            <!-- Top Bento Row: Bio (8 cols) + Current Focus (4 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+                
+                <!-- Hero Bio Card -->
+                <div class="lg:col-span-8 bento-card hero-glow rounded-3xl p-5 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-4 sm:mb-5">
+                            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-mono bg-violet-500/15 text-violet-300 border border-violet-400/25 backdrop-blur-md">
+                                <svg class="w-3.5 h-3.5 text-violet-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                                v3.0 • Glass Digital Garden
+                            </span>
+                            <span class="font-mono text-xs text-zinc-400 flex items-center gap-1.5" id="hero-location">
+                                <svg class="w-3.5 h-3.5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                                Hyderabad, India • UTC+5:30
+                            </span>
+                        </div>
+
+                        <h1 class="font-display text-2xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight text-white leading-[1.18] mb-3.5 sm:mb-4">
+                            Building resilient software, <span class="text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-300 to-emerald-400">documenting ideas</span> & collecting great books.
+                        </h1>
+
+                        <p id="hero-bio" class="text-zinc-300/90 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            Hi, I'm Aarav. I design distributed backend systems and minimalist developer tools. This self-hosted corner of the internet serves as my living resume, milestone log, reading tracker, and personal blog.
+                        </p>
+                    </div>
+
+                    <div class="mt-6 sm:mt-7 pt-5 border-t border-white/10 flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex flex-wrap items-center gap-2.5">
+                            <button onclick="switchTab('resume')" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white text-zinc-950 font-semibold text-xs sm:text-sm hover:bg-zinc-200 transition-all shadow-lg shadow-white/10">
+                                <svg class="w-4 h-4 text-violet-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                View Resume
+                            </button>
+                            <button onclick="switchTab('blog')" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/[0.06] hover:bg-white/[0.12] text-zinc-100 border border-white/15 backdrop-blur-md font-medium text-xs sm:text-sm transition-all">
+                                <svg class="w-4 h-4 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                                Read Blog
+                            </button>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="flex items-center gap-3 text-zinc-400">
+                            <a href="https://github.com" target="_blank" rel="noreferrer" class="hover:text-white transition-colors font-mono text-xs flex items-center gap-1">
+                                GitHub ↗
+                            </a>
+                            <span class="text-zinc-700">/</span>
+                            <a href="https://linkedin.com" target="_blank" rel="noreferrer" class="hover:text-cyan-400 transition-colors font-mono text-xs flex items-center gap-1">
+                                LinkedIn ↗
+                            </a>
+                            <span class="text-zinc-700">/</span>
+                            <a href="mailto:hello@example.com" class="hover:text-emerald-400 transition-colors font-mono text-xs flex items-center gap-1">
+                                Email ↗
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column Stack: Now Focus + Quick Stats -->
+                <div class="lg:col-span-4 flex flex-col gap-4 sm:gap-5">
+                    <!-- Now / Current Focus Widget -->
+                    <div class="bento-card rounded-3xl p-5 sm:p-6 flex-1 flex flex-col justify-between relative overflow-hidden">
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-cyan-500/15 rounded-full blur-2xl pointer-events-none"></div>
+                        <div>
+                            <div class="flex items-center justify-between mb-3">
+                                <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-cyan-500/15 text-cyan-300 border border-cyan-400/25">
+                                    <svg class="w-3 h-3 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                                    Currently / Now
+                                </span>
+                                <span class="text-xs font-mono text-zinc-400">Nov 2026</span>
+                            </div>
+                            <h3 id="now-title" class="font-display font-bold text-lg text-white mb-2">
+                                Self-hosting & Rust Internals
+                            </h3>
+                            <p id="now-desc" class="text-xs sm:text-sm text-zinc-300/85 leading-relaxed">
+                                Experimenting with local-first web apps, running services on mobile & laptop, and reading systems engineering classics.
+                            </p>
+                        </div>
+                        <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono">
+                            <span class="text-zinc-400">Active Focus</span>
+                            <span class="text-cyan-400 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span> Shipping daily</span>
+                        </div>
+                    </div>
+
+                    <!-- Colorful Glass Metrics Bento -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <div onclick="switchTab('resume')" class="bento-card rounded-2xl p-3.5 sm:p-4 cursor-pointer text-center group">
+                            <div class="w-7 h-7 mx-auto mb-1.5 rounded-xl bg-violet-500/15 border border-violet-400/25 flex items-center justify-center text-violet-300 group-hover:scale-110 transition-transform">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                            </div>
+                            <div id="stat-exp" class="font-display font-extrabold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-violet-300 to-fuchsia-400">4+</div>
+                            <div class="text-[11px] font-mono text-zinc-400 mt-0.5">Yrs Exp</div>
+                        </div>
+                        <div onclick="switchTab('achievements')" class="bento-card rounded-2xl p-3.5 sm:p-4 cursor-pointer text-center group">
+                            <div class="w-7 h-7 mx-auto mb-1.5 rounded-xl bg-emerald-500/15 border border-emerald-400/25 flex items-center justify-center text-emerald-300 group-hover:scale-110 transition-transform">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                            </div>
+                            <div id="stat-awards" class="font-display font-extrabold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-emerald-300 to-teal-300">12</div>
+                            <div class="text-[11px] font-mono text-zinc-400 mt-0.5">Awards</div>
+                        </div>
+                        <div onclick="switchTab('bookshelf')" class="bento-card rounded-2xl p-3.5 sm:p-4 cursor-pointer text-center group">
+                            <div class="w-7 h-7 mx-auto mb-1.5 rounded-xl bg-amber-500/15 border border-amber-400/25 flex items-center justify-center text-amber-300 group-hover:scale-110 transition-transform">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                            </div>
+                            <div id="stat-books" class="font-display font-extrabold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-br from-amber-300 to-orange-400">28</div>
+                            <div class="text-[11px] font-mono text-zinc-400 mt-0.5">Books</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Bento Row: Featured Bookshelf (5 cols) + Recent Notes (7 cols) -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5">
+                <!-- Bookshelf Preview Widget -->
+                <div class="lg:col-span-5 bento-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-xl bg-amber-500/15 border border-amber-400/25 flex items-center justify-center text-amber-300">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                                </span>
+                                <h2 class="font-display font-bold text-base text-white">On the Bookshelf</h2>
+                            </div>
+                            <button onclick="switchTab('bookshelf')" class="text-xs font-mono text-amber-400 hover:text-amber-300 transition-colors">
+                                All Books →
+                            </button>
+                        </div>
+                        <div id="overview-books-list" class="space-y-3">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-white/10 text-xs text-zinc-400 font-mono flex justify-between">
+                        <span>2026 Reading Goal</span>
+                        <span class="text-amber-400">14 / 20 Books</span>
+                    </div>
+                </div>
+
+                <!-- Recent Notes / Micro-Blog Preview Widget -->
+                <div class="lg:col-span-7 bento-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2.5">
+                                <span class="w-7 h-7 rounded-xl bg-emerald-500/15 border border-emerald-400/25 flex items-center justify-center text-emerald-300">
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                                </span>
+                                <h2 class="font-display font-bold text-base text-white">Recent Blog Posts & Notes</h2>
+                            </div>
+                            <button onclick="switchTab('blog')" class="text-xs font-mono text-emerald-400 hover:text-emerald-300 transition-colors">
+                                All Posts →
+                            </button>
+                        </div>
+                        <div id="overview-notes-list" class="space-y-3">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-zinc-400">
+                        <span>Personal Digital Garden</span>
+                        <button onclick="openModal('editor-modal')" class="text-violet-400 hover:underline">+ Write new post</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Third Bento Row: Highlighted Achievements Strip -->
+            <div class="bento-card rounded-3xl p-5 sm:p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="flex items-center gap-2.5">
+                        <span class="w-7 h-7 rounded-xl bg-violet-500/15 border border-violet-400/25 flex items-center justify-center text-violet-300">
+                            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                        </span>
+                        <h2 class="font-display font-bold text-base text-white">Selected Achievements & Milestones</h2>
+                    </div>
+                    <button onclick="switchTab('achievements')" class="text-xs font-mono text-violet-400 hover:text-violet-300 transition-colors">
+                        Explore All →
+                    </button>
+                </div>
+                <div id="overview-achievements-grid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <!-- Populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 2. RESUME & EXPERIENCE ==================== -->
+        <section id="view-resume" class="hidden space-y-5 sm:space-y-6">
+            <div class="bento-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-cyan-500/15 border border-cyan-400/30 flex items-center justify-center text-cyan-300 shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-cyan-400 uppercase tracking-wider">Curriculum Vitae</span>
+                        <h2 class="font-display text-xl sm:text-3xl font-bold text-white">Experience & Technical Stack</h2>
+                    </div>
+                </div>
+
+                <!-- Android Mobile Dropdown for Resume Sections + Windows Print Button -->
+                <div class="flex flex-wrap items-center gap-2.5 no-print">
+                    <div class="relative md:hidden flex-1 min-w-[200px]">
+                        <select id="mobile-resume-filter" onchange="filterResumeSection(this.value)" class="mobile-filter-select appearance-none pl-3.5 pr-9 py-2.5 rounded-full text-xs font-mono text-white focus:outline-none focus:border-cyan-400">
+                            <option value="all" class="bg-[#0B0C10]">Show: All Resume Sections</option>
+                            <option value="experience" class="bg-[#0B0C10]">Show: Work Experience</option>
+                            <option value="skills" class="bg-[#0B0C10]">Show: Core Technologies</option>
+                            <option value="education" class="bg-[#0B0C10]">Show: Education</option>
+                        </select>
+                        <svg class="w-3.5 h-3.5 text-zinc-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                    </div>
+
+                    <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 border border-violet-400/30 text-white text-xs sm:text-sm font-semibold shadow-lg shadow-violet-600/25 transition-all shrink-0">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+                        <span>Save PDF</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-6">
+                <!-- Timeline Column (8 cols) -->
+                <div class="lg:col-span-8 space-y-4" id="resume-experience-list">
+                    <!-- Populated by JS -->
+                </div>
+
+                <!-- Skills & Education Column (4 cols) -->
+                <div class="lg:col-span-4 space-y-5" id="resume-side-column">
+                    <div id="resume-skills-card" class="bento-card rounded-3xl p-5 sm:p-6">
+                        <h3 class="font-display font-bold text-base text-white mb-4 flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-xl bg-cyan-500/15 border border-cyan-400/25 flex items-center justify-center text-cyan-300">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                            </span>
+                            Core Technologies
+                        </h3>
+                        <div id="resume-skills-list" class="flex flex-wrap gap-2">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+
+                    <div id="resume-education-card" class="bento-card rounded-3xl p-5 sm:p-6">
+                        <h3 class="font-display font-bold text-base text-white mb-4 flex items-center gap-2.5">
+                            <span class="w-7 h-7 rounded-xl bg-emerald-500/15 border border-emerald-400/25 flex items-center justify-center text-emerald-300">
+                                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                            </span>
+                            Education
+                        </h3>
+                        <div id="resume-education-list" class="space-y-4">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== 3. ACHIEVEMENTS ==================== -->
+        <section id="view-achievements" class="hidden space-y-5 sm:space-y-6">
+            <div class="bento-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-emerald-500/15 border border-emerald-400/30 flex items-center justify-center text-emerald-300 shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-emerald-400 uppercase tracking-wider">Hall of Milestones</span>
+                        <h2 class="font-display text-xl sm:text-3xl font-bold text-white">Achievements & Recognition</h2>
+                    </div>
+                </div>
+
+                <!-- Mobile Dropdown Filter (< 768px) -->
+                <div class="relative md:hidden">
+                    <select id="mobile-ach-select" onchange="filterAchievements(this.value)" class="mobile-filter-select appearance-none pl-4 pr-10 py-2.5 rounded-full text-xs font-mono text-emerald-300 focus:outline-none focus:border-emerald-400">
+                        <option value="All" class="bg-[#0B0C10]">Category: All Milestones</option>
+                        <option value="Hackathon" class="bg-[#0B0C10]">Category: Hackathon</option>
+                        <option value="Open Source" class="bg-[#0B0C10]">Category: Open Source</option>
+                        <option value="Certification" class="bg-[#0B0C10]">Category: Certification</option>
+                    </select>
+                    <svg class="w-4 h-4 text-emerald-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+
+                <!-- Desktop Filter Pills (>= 768px) -->
+                <div class="hidden md:flex flex-wrap gap-2" id="achievement-filters">
+                    <button onclick="filterAchievements('All')" class="ach-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-400/35">All</button>
+                    <button onclick="filterAchievements('Hackathon')" class="ach-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white">Hackathon</button>
+                    <button onclick="filterAchievements('Open Source')" class="ach-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white">Open Source</button>
+                    <button onclick="filterAchievements('Certification')" class="ach-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white">Certification</button>
+                </div>
+            </div>
+
+            <div id="achievements-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- ==================== 4. BOOKSHELF ==================== -->
+        <section id="view-bookshelf" class="hidden space-y-5 sm:space-y-6">
+            <div class="bento-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-amber-500/15 border border-amber-400/30 flex items-center justify-center text-amber-300 shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-amber-400 uppercase tracking-wider">Personal Library</span>
+                        <h2 class="font-display text-xl sm:text-3xl font-bold text-white">Books Read & Key Takeaways</h2>
+                    </div>
+                </div>
+
+                <!-- Mobile Dropdown Filter (< 768px) -->
+                <div class="relative md:hidden">
+                    <select id="mobile-book-select" onchange="filterBooks(this.value)" class="mobile-filter-select appearance-none pl-4 pr-10 py-2.5 rounded-full text-xs font-mono text-amber-300 focus:outline-none focus:border-amber-400">
+                        <option value="All" class="bg-[#0B0C10]">Shelf: All Books</option>
+                        <option value="Currently Reading" class="bg-[#0B0C10]">Shelf: Currently Reading</option>
+                        <option value="Completed" class="bg-[#0B0C10]">Shelf: Completed</option>
+                        <option value="Favorites" class="bg-[#0B0C10]">Shelf: Top Favorites</option>
+                    </select>
+                    <svg class="w-4 h-4 text-amber-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+
+                <!-- Desktop Filter Pills (>= 768px) -->
+                <div class="hidden md:flex flex-wrap gap-2" id="book-filters">
+                    <button onclick="filterBooks('All')" class="book-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-amber-500/20 text-amber-300 border border-amber-400/35">All Books</button>
+                    <button onclick="filterBooks('Currently Reading')" class="book-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white">Currently Reading</button>
+                    <button onclick="filterBooks('Completed')" class="book-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white">Completed</button>
+                    <button onclick="filterBooks('Favorites')" class="book-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white">★ Favorites</button>
+                </div>
+            </div>
+
+            <div id="bookshelf-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+        <!-- ==================== 5. MICRO-BLOG / NOTES ==================== -->
+        <section id="view-blog" class="hidden space-y-5 sm:space-y-6">
+            <div class="bento-card rounded-3xl p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-2xl bg-rose-500/15 border border-rose-400/30 flex items-center justify-center text-rose-300 shrink-0">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-rose-400 uppercase tracking-wider">Personal Blog</span>
+                        <h2 class="font-display text-xl sm:text-3xl font-bold text-white">Field Notes, Essays & Logs</h2>
+                    </div>
+                </div>
+                <div class="flex items-center gap-2.5 w-full sm:w-auto">
+                    <div class="relative flex-1 sm:w-64">
+                        <svg class="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <input type="text" id="blog-search" oninput="renderBlog()" placeholder="Search posts or tags..." class="w-full pl-9 pr-3.5 py-2.5 rounded-full bg-white/[0.06] border border-white/15 backdrop-blur-md text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-cyan-400">
+                    </div>
+                    <button onclick="openModal('editor-modal'); switchStudioTab('add-note');" class="px-4 py-2.5 rounded-full bg-cyan-500/15 hover:bg-cyan-500/25 text-cyan-300 border border-cyan-400/30 text-xs font-mono whitespace-nowrap shrink-0">
+                        + New Post
+                    </button>
+                </div>
+            </div>
+
+            <div id="blog-list" class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+                <!-- Populated by JS -->
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Minimal Frosted Glass Footer -->
+    <footer class="border-t border-white/10 bg-[#050507]/80 backdrop-blur-xl py-6 mt-12 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-400">
+            <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#34d399]"></span>
+                <span>Adaptive Android & Windows Glass Portfolio</span>
+            </div>
+            <div class="flex items-center gap-4">
+                <button onclick="openModal('host-modal')" class="hover:text-cyan-400 transition-colors">Hosting Guide</button>
+                <span class="text-zinc-700">•</span>
+                <button onclick="exportFullHTML()" class="hover:text-violet-400 transition-colors">Download Standalone HTML</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== READING DRAWER / MODAL ==================== -->
+    <div id="reader-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3.5 sm:p-4">
+        <div class="glass-dropdown rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
+            <div class="px-5 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
+                <div class="flex items-center gap-2">
+                    <span id="reader-tag" class="px-3 py-0.5 rounded-full text-[11px] font-mono bg-violet-500/20 text-violet-300 border border-violet-400/30">Note</span>
+                    <span id="reader-date" class="text-xs font-mono text-zinc-400">Nov 2026</span>
+                </div>
+                <button onclick="closeModal('reader-modal')" class="w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.14] flex items-center justify-center text-zinc-300 hover:text-white transition-colors">
+                    ✕
+                </button>
+            </div>
+            <div class="p-5 sm:p-8 overflow-y-auto space-y-4">
+                <h2 id="reader-title" class="font-display text-xl sm:text-3xl font-bold text-white leading-tight"></h2>
+                <div id="reader-body" class="text-zinc-300 text-sm sm:text-base leading-relaxed space-y-4 whitespace-pre-line"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== CUSTOMIZE / QUICK STUDIO MODAL ==================== -->
+    <div id="editor-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3.5 sm:p-4">
+        <div class="glass-dropdown rounded-3xl max-w-2xl w-full max-h-[88vh] flex flex-col overflow-hidden">
+            <div class="px-5 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
+                <div>
+                    <h3 class="font-display font-bold text-white text-base">Quick Studio — Edit Your Site</h3>
+                    <p class="text-xs text-zinc-400">Saves automatically in your browser. Export HTML anytime to keep permanently.</p>
+                </div>
+                <button onclick="closeModal('editor-modal')" class="w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.14] flex items-center justify-center text-zinc-300 hover:text-white transition-colors">✕</button>
+            </div>
+
+            <!-- Studio Sub-tabs (Dropdown on Android, Tabs on Windows) -->
+            <div class="border-b border-white/10 bg-white/[0.02] px-5 sm:px-6 py-2.5 md:py-0">
+                <div class="relative md:hidden">
+                    <select id="mobile-studio-select" onchange="switchStudioTab(this.value)" class="mobile-filter-select appearance-none pl-3.5 pr-9 py-2 rounded-full text-xs font-mono text-violet-300 focus:outline-none">
+                        <option value="profile" class="bg-[#0B0C10]">1. Edit Profile & Now Status</option>
+                        <option value="add-book" class="bg-[#0B0C10]">2. + Add Book to Bookshelf</option>
+                        <option value="add-note" class="bg-[#0B0C10]">3. + Publish Blog Post</option>
+                        <option value="backup" class="bg-[#0B0C10]">4. Download HTML / Reset</option>
+                    </select>
+                    <svg class="w-3.5 h-3.5 text-violet-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+                </div>
+
+                <div class="hidden md:flex gap-5 text-xs font-mono">
+                    <button onclick="switchStudioTab('profile')" id="stab-profile" class="py-3 border-b-2 border-violet-400 text-white">1. Profile & Now</button>
+                    <button onclick="switchStudioTab('add-book')" id="stab-add-book" class="py-3 border-b-2 border-transparent text-zinc-400 hover:text-white">2. + Add Book</button>
+                    <button onclick="switchStudioTab('add-note')" id="stab-add-note" class="py-3 border-b-2 border-transparent text-zinc-400 hover:text-white">3. + Add Blog Post</button>
+                    <button onclick="switchStudioTab('backup')" id="stab-backup" class="py-3 border-b-2 border-transparent text-zinc-400 hover:text-white">4. Export / Reset</button>
+                </div>
+            </div>
+
+            <div class="p-5 sm:p-6 overflow-y-auto flex-1 space-y-4">
+                <!-- Tab 1: Profile -->
+                <div id="studio-profile" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Your Name</label>
+                            <input id="edit-name" type="text" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Role / Headline</label>
+                            <input id="edit-role" type="text" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Status Pill</label>
+                            <input id="edit-status" type="text" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Location</label>
+                            <input id="edit-location" type="text" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-zinc-400 mb-1">Short Bio</label>
+                        <textarea id="edit-bio" rows="3" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400"></textarea>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Current Focus Title</label>
+                            <input id="edit-now-title" type="text" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Current Focus Summary</label>
+                            <input id="edit-now-desc" type="text" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white focus:outline-none focus:border-violet-400">
+                        </div>
+                    </div>
+                    <button onclick="saveProfileChanges()" class="px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold shadow-lg shadow-violet-600/25">
+                        Save Profile Changes
+                    </button>
+                </div>
+
+                <!-- Tab 2: Add Book -->
+                <div id="studio-add-book" class="hidden space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Book Title</label>
+                            <input id="new-book-title" type="text" placeholder="e.g., Designing Data-Intensive Applications" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Author</label>
+                            <input id="new-book-author" type="text" placeholder="e.g., Martin Kleppmann" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Status</label>
+                            <select id="new-book-status" class="w-full px-3.5 py-2.5 rounded-2xl bg-[#12141D] border border-white/15 text-sm text-white">
+                                <option value="Currently Reading">Currently Reading</option>
+                                <option value="Completed">Completed</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Genre Tag</label>
+                            <input id="new-book-genre" type="text" placeholder="Systems / Sci-Fi / Philosophy" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Rating (1-5)</label>
+                            <input id="new-book-rating" type="number" min="1" max="5" value="5" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-zinc-400 mb-1">Key Takeaway / Note</label>
+                        <textarea id="new-book-takeaway" rows="2" placeholder="One memorable insight from this book..." class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white"></textarea>
+                    </div>
+                    <button onclick="addNewBook()" class="px-5 py-2.5 rounded-full bg-amber-400 hover:bg-amber-300 text-zinc-950 text-xs font-semibold">
+                        + Add Book to Shelf
+                    </button>
+                </div>
+
+                <!-- Tab 3: Add Blog Note -->
+                <div id="studio-add-note" class="hidden space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Article / Note Title</label>
+                            <input id="new-note-title" type="text" placeholder="e.g., Why I Host My Personal Site" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono text-zinc-400 mb-1">Category Tag</label>
+                            <input id="new-note-tag" type="text" placeholder="Engineering / Reflections / Homelab" class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-zinc-400 mb-1">Content</label>
+                        <textarea id="new-note-content" rows="5" placeholder="Write your thoughts here..." class="w-full px-3.5 py-2.5 rounded-2xl bg-white/[0.05] border border-white/15 text-sm text-white"></textarea>
+                    </div>
+                    <button onclick="addNewNote()" class="px-5 py-2.5 rounded-full bg-emerald-400 hover:bg-emerald-300 text-zinc-950 text-xs font-semibold">
+                        Publish Blog Post
+                    </button>
+                </div>
+
+                <!-- Tab 4: Export / Backup -->
+                <div id="studio-backup" class="hidden space-y-4">
+                    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+                        <h4 class="font-display font-semibold text-sm text-white">1. Download Updated Single-File HTML</h4>
+                        <p class="text-xs text-zinc-400">Bakes all your edits, books, and blog posts directly into a fresh <code class="text-violet-300">index.html</code> file ready to upload on Android or Windows.</p>
+                        <button onclick="exportFullHTML()" class="mt-2 px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold">
+                            Download index.html
+                        </button>
+                    </div>
+                    <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+                        <h4 class="font-display font-semibold text-sm text-white">2. Reset to Default Demo Data</h4>
+                        <p class="text-xs text-zinc-400">Clear browser local storage and restore the original template entries.</p>
+                        <button onclick="resetAllData()" class="mt-2 px-5 py-2.5 rounded-full bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-400/30 text-xs font-mono">
+                            Reset Default Data
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== SELF-HOSTING GUIDE MODAL ==================== -->
+    <div id="host-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-3.5 sm:p-4">
+        <div class="glass-dropdown rounded-3xl max-w-2xl w-full max-h-[85vh] flex flex-col overflow-hidden">
+            <div class="px-5 sm:px-6 py-4 border-b border-white/10 flex items-center justify-between bg-white/[0.03]">
+                <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-cyan-400"></span>
+                    <h3 class="font-display font-bold text-white text-sm sm:text-base">Free Android & Windows Hosting Guide</h3>
+                </div>
+                <button onclick="closeModal('host-modal')" class="w-8 h-8 rounded-full bg-white/[0.06] hover:bg-white/[0.14] flex items-center justify-center text-zinc-300 hover:text-white">✕</button>
+            </div>
+            <div class="p-5 sm:p-6 overflow-y-auto space-y-4 text-xs sm:text-sm text-zinc-300">
+                <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="font-display font-bold text-violet-300">Android Mobile (24/7 Free Cloud)</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-violet-500/15 text-violet-300 font-mono text-[11px]">$0 / Phone Only</span>
+                    </div>
+                    <p class="text-zinc-400 text-xs leading-relaxed">Upload this single <code class="text-white">index.html</code> to your GitHub repository in Chrome on Android and enable <strong>GitHub Pages</strong> (or import the repo into <strong>Netlify</strong> / <strong>Cloudflare Pages</strong> for an instant free subdomain).</p>
+                </div>
+
+                <div class="p-4 rounded-2xl bg-white/[0.04] border border-white/10 space-y-2">
+                    <div class="flex items-center justify-between gap-2">
+                        <span class="font-display font-bold text-cyan-300">Windows Laptop Local & Tunnel</span>
+                        <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 font-mono text-[11px]">$0 / Self-Hosted</span>
+                    </div>
+                    <pre class="p-3 rounded-xl bg-black/60 border border-white/10 font-mono text-xs text-emerald-300 overflow-x-auto"># Start local HTTP server on Windows:
+python -m http.server 8080
+
+# Optional public HTTPS link:
+cloudflared tunnel --url http://localhost:8080</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- ==================== APPLICATION LOGIC & DEFAULT DATA ==================== -->
+    <script id="app-data-script">
+        // Default Portfolio Dataset (Automatically baked into exported HTML)
+        const DEFAULT_DATA = {
+            profile: {
+                name: "Aarav Sharma",
+                role: "Systems & Product Engineer",
+                status: "Open to Connect",
+                location: "Hyderabad, India • UTC+5:30",
+                bio: "Hi, I'm Aarav. I design distributed backend systems and minimalist developer tools. This self-hosted corner of the internet serves as my living resume, milestone log, reading tracker, and personal blog.",
+                nowTitle: "Self-hosting & Rust Internals",
+                nowDesc: "Experimenting with local-first web apps, running services on mobile & laptop, and reading systems engineering classics.",
+                stats: { exp: "4+", awards: "12", books: "28" }
+            },
+            experience: [
+                {
+                    role: "Senior Backend & Infrastructure Engineer",
+                    company: "CloudScale Labs",
+                    period: "2024 — Present",
+                    badgeColor: "violet",
+                    summary: "Architected zero-downtime deployment pipelines and multi-region edge routing handling 45k req/sec.",
+                    highlights: [
+                        "Reduced p99 API latency by 42% by migrating hot-path workers to Rust and optimizing connection pooling.",
+                        "Built an internal developer self-service portal inspired by Render's instant preview environments."
+                    ],
+                    skills: ["Rust", "Go", "PostgreSQL", "Docker", "Kubernetes"]
+                },
+                {
+                    role: "Software Engineer — Platform",
+                    company: "Verve Technologies",
+                    period: "2022 — 2024",
+                    badgeColor: "cyan",
+                    summary: "Owned event-driven billing microservices, webhook delivery engines, and observability dashboards.",
+                    highlights: [
+                        "Designed an idempotent webhook retry queue processing 12M+ daily events with 99.99% reliability.",
+                        "Authored internal CLI tooling adopted by 60+ engineers for local staging replication."
+                    ],
+                    skills: ["TypeScript", "Node.js", "Redis", "Kafka", "Terraform"]
+                },
+                {
+                    role: "Open Source Contributor & Fellow",
+                    company: "Linux & Cloud Native Ecosystem",
+                    period: "2021 — 2022",
+                    badgeColor: "emerald",
+                    summary: "Contributed documentation, CLI parsers, and telemetry exporters across community developer tools.",
+                    highlights: [
+                        "Merged 18+ pull requests improving container startup diagnostics and memory profiling."
+                    ],
+                    skills: ["Linux", "C++", "Prometheus", "Git"]
+                }
+            ],
+            skills: [
+                { name: "Rust", color: "amber" },
+                { name: "Go", color: "cyan" },
+                { name: "TypeScript", color: "violet" },
+                { name: "Python", color: "emerald" },
+                { name: "PostgreSQL", color: "cyan" },
+                { name: "Redis", color: "rose" },
+                { name: "Docker & Linux", color: "emerald" },
+                { name: "Cloudflare Tunnels", color: "amber" },
+                { name: "System Design", color: "violet" },
+                { name: "Tailwind CSS", color: "cyan" }
+            ],
+            education: [
+                {
+                    degree: "B.Tech in Computer Science & Engineering",
+                    school: "National Institute of Technology",
+                    year: "2018 — 2022",
+                    detail: "CGPA: 9.1/10 • Lead, Systems & Open Source Club"
+                }
+            ],
+            achievements: [
+                {
+                    title: "1st Place — National Systems Hackathon",
+                    category: "Hackathon",
+                    year: "2025",
+                    color: "violet",
+                    desc: "Built a lightweight container sandboxing monitor in Rust with sub-millisecond overhead in 36 hours."
+                },
+                {
+                    title: "Top 1% Contributor — OpenTelemetry Docs & CLI",
+                    category: "Open Source",
+                    year: "2024",
+                    color: "emerald",
+                    desc: "Recognized for simplifying zero-code instrumentation guides and shipping diagnostic CLI flags."
+                },
+                {
+                    title: "Certified Kubernetes Application Developer (CKAD)",
+                    category: "Certification",
+                    year: "2024",
+                    color: "cyan",
+                    desc: "Scored 94% on hands-on cluster debugging, networking policies, and workload orchestration."
+                },
+                {
+                    title: "Speaker — Local-First & Homelab Meetup",
+                    category: "Open Source",
+                    year: "2025",
+                    color: "amber",
+                    desc: "Presented 'Running Your Digital Life from an Old Laptop' to 150+ developers."
+                },
+                {
+                    title: "Best Paper Award — Undergraduate Distributed Systems",
+                    category: "Certification",
+                    year: "2022",
+                    color: "violet",
+                    desc: "Published research on Raft consensus optimizations over high-latency edge networks."
+                },
+                {
+                    title: "Winner — FinTech Reliability Challenge",
+                    category: "Hackathon",
+                    year: "2023",
+                    color: "emerald",
+                    desc: "Engineered a fault-tolerant ledger reconciliation engine capable of 10k TPS."
+                }
+            ],
+            books: [
+                {
+                    title: "Designing Data-Intensive Applications",
+                    author: "Martin Kleppmann",
+                    status: "Completed",
+                    favorite: true,
+                    genre: "Systems",
+                    rating: 5,
+                    takeaway: "The definitive mental model for replication, partitioning, and consensus in modern backends."
+                },
+                {
+                    title: "The Pragmatic Programmer",
+                    author: "Andrew Hunt & David Thomas",
+                    status: "Completed",
+                    favorite: true,
+                    genre: "Craft",
+                    rating: 5,
+                    takeaway: "Tracer bullets, orthogonality, and taking ownership of your tools make software joyful."
+                },
+                {
+                    title: "Staff Engineer: Leadership Beyond the Management Track",
+                    author: "Will Larson",
+                    status: "Currently Reading",
+                    favorite: false,
+                    genre: "Career",
+                    rating: 5,
+                    takeaway: "Navigating technical strategy, organizational alignment, and high-leverage engineering work."
+                },
+                {
+                    title: "Project Hail Mary",
+                    author: "Andy Weir",
+                    status: "Completed",
+                    favorite: true,
+                    genre: "Sci-Fi",
+                    rating: 5,
+                    takeaway: "Pure scientific problem-solving optimism and an unforgettable friendship across light-years."
+                },
+                {
+                    title: "Thinking in Systems",
+                    author: "Donella H. Meadows",
+                    status: "Completed",
+                    favorite: false,
+                    genre: "Philosophy",
+                    rating: 4,
+                    takeaway: "Feedback loops and leverage points explain everything from server queues to cities."
+                },
+                {
+                    title: "Crafting Interpreters",
+                    author: "Robert Nystrom",
+                    status: "Currently Reading",
+                    favorite: true,
+                    genre: "Compilers",
+                    rating: 5,
+                    takeaway: "Demystifies lexers, ASTs, and bytecode VMs with crystal-clear illustrations and prose."
+                }
+            ],
+            notes: [
+                {
+                    id: "note-1",
+                    title: "Why I Self-Host My Personal Website on Laptop & Mobile",
+                    date: "Nov 22, 2026",
+                    tag: "Homelab",
+                    readTime: "3 min read",
+                    excerpt: "Owning your digital corner doesn't require complex servers. A single HTML file works seamlessly across Android and Windows.",
+                    content: "Owning your digital corner doesn't require complex cloud bills or bloated frameworks.\n\nBy keeping my portfolio, resume, and reading notes inside a single self-contained HTML file, everything loads instantaneously and works offline across both my Android phone and Windows laptop.\n\nNo build steps, no database migrations, and 100% ownership of my words."
+                },
+                {
+                    id: "note-2",
+                    title: "Lessons from Reading 25+ Technical & Sci-Fi Books",
+                    date: "Nov 10, 2026",
+                    tag: "Bookshelf",
+                    readTime: "4 min read",
+                    excerpt: "Alternating between dense systems architecture books and imaginative sci-fi keeps curiosity sharp and prevents burnout.",
+                    content: "One habit that transformed my reading consistency was pairing a dense technical book (like Kleppmann's DDIA) with a fast-paced sci-fi novel.\n\nTechnical books teach you how real-world constraints work; great fiction expands what you imagine is possible. Writing a two-sentence takeaway immediately after finishing a chapter helps lock the core idea into long-term memory."
+                },
+                {
+                    id: "note-3",
+                    title: "Minimalist Glass UI Design for Developer Tools",
+                    date: "Oct 28, 2026",
+                    tag: "Design",
+                    readTime: "3 min read",
+                    excerpt: "Why deep obsidian backgrounds, frosted glass panels, and purposeful color accents reduce cognitive load.",
+                    content: "Modern developer interfaces like Render feel fast because they strip away visual noise. Instead of heavy opaque blocks, frosted glass panels with subtle 1px hairline borders define clear spatial hierarchy.\n\nWhen the canvas is calm and dark, small bursts of emerald, violet, cyan, and amber immediately signal status and interactivity."
+                }
+            ]
+        };
+
+        // Load state from localStorage or fallback to DEFAULT_DATA
+        let appState = JSON.parse(localStorage.getItem('render_portfolio_v1')) || JSON.parse(JSON.stringify(DEFAULT_DATA));
+        let currentBookFilter = 'All';
+        let currentAchFilter = 'All';
+
+        const TAB_META = {
+            overview: {
+                label: 'Overview',
+                colorClass: 'text-violet-400',
+                icon: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg>'
+            },
+            resume: {
+                label: 'Resume & CV',
+                colorClass: 'text-cyan-400',
+                icon: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>'
+            },
+            achievements: {
+                label: 'Achievements',
+                colorClass: 'text-emerald-400',
+                icon: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg>'
+            },
+            bookshelf: {
+                label: 'Books Read',
+                colorClass: 'text-amber-400',
+                icon: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>'
+            },
+            blog: {
+                label: 'Personal Blog',
+                colorClass: 'text-rose-400',
+                icon: '<svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>'
+            }
+        };
+
+        function saveState() {
+            localStorage.setItem('render_portfolio_v1', JSON.stringify(appState));
+            renderAll();
+        }
+
+        // Badge Color Utility
+        function getBadgeClasses(color) {
+            const map = {
+                violet: "bg-violet-500/15 text-violet-300 border-violet-400/30",
+                emerald: "bg-emerald-500/15 text-emerald-300 border-emerald-400/30",
+                cyan: "bg-cyan-500/15 text-cyan-300 border-cyan-400/30",
+                amber: "bg-amber-500/15 text-amber-300 border-amber-400/30",
+                rose: "bg-rose-500/15 text-rose-300 border-rose-400/30"
+            };
+            return map[color] || map.violet;
+        }
+
+        // Android Mobile Dropdown Controls
+        function toggleMobileNav(forceClose = false) {
+            const menu = document.getElementById('mobile-nav-menu');
+            const chevron = document.getElementById('mobile-nav-chevron');
+            const trigger = document.getElementById('mobile-nav-trigger');
+            if (!menu) return;
+
+            const shouldOpen = !forceClose && menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', !shouldOpen);
+            chevron.style.transform = shouldOpen ? 'rotate(180deg)' : 'rotate(0deg)';
+            trigger.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
+        }
+
+        function selectMobileTab(tabName) {
+            switchTab(tabName);
+            toggleMobileNav(true);
+        }
+
+        // Close mobile dropdown when tapping outside
+        document.addEventListener('click', (e) => {
+            const wrapper = document.getElementById('mobile-nav-wrapper');
+            if (wrapper && !wrapper.contains(e.target)) {
+                toggleMobileNav(true);
+            }
+        });
+
+        // Navigation Switcher (Syncs both Desktop Pills & Android Mobile Dropdown)
+        function switchTab(tabName) {
+            const views = ['overview', 'resume', 'achievements', 'bookshelf', 'blog'];
+            views.forEach(v => {
+                const el = document.getElementById(`view-${v}`);
+                if (el) el.classList.toggle('hidden', v !== tabName);
+            });
+
+            // Sync Desktop Pills
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                const isActive = btn.dataset.tab === tabName;
+                btn.className = isActive
+                    ? "nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium transition-all whitespace-nowrap bg-white/15 text-white shadow-sm border border-white/10"
+                    : "nav-btn flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs lg:text-sm font-medium text-zinc-400 hover:text-white transition-all whitespace-nowrap border border-transparent";
+            });
+
+            // Sync Android Mobile Dropdown Trigger & Active Item
+            const meta = TAB_META[tabName] || TAB_META.overview;
+            const labelEl = document.getElementById('mobile-nav-current-label');
+            const iconEl = document.getElementById('mobile-nav-current-icon');
+            if (labelEl) labelEl.textContent = meta.label;
+            if (iconEl) {
+                iconEl.className = `${meta.colorClass} shrink-0`;
+                iconEl.innerHTML = meta.icon;
+            }
+
+            document.querySelectorAll('.mob-nav-item').forEach(item => {
+                const isMatch = item.dataset.mobTab === tabName;
+                item.classList.toggle('bg-white/10', isMatch);
+                item.classList.toggle('text-white', isMatch);
+                item.classList.toggle('text-zinc-300', !isMatch);
+                const dot = item.querySelector('.mob-active-dot');
+                if (dot) dot.classList.toggle('hidden', !isMatch);
+            });
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Android Mobile Resume Section Filter
+        function filterResumeSection(section) {
+            const exp = document.getElementById('resume-experience-list');
+            const skills = document.getElementById('resume-skills-card');
+            const edu = document.getElementById('resume-education-card');
+            if (!exp || !skills || !edu) return;
+
+            exp.classList.toggle('hidden', section !== 'all' && section !== 'experience');
+            skills.classList.toggle('hidden', section !== 'all' && section !== 'skills');
+            edu.classList.toggle('hidden', section !== 'all' && section !== 'education');
+        }
+
+        // Render Everything
+        function renderAll() {
+            renderProfile();
+            renderOverviewWidgets();
+            renderResume();
+            renderAchievements();
+            renderBookshelf();
+            renderBlog();
+        }
+
+        function renderProfile() {
+            const p = appState.profile;
+            document.getElementById('header-name').textContent = p.name;
+            document.getElementById('header-role').textContent = p.role;
+            document.getElementById('header-status').textContent = p.status;
+            const locSpan = document.getElementById('hero-location');
+            if (locSpan) {
+                locSpan.innerHTML = `<svg class="w-3.5 h-3.5 text-cyan-400 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> ${p.location}`;
+            }
+            document.getElementById('hero-bio').textContent = p.bio;
+            document.getElementById('now-title').textContent = p.nowTitle;
+            document.getElementById('now-desc').textContent = p.nowDesc;
+
+            document.getElementById('stat-exp').textContent = p.stats.exp;
+            document.getElementById('stat-awards').textContent = appState.achievements.length;
+            document.getElementById('stat-books').textContent = appState.books.length;
+
+            // Sync editor inputs
+            document.getElementById('edit-name').value = p.name;
+            document.getElementById('edit-role').value = p.role;
+            document.getElementById('edit-status').value = p.status;
+            document.getElementById('edit-location').value = p.location;
+            document.getElementById('edit-bio').value = p.bio;
+            document.getElementById('edit-now-title').value = p.nowTitle;
+            document.getElementById('edit-now-desc').value = p.nowDesc;
+        }
+
+        function renderOverviewWidgets() {
+            // Featured Books (top 3)
+            const booksContainer = document.getElementById('overview-books-list');
+            booksContainer.innerHTML = appState.books.slice(0, 3).map(b => `
+                <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 flex items-start justify-between gap-3">
+                    <div>
+                        <div class="font-medium text-xs sm:text-sm text-white leading-snug">${b.title}</div>
+                        <div class="text-[11px] font-mono text-zinc-400 mt-0.5">${b.author}</div>
+                    </div>
+                    <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono whitespace-nowrap border ${b.status === 'Currently Reading' ? 'bg-cyan-500/15 text-cyan-300 border-cyan-400/30' : 'bg-amber-500/15 text-amber-300 border-amber-400/30'}">
+                        ${b.status === 'Currently Reading' ? 'Reading' : '★ ' + b.rating + '/5'}
+                    </span>
+                </div>
+            `).join('');
+
+            // Recent Notes (top 3)
+            const notesContainer = document.getElementById('overview-notes-list');
+            notesContainer.innerHTML = appState.notes.slice(0, 3).map(n => `
+                <div onclick="openNoteReader('${n.id}')" class="p-3.5 rounded-2xl bg-white/[0.03] hover:bg-white/[0.07] border border-white/10 hover:border-emerald-400/40 cursor-pointer transition-all group">
+                    <div class="flex items-center justify-between gap-2 mb-1">
+                        <span class="text-[11px] font-mono text-emerald-400">${n.tag}</span>
+                        <span class="text-[11px] font-mono text-zinc-400">${n.date}</span>
+                    </div>
+                    <div class="font-display font-semibold text-sm text-white group-hover:text-emerald-300 transition-colors">${n.title}</div>
+                    <p class="text-xs text-zinc-400 line-clamp-1 mt-1">${n.excerpt}</p>
+                </div>
+            `).join('');
+
+            // Selected Achievements (top 3)
+            const achContainer = document.getElementById('overview-achievements-grid');
+            achContainer.innerHTML = appState.achievements.slice(0, 3).map(a => `
+                <div class="p-4 rounded-2xl bg-white/[0.03] border border-white/10">
+                    <div class="flex items-center justify-between mb-2.5">
+                        <span class="px-2.5 py-0.5 rounded-full text-[10px] font-mono border ${getBadgeClasses(a.color)}">${a.category}</span>
+                        <span class="text-[11px] font-mono text-zinc-400">${a.year}</span>
+                    </div>
+                    <h4 class="font-display font-semibold text-sm text-white mb-1">${a.title}</h4>
+                    <p class="text-xs text-zinc-400 leading-relaxed">${a.desc}</p>
+                </div>
+            `).join('');
+        }
+
+        function renderResume() {
+            const expContainer = document.getElementById('resume-experience-list');
+            expContainer.innerHTML = appState.experience.map(exp => `
+                <div class="bento-card rounded-3xl p-5 sm:p-6">
+                    <div class="flex flex-wrap items-start justify-between gap-2 mb-2.5">
+                        <div>
+                            <h3 class="font-display font-bold text-base sm:text-lg text-white">${exp.role}</h3>
+                            <div class="text-xs sm:text-sm font-medium text-zinc-300">${exp.company}</div>
+                        </div>
+                        <span class="px-3 py-1 rounded-full text-xs font-mono border ${getBadgeClasses(exp.badgeColor)}">${exp.period}</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-zinc-300/85 mb-3 leading-relaxed">${exp.summary}</p>
+                    <ul class="space-y-1.5 mb-4">
+                        ${exp.highlights.map(h => `<li class="text-xs sm:text-sm text-zinc-300 flex items-start gap-2"><span class="text-violet-400 mt-0.5">▹</span><span>${h}</span></li>`).join('')}
+                    </ul>
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-white/10">
+                        ${exp.skills.map(s => `<span class="px-2.5 py-0.5 rounded-full bg-white/[0.05] border border-white/10 font-mono text-[11px] text-zinc-300">${s}</span>`).join('')}
+                    </div>
+                </div>
+            `).join('');
+
+            const skillsContainer = document.getElementById('resume-skills-list');
+            skillsContainer.innerHTML = appState.skills.map(s => `
+                <span class="px-3 py-1.5 rounded-full text-xs font-mono border ${getBadgeClasses(s.color)}">${s.name}</span>
+            `).join('');
+
+            const eduContainer = document.getElementById('resume-education-list');
+            eduContainer.innerHTML = appState.education.map(ed => `
+                <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10">
+                    <div class="font-display font-semibold text-sm text-white">${ed.degree}</div>
+                    <div class="text-xs text-zinc-400 mt-0.5">${ed.school}</div>
+                    <div class="text-[11px] font-mono text-emerald-400 mt-1">${ed.year}</div>
+                    <div class="text-xs text-zinc-400 mt-1">${ed.detail}</div>
+                </div>
+            `).join('');
+        }
+
+        function filterAchievements(cat) {
+            currentAchFilter = cat;
+            const mobSel = document.getElementById('mobile-ach-select');
+            if (mobSel && mobSel.value !== cat) mobSel.value = cat;
+
+            document.querySelectorAll('.ach-filter-btn').forEach(btn => {
+                const active = btn.textContent.trim() === cat;
+                btn.className = active
+                    ? "ach-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-400/35"
+                    : "ach-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white";
+            });
+            renderAchievements();
+        }
+
+        function renderAchievements() {
+            const list = currentAchFilter === 'All'
+                ? appState.achievements
+                : appState.achievements.filter(a => a.category === currentAchFilter);
+
+            document.getElementById('achievements-grid').innerHTML = list.map(a => `
+                <div class="bento-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="px-3 py-1 rounded-full text-xs font-mono border ${getBadgeClasses(a.color)}">${a.category}</span>
+                            <span class="font-mono text-xs text-zinc-400">${a.year}</span>
+                        </div>
+                        <h3 class="font-display font-bold text-base sm:text-lg text-white mb-2">${a.title}</h3>
+                        <p class="text-xs sm:text-sm text-zinc-300/85 leading-relaxed">${a.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterBooks(status) {
+            currentBookFilter = status;
+            const mobSel = document.getElementById('mobile-book-select');
+            if (mobSel && mobSel.value !== status) mobSel.value = status;
+
+            document.querySelectorAll('.book-filter-btn').forEach(btn => {
+                const active = btn.textContent.includes(status);
+                btn.className = active
+                    ? "book-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-amber-500/20 text-amber-300 border border-amber-400/35"
+                    : "book-filter-btn px-3.5 py-1.5 rounded-full text-xs font-mono bg-white/[0.05] text-zinc-400 border border-white/10 hover:text-white";
+            });
+            renderBookshelf();
+        }
+
+        function renderBookshelf() {
+            let list = appState.books;
+            if (currentBookFilter === 'Favorites') {
+                list = list.filter(b => b.favorite);
+            } else if (currentBookFilter !== 'All') {
+                list = list.filter(b => b.status === currentBookFilter);
+            }
+
+            document.getElementById('bookshelf-grid').innerHTML = list.map(b => `
+                <div class="bento-card rounded-3xl p-5 sm:p-6 flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between gap-2 mb-3">
+                            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-mono bg-violet-500/15 text-violet-300 border border-violet-400/30">${b.genre}</span>
+                            <span class="text-xs font-mono ${b.status === 'Currently Reading' ? 'text-cyan-400' : 'text-amber-400'}">
+                                ${b.status === 'Currently Reading' ? '● Reading' : '★'.repeat(b.rating)}
+                            </span>
+                        </div>
+                        <h3 class="font-display font-bold text-base sm:text-lg text-white leading-snug">${b.title}</h3>
+                        <div class="text-xs font-mono text-zinc-400 mt-1 mb-4">by ${b.author}</div>
+                        <div class="p-3.5 rounded-2xl bg-white/[0.03] border border-white/10 text-xs text-zinc-300 leading-relaxed">
+                            <span class="text-amber-400 font-mono block text-[10px] uppercase mb-1">Takeaway</span>
+                            "${b.takeaway}"
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderBlog() {
+            const query = (document.getElementById('blog-search')?.value || '').toLowerCase();
+            const filtered = appState.notes.filter(n =>
+                n.title.toLowerCase().includes(query) ||
+                n.tag.toLowerCase().includes(query) ||
+                n.excerpt.toLowerCase().includes(query)
+            );
+
+            document.getElementById('blog-list').innerHTML = filtered.map(n => `
+                <article onclick="openNoteReader('${n.id}')" class="bento-card rounded-3xl p-5 sm:p-6 cursor-pointer flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between text-xs font-mono mb-3">
+                            <span class="px-3 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-400/30">${n.tag}</span>
+                            <span class="text-zinc-400">${n.date} • ${n.readTime || '3 min read'}</span>
+                        </div>
+                        <h3 class="font-display font-bold text-lg sm:text-xl text-white group-hover:text-cyan-300 transition-colors mb-2">${n.title}</h3>
+                        <p class="text-xs sm:text-sm text-zinc-300/85 leading-relaxed">${n.excerpt}</p>
+                    </div>
+                    <div class="mt-5 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-cyan-400">
+                        <span>Read full post</span>
+                        <span class="group-hover:translate-x-1 transition-transform">→</span>
+                    </div>
+                </article>
+            `).join('');
+        }
+
+        // Modal Controls
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function openNoteReader(noteId) {
+            const note = appState.notes.find(n => n.id === noteId);
+            if (!note) return;
+            document.getElementById('reader-tag').textContent = note.tag;
+            document.getElementById('reader-date').textContent = `${note.date} • ${note.readTime || '3 min read'}`;
+            document.getElementById('reader-title').textContent = note.title;
+            document.getElementById('reader-body').textContent = note.content;
+            openModal('reader-modal');
+        }
+
+        // Studio Editing Functions (Syncs Mobile Dropdown & Desktop Tabs)
+        function switchStudioTab(tab) {
+            const mobStudio = document.getElementById('mobile-studio-select');
+            if (mobStudio && mobStudio.value !== tab) mobStudio.value = tab;
+
+            ['profile', 'add-book', 'add-note', 'backup'].forEach(t => {
+                document.getElementById(`studio-${t}`).classList.toggle('hidden', t !== tab);
+                const btn = document.getElementById(`stab-${t}`);
+                if (btn) {
+                    btn.className = t === tab
+                        ? "py-3 border-b-2 border-violet-400 text-white"
+                        : "py-3 border-b-2 border-transparent text-zinc-400 hover:text-white";
+                }
+            });
+        }
+
+        function saveProfileChanges() {
+            appState.profile.name = document.getElementById('edit-name').value.trim() || appState.profile.name;
+            appState.profile.role = document.getElementById('edit-role').value.trim() || appState.profile.role;
+            appState.profile.status = document.getElementById('edit-status').value.trim() || appState.profile.status;
+            appState.profile.location = document.getElementById('edit-location').value.trim() || appState.profile.location;
+            appState.profile.bio = document.getElementById('edit-bio').value.trim() || appState.profile.bio;
+            appState.profile.nowTitle = document.getElementById('edit-now-title').value.trim() || appState.profile.nowTitle;
+            appState.profile.nowDesc = document.getElementById('edit-now-desc').value.trim() || appState.profile.nowDesc;
+            saveState();
+            showToast("Profile updated successfully!");
+            closeModal('editor-modal');
+        }
+
+        function addNewBook() {
+            const title = document.getElementById('new-book-title').value.trim();
+            const author = document.getElementById('new-book-author').value.trim();
+            if (!title || !author) return showToast("Please enter both title and author.", true);
+
+            appState.books.unshift({
+                title,
+                author,
+                status: document.getElementById('new-book-status').value,
+                genre: document.getElementById('new-book-genre').value.trim() || "General",
+                rating: parseInt(document.getElementById('new-book-rating').value) || 5,
+                favorite: true,
+                takeaway: document.getElementById('new-book-takeaway').value.trim() || "Added to personal bookshelf."
+            });
+
+            document.getElementById('new-book-title').value = '';
+            document.getElementById('new-book-author').value = '';
+            document.getElementById('new-book-takeaway').value = '';
+            saveState();
+            showToast("Book added to your shelf!");
+            closeModal('editor-modal');
+            switchTab('bookshelf');
+        }
+
+        function addNewNote() {
+            const title = document.getElementById('new-note-title').value.trim();
+            const content = document.getElementById('new-note-content').value.trim();
+            if (!title || !content) return showToast("Please enter a title and note content.", true);
+
+            const today = new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            appState.notes.unshift({
+                id: 'note-' + Date.now(),
+                title,
+                date: today,
+                tag: document.getElementById('new-note-tag').value.trim() || "Note",
+                readTime: Math.max(1, Math.ceil(content.split(' ').length / 180)) + " min read",
+                excerpt: content.slice(0, 135) + (content.length > 135 ? "..." : ""),
+                content
+            });
+
+            document.getElementById('new-note-title').value = '';
+            document.getElementById('new-note-content').value = '';
+            saveState();
+            showToast("New note published!");
+            closeModal('editor-modal');
+            switchTab('blog');
+        }
+
+        function resetAllData() {
+            localStorage.removeItem('render_portfolio_v1');
+            appState = JSON.parse(JSON.stringify(DEFAULT_DATA));
+            renderAll();
+            showToast("Restored default template data.");
+            closeModal('editor-modal');
+        }
+
+        // Export Standalone HTML with Current Edits Baked In
+        function exportFullHTML() {
+            const docClone = document.documentElement.cloneNode(true);
+            // Clean transient modal states in exported copy
+            ['reader-modal', 'editor-modal', 'host-modal'].forEach(id => {
+                const m = docClone.querySelector(`#${id}`);
+                if (m) m.classList.add('hidden');
+            });
+            const dataScript = docClone.querySelector('#app-data-script');
+            if (dataScript) {
+                dataScript.textContent = dataScript.textContent.replace(
+                    /const DEFAULT_DATA = [\s\S]*?;\n\n        \/\/ Load state/,
+                    `const DEFAULT_DATA = ${JSON.stringify(appState, null, 4)};\n\n        // Load state`
+                );
+            }
+            const blob = new Blob(["<!DOCTYPE html>\n" + docClone.outerHTML], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "index.html";
+            a.click();
+            URL.revokeObjectURL(url);
+            showToast("Downloaded updated index.html!");
+        }
+
+        // Non-blocking Toast Helper
+        function showToast(msg, isError = false) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = `px-4 py-2.5 rounded-xl text-xs font-mono border shadow-xl transition-all ${
+                isError
+                    ? 'bg-rose-950/90 border-rose-500/40 text-rose-200'
+                    : 'bg-surface/95 border-emerald-500/40 text-emerald-300'
+            }`;
+            toast.textContent = msg;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Close modals on Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                ['reader-modal', 'editor-modal', 'host-modal'].forEach(closeModal);
+            }
+        });
+
+        // Initialize on load
+        window.addEventListener('DOMContentLoaded', () => {
+            renderAll();
+            switchTab('overview');
+        });
+    </script>
+</body>
+</html>
