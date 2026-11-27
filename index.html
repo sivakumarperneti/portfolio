@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="dark" data-theme="dark">
+<html lang="en" class="dark" data-theme="dark" data-accent="violet">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -10,12 +10,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
+      /* Dynamic Brand Accent Palette (Default: Astral Violet) */
+      --accent-primary: #7c6cff;
+      --accent-secondary: #22d3ee;
+      --accent-tertiary: #10b981;
+      --accent-rgb: 124, 108, 255;
+      --accent-sec-rgb: 34, 211, 238;
+
       /* Pitch Black (OLED Void) Mode - Default */
       --bg-void: #000000;
       --bg-base: #000000;
       --ambient-grad:
-        radial-gradient(ellipse 68% 42% at 15% -4%, rgba(124, 108, 255, 0.14), transparent 65%),
-        radial-gradient(ellipse 52% 38% at 88% 10%, rgba(34, 211, 238, 0.09), transparent 65%),
+        radial-gradient(ellipse 68% 44% at 15% -4%, rgba(var(--accent-rgb), 0.17), transparent 65%),
+        radial-gradient(ellipse 52% 38% at 88% 10%, rgba(var(--accent-sec-rgb), 0.11), transparent 65%),
         radial-gradient(ellipse 58% 42% at 50% 104%, rgba(16, 185, 129, 0.07), transparent 70%),
         linear-gradient(180deg, #000000 0%, #020305 55%, #000000 100%);
       --grid-line: rgba(255, 255, 255, 0.032);
@@ -33,8 +40,9 @@
       --chip-border: rgba(255, 255, 255, 0.08);
       --hover-tint: rgba(255, 255, 255, 0.06);
       --trigger-bg: rgba(12, 15, 24, 0.92);
-      --specular-glow: rgba(167, 139, 250, 0.14);
-      --featured-glow: linear-gradient(135deg, rgba(124, 108, 255, 0.12), rgba(34, 211, 238, 0.06) 50%, rgba(8, 10, 16, 0.82));
+      --specular-glow: rgba(var(--accent-rgb), 0.22);
+      --specular-border: rgba(var(--accent-rgb), 0.55);
+      --featured-glow: linear-gradient(135deg, rgba(var(--accent-rgb), 0.14), rgba(var(--accent-sec-rgb), 0.07) 50%, rgba(8, 10, 16, 0.84));
 
       --glass-border: rgba(255, 255, 255, 0.09);
       --glass-border-bright: rgba(255, 255, 255, 0.19);
@@ -42,41 +50,65 @@
       --text-secondary: #a4b0c2;
       --text-muted: #6c778b;
 
-      --accent-indigo: #7c6cff;
-      --accent-cyan: #22d3ee;
+      --accent-indigo: var(--accent-primary);
+      --accent-cyan: var(--accent-secondary);
       --accent-emerald: #10b981;
       --accent-amber: #f59e0b;
       --accent-rose: #fb7185;
 
-      --violet-pill-text: #c4b5fd;
-      --violet-pill-bg: rgba(124, 108, 255, 0.15);
-      --violet-pill-border: rgba(124, 108, 255, 0.35);
+      --violet-pill-text: #d8d0ff;
+      --violet-pill-bg: rgba(var(--accent-rgb), 0.16);
+      --violet-pill-border: rgba(var(--accent-rgb), 0.38);
 
       --cyan-pill-text: #67e8f9;
-      --cyan-pill-bg: rgba(34, 211, 238, 0.12);
-      --cyan-pill-border: rgba(34, 211, 238, 0.3);
+      --cyan-pill-bg: rgba(var(--accent-sec-rgb), 0.12);
+      --cyan-pill-border: rgba(var(--accent-sec-rgb), 0.3);
 
       --emerald-pill-text: #6ee7b7;
       --emerald-pill-bg: rgba(16, 185, 129, 0.12);
       --emerald-pill-border: rgba(16, 185, 129, 0.3);
 
       --nav-active-text: #ffffff;
-      --nav-active-bg: rgba(124, 108, 255, 0.24);
-      --nav-active-border: rgba(124, 108, 255, 0.52);
+      --nav-active-bg: rgba(var(--accent-rgb), 0.25);
+      --nav-active-border: rgba(var(--accent-rgb), 0.55);
 
       --btn-primary-text: #ffffff;
-      --btn-primary-bg: linear-gradient(135deg, rgba(124, 108, 255, 0.38), rgba(34, 211, 238, 0.22));
-      --btn-primary-border: rgba(124, 108, 255, 0.55);
+      --btn-primary-bg: linear-gradient(135deg, rgba(var(--accent-rgb), 0.42), rgba(var(--accent-sec-rgb), 0.24));
+      --btn-primary-border: rgba(var(--accent-rgb), 0.58);
 
-      --hero-grad: linear-gradient(90deg, #a78bfa 0%, #38bdf8 55%, #34d399 100%);
+      --hero-grad: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 55%, #34d399 100%);
       --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
       --radius-pill: 999px;
       --radius-card: 20px;
       --radius-sm: 12px;
       --blur-glass: blur(22px);
-      --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.07);
+      --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.07);
       --shadow-topbar: 0 14px 36px rgba(0, 0, 0, 0.65);
+    }
+
+    html[data-accent="cyan"] {
+      --accent-primary: #06b6d4;
+      --accent-secondary: #3b82f6;
+      --accent-rgb: 6, 182, 212;
+      --accent-sec-rgb: 59, 130, 246;
+      --violet-pill-text: #67e8f9;
+    }
+
+    html[data-accent="emerald"] {
+      --accent-primary: #10b981;
+      --accent-secondary: #14b8a6;
+      --accent-rgb: 16, 185, 129;
+      --accent-sec-rgb: 20, 184, 166;
+      --violet-pill-text: #6ee7b7;
+    }
+
+    html[data-accent="amber"] {
+      --accent-primary: #f59e0b;
+      --accent-secondary: #fb7185;
+      --accent-rgb: 245, 158, 11;
+      --accent-sec-rgb: 251, 113, 133;
+      --violet-pill-text: #fde68a;
     }
 
     html[data-theme="light"] {
@@ -84,8 +116,8 @@
       --bg-void: #f7f9fc;
       --bg-base: #ffffff;
       --ambient-grad:
-        radial-gradient(ellipse 70% 45% at 15% -5%, rgba(99, 102, 241, 0.13), transparent 65%),
-        radial-gradient(ellipse 55% 40% at 88% 12%, rgba(6, 182, 212, 0.11), transparent 65%),
+        radial-gradient(ellipse 70% 45% at 15% -5%, rgba(var(--accent-rgb), 0.14), transparent 65%),
+        radial-gradient(ellipse 55% 40% at 88% 12%, rgba(var(--accent-sec-rgb), 0.11), transparent 65%),
         radial-gradient(ellipse 60% 45% at 50% 105%, rgba(16, 185, 129, 0.08), transparent 70%),
         linear-gradient(180deg, #ffffff 0%, #f4f7fb 55%, #eef2f8 100%);
       --grid-line: rgba(15, 23, 42, 0.045);
@@ -103,8 +135,9 @@
       --chip-border: rgba(15, 23, 42, 0.09);
       --hover-tint: rgba(15, 23, 42, 0.05);
       --trigger-bg: rgba(248, 250, 252, 0.95);
-      --specular-glow: rgba(99, 102, 241, 0.10);
-      --featured-glow: linear-gradient(135deg, rgba(99, 102, 241, 0.08), rgba(2, 132, 199, 0.05) 50%, rgba(255, 255, 255, 0.88));
+      --specular-glow: rgba(var(--accent-rgb), 0.12);
+      --specular-border: rgba(var(--accent-rgb), 0.42);
+      --featured-glow: linear-gradient(135deg, rgba(var(--accent-rgb), 0.09), rgba(var(--accent-sec-rgb), 0.05) 50%, rgba(255, 255, 255, 0.90));
 
       --glass-border: rgba(15, 23, 42, 0.09);
       --glass-border-bright: rgba(15, 23, 42, 0.18);
@@ -112,33 +145,26 @@
       --text-secondary: #475569;
       --text-muted: #64748b;
 
-      --accent-indigo: #5b4ce6;
-      --accent-cyan: #0284c7;
-      --accent-emerald: #059669;
-      --accent-amber: #d97706;
-      --accent-rose: #e11d48;
-
-      --violet-pill-text: #4f46e5;
-      --violet-pill-bg: rgba(99, 102, 241, 0.10);
-      --violet-pill-border: rgba(99, 102, 241, 0.28);
+      --violet-pill-text: #3730a3;
+      --violet-pill-bg: rgba(var(--accent-rgb), 0.11);
+      --violet-pill-border: rgba(var(--accent-rgb), 0.30);
 
       --cyan-pill-text: #0369a1;
-      --cyan-pill-bg: rgba(2, 132, 199, 0.09);
-      --cyan-pill-border: rgba(2, 132, 199, 0.25);
+      --cyan-pill-bg: rgba(var(--accent-sec-rgb), 0.09);
+      --cyan-pill-border: rgba(var(--accent-sec-rgb), 0.25);
 
       --emerald-pill-text: #047857;
       --emerald-pill-bg: rgba(5, 150, 105, 0.09);
       --emerald-pill-border: rgba(5, 150, 105, 0.26);
 
-      --nav-active-text: #4338ca;
-      --nav-active-bg: rgba(99, 102, 241, 0.13);
-      --nav-active-border: rgba(99, 102, 241, 0.36);
+      --nav-active-text: #1e1b4b;
+      --nav-active-bg: rgba(var(--accent-rgb), 0.14);
+      --nav-active-border: rgba(var(--accent-rgb), 0.38);
 
       --btn-primary-text: #ffffff;
-      --btn-primary-bg: linear-gradient(135deg, #5b4ce6 0%, #0284c7 100%);
-      --btn-primary-border: rgba(79, 70, 229, 0.65);
+      --btn-primary-bg: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
+      --btn-primary-border: rgba(var(--accent-rgb), 0.65);
 
-      --hero-grad: linear-gradient(90deg, #4f46e5 0%, #0284c7 55%, #059669 100%);
       --shadow-glass: 0 14px 36px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
       --shadow-topbar: 0 10px 28px rgba(15, 23, 42, 0.08);
     }
@@ -160,14 +186,23 @@
       transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Ambient glass glow layers */
+    /* Ambient glass glow layers + interactive cursor spotlight */
     .ambient-bg {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       background: var(--ambient-grad);
-      transition: background 0.25s ease;
+      transition: background 0.3s ease;
+    }
+
+    .cursor-aura {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background: radial-gradient(650px circle at var(--page-x, 50vw) var(--page-y, 25vh), rgba(var(--accent-rgb), 0.09), transparent 65%);
+      transition: opacity 0.3s ease;
     }
 
     .grid-overlay {
@@ -182,6 +217,39 @@
       background-size: 48px 48px;
       mask-image: radial-gradient(ellipse at 50% 25%, #000 35%, transparent 85%);
       -webkit-mask-image: radial-gradient(ellipse at 50% 25%, #000 35%, transparent 85%);
+    }
+
+    /* Floating Mouse Follower Tag */
+    .cursor-tag {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 150;
+      pointer-events: none;
+      padding: 5px 11px;
+      border-radius: var(--radius-pill);
+      background: var(--glass-dropdown);
+      border: 1px solid var(--specular-border);
+      color: var(--text-primary);
+      font-family: var(--font-mono);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38);
+      opacity: 0;
+      transform: translate3d(-100px, -100px, 0) scale(0.92);
+      transition: opacity 0.16s ease, transform 0.12s ease-out;
+      white-space: nowrap;
+    }
+
+    .cursor-tag.visible {
+      opacity: 1;
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .cursor-tag, .cursor-aura {
+        display: none !important;
+      }
     }
 
     .app-shell {
@@ -240,28 +308,39 @@
       border-radius: 11px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(124, 108, 255, 0.24), rgba(34, 211, 238, 0.18));
-      border: 1px solid rgba(124, 108, 255, 0.42);
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.26), rgba(var(--accent-sec-rgb), 0.18));
+      border: 1px solid rgba(var(--accent-rgb), 0.45);
       flex-shrink: 0;
+    }
+
+    .brand-verified {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: rgba(var(--accent-rgb), 0.22);
+      color: var(--accent-primary);
     }
 
     .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .nav-btn {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 8px 14px;
+      padding: 8px 13px;
       border-radius: var(--radius-pill);
       border: 1px solid transparent;
       background: transparent;
       color: var(--text-secondary);
       font-family: var(--font-sans);
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
@@ -277,7 +356,7 @@
       color: var(--nav-active-text);
       background: var(--nav-active-bg);
       border-color: var(--nav-active-border);
-      box-shadow: 0 0 20px rgba(124, 108, 255, 0.18);
+      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.22);
     }
 
     /* Mobile Dropdown Navigation (< 768px) */
@@ -360,15 +439,15 @@
     .topbar-right {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 7px;
     }
 
-    /* Quick Search Trigger & Theme Toggle */
+    /* Quick Search Trigger, Accent Swatch & Theme Toggle */
     .icon-pill-btn {
       display: inline-flex;
       align-items: center;
       gap: 7px;
-      padding: 7px 12px;
+      padding: 7px 11px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border-bright);
       background: var(--input-bg);
@@ -383,7 +462,17 @@
 
     .icon-pill-btn:hover {
       background: var(--hover-tint);
+      border-color: var(--specular-border);
       transform: translateY(-1px);
+    }
+
+    .accent-swatch-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7);
+      flex-shrink: 0;
     }
 
     .kbd-hint {
@@ -400,7 +489,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 6px 11px;
+      padding: 6px 10px;
       border-radius: var(--radius-pill);
       font-family: var(--font-mono);
       font-size: 0.72rem;
@@ -444,7 +533,7 @@
     }
 
     .btn-primary-glass:hover {
-      border-color: rgba(124, 108, 255, 0.85);
+      border-color: var(--specular-border);
       transform: translateY(-1px);
     }
 
@@ -484,10 +573,10 @@
       position: absolute;
       top: -90px;
       right: -70px;
-      width: 280px;
-      height: 280px;
+      width: 300px;
+      height: 300px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(124, 108, 255, 0.2), transparent 70%);
+      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.24), transparent 70%);
       pointer-events: none;
     }
 
@@ -549,7 +638,7 @@
       font-weight: 800;
       line-height: 1.15;
       letter-spacing: -0.03em;
-      max-width: 22ch;
+      max-width: 24ch;
     }
 
     .hero-title span.grad {
@@ -608,12 +697,13 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer;
       transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.18s ease;
     }
 
     .stat-widget:hover {
-      border-color: var(--glass-border-bright);
-      transform: translateY(-1px);
+      border-color: var(--specular-border);
+      transform: translateY(-2px);
     }
 
     .widget-icon {
@@ -625,7 +715,7 @@
       flex-shrink: 0;
     }
 
-    .widget-icon.purple { background: rgba(124, 108, 255, 0.16); border: 1px solid rgba(124, 108, 255, 0.35); }
+    .widget-icon.purple { background: rgba(var(--accent-rgb), 0.18); border: 1px solid rgba(var(--accent-rgb), 0.36); }
     .widget-icon.cyan { background: rgba(34, 211, 238, 0.14); border: 1px solid rgba(34, 211, 238, 0.32); }
     .widget-icon.emerald { background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.32); }
     .widget-icon.amber { background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.32); }
@@ -680,7 +770,7 @@
       gap: 16px;
     }
 
-    /* Tactile Specular Glass Cards & Bento Highlight */
+    /* Tactile Specular Glass Cards, 3D Tilt & Bento Highlight */
     .item-card {
       position: relative;
       overflow: hidden;
@@ -691,6 +781,7 @@
       -webkit-backdrop-filter: var(--blur-glass);
       border: 1px solid var(--glass-border);
       box-shadow: var(--shadow-glass);
+      transform-style: preserve-3d;
       transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.25s ease;
     }
 
@@ -709,14 +800,22 @@
     }
 
     .item-card:hover {
-      transform: translateY(-2px);
-      border-color: var(--glass-border-bright);
+      border-color: var(--specular-border);
     }
 
     .item-card.featured-bento {
       grid-column: span 2;
       background: var(--featured-glow);
       border-color: var(--violet-pill-border);
+    }
+
+    .card-cover {
+      width: 100%;
+      height: 148px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      border: 1px solid var(--glass-border);
     }
 
     .card-meta-row {
@@ -759,6 +858,12 @@
       margin-top: 14px;
     }
 
+    .card-actions-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
     .chip-row {
       display: flex;
       flex-wrap: wrap;
@@ -794,6 +899,7 @@
       color: var(--cyan-pill-text);
       font-size: 0.75rem;
       font-weight: 600;
+      text-decoration: none;
       cursor: pointer;
       white-space: nowrap;
       transition: all 0.16s ease;
@@ -801,6 +907,45 @@
 
     .read-more-link:hover {
       transform: translateX(2px);
+    }
+
+    /* Inline Admin Card Controls */
+    .card-admin-bar {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--glass-border-bright);
+    }
+
+    body.admin-signed-in .card-admin-bar {
+      display: flex;
+    }
+
+    .mini-admin-btn {
+      padding: 4px 9px;
+      border-radius: 8px;
+      border: 1px solid var(--glass-border-bright);
+      background: var(--input-bg);
+      color: var(--text-secondary);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .mini-admin-btn:hover {
+      color: var(--text-primary);
+      border-color: var(--specular-border);
+      background: var(--hover-tint);
+    }
+
+    .mini-admin-btn.danger:hover {
+      color: #fda4af;
+      border-color: rgba(251, 113, 133, 0.5);
+      background: rgba(251, 113, 133, 0.14);
     }
 
     /* Footer */
@@ -838,7 +983,7 @@
 
     .modal-card {
       width: 100%;
-      max-width: 720px;
+      max-width: 740px;
       margin: auto;
       padding: 24px;
       border-radius: 22px;
@@ -895,6 +1040,72 @@
       background: var(--violet-pill-bg);
     }
 
+    /* Admin Studio Tabs & Manage List */
+    .studio-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .studio-tab {
+      padding: 7px 13px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--glass-border);
+      background: var(--input-bg);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .studio-tab.active {
+      color: var(--nav-active-text);
+      background: var(--nav-active-bg);
+      border-color: var(--nav-active-border);
+    }
+
+    .manage-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 44vh;
+      overflow-y: auto;
+      margin-bottom: 14px;
+    }
+
+    .manage-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--glass-border);
+      background: var(--input-bg);
+    }
+
+    .manage-row-info {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .manage-row-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .manage-row-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -933,7 +1144,7 @@
 
     .input-glass:focus, .textarea-glass:focus, .select-glass:focus {
       outline: none;
-      border-color: var(--accent-indigo);
+      border-color: var(--accent-primary);
     }
 
     .toast {
@@ -962,9 +1173,10 @@
 
     /* Clean Recruiter Print Stylesheet */
     @media print {
-      .ambient-bg, .grid-overlay, .topbar, .hero-actions, .stats-row,
-      #sec-achievements, #sec-books, #sec-blog, .site-footer,
-      .modal-backdrop, .toast, .filter-banner, .read-more-link {
+      .ambient-bg, .cursor-aura, .cursor-tag, .grid-overlay, .topbar,
+      .hero-actions, .stats-row, #sec-achievements, #sec-books, #sec-blog,
+      .site-footer, .modal-backdrop, .toast, .filter-banner, .read-more-link,
+      .card-admin-bar {
         display: none !important;
       }
       body, html {
@@ -991,7 +1203,7 @@
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 960px) {
       .stats-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -1032,12 +1244,14 @@
 </head>
 <body>
   <div class="ambient-bg"></div>
+  <div class="cursor-aura"></div>
   <div class="grid-overlay"></div>
+  <div class="cursor-tag" id="cursorTag" aria-hidden="true">Explore</div>
 
   <div class="app-shell">
     <!-- Top Glass Bar -->
     <header class="topbar">
-      <a class="brand" href="#top" onclick="clearChipFilter(); setSection('all'); return false;">
+      <a class="brand" href="#top" data-cursor-tag="Home • Overview" onclick="clearChipFilter(); setSection('all'); return false;">
         <span class="brand-mark" aria-hidden="true">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
             <path d="M12 2L20.5 7V17L12 22L3.5 17V7L12 2Z" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/>
@@ -1045,27 +1259,30 @@
           </svg>
         </span>
         <span id="brandName">Sivakumar Perneti</span>
+        <span class="brand-verified" title="Verified Personal Edition" aria-hidden="true">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        </span>
       </a>
 
       <!-- Desktop Navigation -->
       <nav class="desktop-nav" aria-label="Primary sections">
-        <button class="nav-btn active" data-section="all" onclick="setSection('all')">
+        <button class="nav-btn active" data-section="all" data-cursor-tag="All Sections" onclick="setSection('all')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           Overview
         </button>
-        <button class="nav-btn" data-section="resume" onclick="setSection('resume')">
+        <button class="nav-btn" data-section="resume" data-cursor-tag="Career & Roles" onclick="setSection('resume')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
           Resume
         </button>
-        <button class="nav-btn" data-section="achievements" onclick="setSection('achievements')">
+        <button class="nav-btn" data-section="achievements" data-cursor-tag="Key Milestones" onclick="setSection('achievements')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
           Achievements
         </button>
-        <button class="nav-btn" data-section="books" onclick="setSection('books')">
+        <button class="nav-btn" data-section="books" data-cursor-tag="Reading Shelf" onclick="setSection('books')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           Books Read
         </button>
-        <button class="nav-btn" data-section="blog" onclick="setSection('blog')">
+        <button class="nav-btn" data-section="blog" data-cursor-tag="Essays & Notes" onclick="setSection('blog')">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           Blog
         </button>
@@ -1101,15 +1318,20 @@
         </div>
       </div>
 
-      <!-- Right Quick Search, Theme Switcher, Live Status & Admin Controls -->
+      <!-- Right Search, Accent Cycler, Theme Switcher, Live Status & Admin Controls -->
       <div class="topbar-right">
-        <button type="button" class="icon-pill-btn" onclick="openSearchModal()" aria-label="Search portfolio" title="Instant Search (Ctrl+K)">
+        <button type="button" class="icon-pill-btn" data-cursor-tag="Instant Search" onclick="openSearchModal()" aria-label="Search portfolio" title="Instant Search (Ctrl+K)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <span class="pill-label">Search</span>
           <span class="kbd-hint">Ctrl+K</span>
         </button>
 
-        <button type="button" class="icon-pill-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Toggle pitch black and daytime theme" title="Switch between Pitch Black and Daytime mode">
+        <button type="button" class="icon-pill-btn" id="accentCycleBtn" data-cursor-tag="Shift Brand Hue" onclick="cycleAccent()" aria-label="Change brand accent color" title="Cycle brand accent color">
+          <span class="accent-swatch-dot" aria-hidden="true"></span>
+          <span class="pill-label" id="accentLabel">Violet</span>
+        </button>
+
+        <button type="button" class="icon-pill-btn" id="themeToggleBtn" data-cursor-tag="Switch Surface" onclick="toggleTheme()" aria-label="Toggle pitch black and daytime theme" title="Switch between Pitch Black and Daytime mode">
           <span id="themeToggleIcon" aria-hidden="true">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
           </span>
@@ -1120,7 +1342,7 @@
           <span class="sync-dot" id="cloudStatusDot"></span>
           <span class="sync-text" id="cloudStatusText">Firestore Live</span>
         </span>
-        <button type="button" class="btn-primary-glass admin-only" id="customizeBtn" onclick="openAdminModal()">
+        <button type="button" class="btn-primary-glass admin-only" id="customizeBtn" data-cursor-tag="Admin Studio" onclick="openAdminModal()">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           <span id="customizeBtnLabel">Customize</span>
         </button>
@@ -1147,25 +1369,25 @@
         Personal space tracking career highlights, key achievements, books I have read, and short essays—synced live with Firebase Cloud Firestore and viewable cleanly across Android and Windows.
       </p>
       <div class="hero-actions">
-        <button type="button" class="btn-primary-glass" onclick="setSection('resume')">View Resume</button>
-        <button type="button" class="btn-ghost-glass" onclick="setSection('blog')">Read Blog</button>
-        <button type="button" class="btn-ghost-glass" onclick="printResumePdf()" title="Print or save a clean recruiter-ready resume PDF">
+        <button type="button" class="btn-primary-glass" data-cursor-tag="Open Resume" onclick="setSection('resume')">View Resume</button>
+        <button type="button" class="btn-ghost-glass" data-cursor-tag="Open Blog" onclick="setSection('blog')">Read Blog</button>
+        <button type="button" class="btn-ghost-glass" data-cursor-tag="Export A4 PDF" onclick="printResumePdf()" title="Print or save a clean recruiter-ready resume PDF">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
           Print / PDF Resume
         </button>
       </div>
 
       <div class="stats-row">
-        <div class="stat-widget">
+        <div class="stat-widget" data-cursor-tag="Jump to Resume" onclick="setSection('resume')">
           <div class="widget-icon purple">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--accent-primary)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
           </div>
           <div>
             <div class="stat-value" id="statExperience">8+ Yrs</div>
             <div class="stat-label">Career &amp; Talent</div>
           </div>
         </div>
-        <div class="stat-widget">
+        <div class="stat-widget" data-cursor-tag="Jump to Achievements" onclick="setSection('achievements')">
           <div class="widget-icon emerald">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
           </div>
@@ -1174,7 +1396,7 @@
             <div class="stat-label">Achievements</div>
           </div>
         </div>
-        <div class="stat-widget">
+        <div class="stat-widget" data-cursor-tag="Jump to Books" onclick="setSection('books')">
           <div class="widget-icon amber">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           </div>
@@ -1183,7 +1405,7 @@
             <div class="stat-label">Books Read</div>
           </div>
         </div>
-        <div class="stat-widget">
+        <div class="stat-widget" data-cursor-tag="Jump to Blog" onclick="setSection('blog')">
           <div class="widget-icon rose">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </div>
@@ -1284,12 +1506,16 @@
         </div>
         <button type="button" class="btn-ghost-glass" onclick="closeReaderModal()">Close</button>
       </div>
+      <img id="readerCover" class="card-cover" style="display:none;height:210px;" alt="" />
       <div class="reader-body" id="readerContent"></div>
-      <div class="chip-row" id="readerChips" style="margin-top:18px;"></div>
+      <div class="card-footer-row" style="margin-top:18px;">
+        <div class="chip-row" id="readerChips"></div>
+        <a id="readerExtLink" class="read-more-link" href="#" target="_blank" rel="noopener noreferrer" style="display:none;">Open Link ↗</a>
+      </div>
     </div>
   </div>
 
-  <!-- Admin Studio Modal -->
+  <!-- Admin Studio Modal (Profile, Add/Edit Entry & Manage/Reorder/Delete) -->
   <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
     <div class="modal-card">
       <div class="modal-head">
@@ -1313,58 +1539,111 @@
 
       <!-- Editor View (Shown only when authenticated) -->
       <div id="adminEditorPanel" style="display:none;">
-        <div class="form-grid">
-          <div class="form-field">
-            <label for="editName">Display Name</label>
-            <input type="text" id="editName" class="input-glass" />
-          </div>
-          <div class="form-field">
-            <label for="editRole">Role Badge</label>
-            <input type="text" id="editRole" class="input-glass" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="editCurrently">Live "Now" Status Pill</label>
-          <input type="text" id="editCurrently" class="input-glass" placeholder="Now: Reading & building..." />
-        </div>
-        <div class="form-field">
-          <label for="editBio">Hero Bio</label>
-          <textarea id="editBio" class="textarea-glass"></textarea>
+        <div class="studio-tabs">
+          <button type="button" class="studio-tab active" data-studio-tab="entry" onclick="switchStudioTab('entry')">Add / Edit Entry</button>
+          <button type="button" class="studio-tab" data-studio-tab="manage" onclick="switchStudioTab('manage')">Manage &amp; Reorder</button>
+          <button type="button" class="studio-tab" data-studio-tab="profile" onclick="switchStudioTab('profile')">Profile &amp; Brand</button>
         </div>
 
-        <hr style="border:none;border-top:1px solid var(--glass-border);margin:16px 0;" />
-        <p class="card-subtitle" style="margin-bottom:10px;">Add New Entry</p>
-        <div class="form-grid">
+        <!-- Tab 1: Add or Edit Entry -->
+        <div id="studioTabEntry">
+          <p class="card-subtitle" id="entryFormHeading" style="margin-bottom:10px;">Add New Entry</p>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="newEntryType">Section</label>
+              <select id="newEntryType" class="select-glass">
+                <option value="resume">Resume / Experience</option>
+                <option value="achievements">Achievement</option>
+                <option value="books">Book Read</option>
+                <option value="blog">Blog Note</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="newEntryMeta">Date / Subtitle / Rating</label>
+              <input type="text" id="newEntryMeta" class="input-glass" placeholder="e.g., Nov 2026 or 5/5" />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="newEntryTitle">Title</label>
+              <input type="text" id="newEntryTitle" class="input-glass" placeholder="Role, milestone, book title, or note title" />
+            </div>
+            <div class="form-field">
+              <label for="newEntrySubtitle">Organization / Subtitle (Optional)</label>
+              <input type="text" id="newEntrySubtitle" class="input-glass" placeholder="e.g., Company or Author note" />
+            </div>
+          </div>
           <div class="form-field">
-            <label for="newEntryType">Section</label>
-            <select id="newEntryType" class="select-glass">
-              <option value="resume">Resume / Experience</option>
-              <option value="achievements">Achievement</option>
-              <option value="books">Book Read</option>
-              <option value="blog">Blog Note</option>
+            <label for="newEntryDesc">Details / Full Article</label>
+            <textarea id="newEntryDesc" class="textarea-glass" placeholder="Write highlights or full notes (use blank lines for paragraphs)..."></textarea>
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="newEntryLink">External Link URL (Optional)</label>
+              <input type="url" id="newEntryLink" class="input-glass" placeholder="https://github.com/..." />
+            </div>
+            <div class="form-field">
+              <label for="newEntryCover">Cover / Thumbnail Image URL (Optional)</label>
+              <input type="url" id="newEntryCover" class="input-glass" placeholder="https://..." />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="newEntryChips">Tags (comma-separated)</label>
+            <input type="text" id="newEntryChips" class="input-glass" placeholder="e.g., Firebase, UI Design, Leadership" />
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
+            <button type="button" class="btn-ghost-glass" id="submitEntryBtn" onclick="saveEntryToDraft()">+ Add Entry to Draft</button>
+            <button type="button" class="btn-ghost-glass" id="cancelEditBtn" style="display:none;" onclick="resetEntryForm()">Cancel Edit</button>
+            <button type="button" class="btn-primary-glass" onclick="savePortfolioToCloud()">Publish Live to Firestore</button>
+          </div>
+        </div>
+
+        <!-- Tab 2: Manage, Reorder & Delete Existing Items -->
+        <div id="studioTabManage" style="display:none;">
+          <div class="form-field">
+            <label for="manageSectionSelect">Select Section to Manage</label>
+            <select id="manageSectionSelect" class="select-glass" onchange="renderManageList()">
+              <option value="resume">Resume &amp; Experience</option>
+              <option value="achievements">Achievements &amp; Milestones</option>
+              <option value="books">Books Read</option>
+              <option value="blog">Personal Blog &amp; Notes</option>
             </select>
           </div>
-          <div class="form-field">
-            <label for="newEntryMeta">Date / Subtitle / Rating</label>
-            <input type="text" id="newEntryMeta" class="input-glass" placeholder="e.g., Nov 2026 or 5/5" />
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="newEntryTitle">Title</label>
-          <input type="text" id="newEntryTitle" class="input-glass" placeholder="Role, milestone, book title, or note title" />
-        </div>
-        <div class="form-field">
-          <label for="newEntryDesc">Details / Full Article</label>
-          <textarea id="newEntryDesc" class="textarea-glass" placeholder="Write concise highlights or full notes..."></textarea>
-        </div>
-        <div class="form-field">
-          <label for="newEntryChips">Tags (comma-separated)</label>
-          <input type="text" id="newEntryChips" class="input-glass" placeholder="e.g., Firebase, UI Design, Leadership" />
+          <div class="manage-list" id="manageItemsList"></div>
+          <button type="button" class="btn-primary-glass" onclick="savePortfolioToCloud()">Publish Order &amp; Edits to Firestore</button>
         </div>
 
-        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
-          <button type="button" class="btn-ghost-glass" onclick="addEntryToDraft()">+ Add Entry</button>
-          <button type="button" class="btn-primary-glass" onclick="savePortfolioToCloud()">Publish Live to Firestore</button>
+        <!-- Tab 3: Profile & Brand Identity -->
+        <div id="studioTabProfile" style="display:none;">
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="editName">Display Name</label>
+              <input type="text" id="editName" class="input-glass" />
+            </div>
+            <div class="form-field">
+              <label for="editRole">Role Badge</label>
+              <input type="text" id="editRole" class="input-glass" />
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="editLocation">Location Badge</label>
+              <input type="text" id="editLocation" class="input-glass" />
+            </div>
+            <div class="form-field">
+              <label for="editExpLabel">Experience Stat</label>
+              <input type="text" id="editExpLabel" class="input-glass" placeholder="e.g., 8+ Yrs" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="editCurrently">Live "Now" Status Pill</label>
+            <input type="text" id="editCurrently" class="input-glass" placeholder="Now: Reading & building..." />
+          </div>
+          <div class="form-field">
+            <label for="editBio">Hero Bio</label>
+            <textarea id="editBio" class="textarea-glass"></textarea>
+          </div>
+          <button type="button" class="btn-primary-glass" onclick="savePortfolioToCloud()">Publish Profile to Firestore</button>
         </div>
       </div>
     </div>
@@ -1392,8 +1671,16 @@
     const db = getFirestore(app);
     const docRef = doc(db, 'portfolio', 'main');
 
-    /* Theme Persistence & Toggle (Pitch Black vs Daytime White) */
+    /* Theme & Brand Accent Persistence */
     const THEME_KEY = 'shiva_portfolio_theme';
+    const ACCENT_KEY = 'shiva_portfolio_accent';
+    const ACCENTS = [
+      { id: 'violet', label: 'Violet' },
+      { id: 'cyan', label: 'Cyan' },
+      { id: 'emerald', label: 'Emerald' },
+      { id: 'amber', label: 'Amber' }
+    ];
+
     const SUN_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>';
     const MOON_ICON = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#4f46e5" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
 
@@ -1407,6 +1694,13 @@
       if (textEl) textEl.textContent = normalized === 'dark' ? 'Daytime' : 'Pitch Black';
     }
 
+    function applyAccent(accentId) {
+      const found = ACCENTS.find(a => a.id === accentId) || ACCENTS[0];
+      document.documentElement.setAttribute('data-accent', found.id);
+      const labelEl = document.getElementById('accentLabel');
+      if (labelEl) labelEl.textContent = found.label;
+    }
+
     window.toggleTheme = function() {
       const current = document.documentElement.getAttribute('data-theme') || 'dark';
       const next = current === 'dark' ? 'light' : 'dark';
@@ -1415,7 +1709,17 @@
       showToast(next === 'light' ? 'Switched to Daytime mode' : 'Switched to Pitch Black mode');
     };
 
+    window.cycleAccent = function() {
+      const current = document.documentElement.getAttribute('data-accent') || 'violet';
+      const idx = ACCENTS.findIndex(a => a.id === current);
+      const next = ACCENTS[(idx + 1) % ACCENTS.length];
+      localStorage.setItem(ACCENT_KEY, next.id);
+      applyAccent(next.id);
+      showToast(`Brand accent: ${next.label}`);
+    };
+
     applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
+    applyAccent(localStorage.getItem(ACCENT_KEY) || 'violet');
 
     const DEFAULT_DATA = {
       name: 'Sivakumar Perneti',
@@ -1431,14 +1735,18 @@
           meta: '2024 – Present • Hyderabad',
           subtitle: 'End-to-End Hiring & Stakeholder Alignment',
           desc: 'Leading requirement prioritization, structured candidate pipelines, interview coordination, and consolidated reporting across technical and business roles.',
-          chips: ['Talent Strategy', 'Stakeholder Ops', 'Hiring Pipelines']
+          chips: ['Talent Strategy', 'Stakeholder Ops', 'Hiring Pipelines'],
+          link: '',
+          cover: ''
         },
         {
           title: 'Self-Hosted Tools & Web Workflows',
           meta: '2025 – Present • Personal Lab',
           subtitle: 'Glassmorphic UIs, Static Hosting & Personal Media',
           desc: 'Building lightweight browser tools, clean dark-glass interfaces, and self-hosted utilities tailored for mobile and desktop productivity.',
-          chips: ['HTML/CSS/JS', 'Firebase', 'Cloudflare Pages']
+          chips: ['HTML/CSS/JS', 'Firebase', 'Cloudflare Pages'],
+          link: 'https://shiva.pages.dev',
+          cover: ''
         }
       ],
       achievements: [
@@ -1446,19 +1754,25 @@
           title: 'Zero-Cost Cloud Portfolio Architecture',
           meta: 'Nov 2026',
           desc: 'Deployed a responsive glassmorphic portfolio backed by Firebase Firestore with role-protected admin editing and instant global edge delivery on Cloudflare Pages.',
-          chips: ['Firestore', 'Auth', 'Cloudflare Pages']
+          chips: ['Firestore', 'Auth', 'Cloudflare Pages'],
+          link: 'https://shiva.pages.dev',
+          cover: ''
         },
         {
           title: 'Consistent Multi-Channel Sourcing Execution',
           meta: '2025 – 2026',
           desc: 'Maintained high-signal candidate engagement and clean weekly tracker visibility across active requisitions.',
-          chips: ['Execution', 'Reporting']
+          chips: ['Execution', 'Reporting'],
+          link: '',
+          cover: ''
         },
         {
           title: 'Cross-Device Personal Knowledge Setup',
           meta: '2026',
           desc: 'Unified reading notes, milestones, and resume snapshots accessible smoothly on Android and Windows.',
-          chips: ['Android', 'Windows']
+          chips: ['Android', 'Windows'],
+          link: '',
+          cover: ''
         }
       ],
       books: [
@@ -1466,19 +1780,25 @@
           title: 'Atomic Habits',
           meta: 'James Clear • 5/5',
           desc: 'Practical framework for small environmental cues, identity-based habits, and compounding daily consistency.\n\nKey Takeaway: You do not rise to the level of your goals; you fall to the level of your systems. Designing friction-free defaults beats relying on daily willpower.',
-          chips: ['Habits', 'Systems']
+          chips: ['Habits', 'Systems'],
+          link: '',
+          cover: ''
         },
         {
           title: 'Designing Data-Intensive Applications',
           meta: 'Martin Kleppmann • Notes',
           desc: 'Clear mental models for reliability, replication, partitioning, and trade-offs in distributed systems.\n\nKey Takeaway: Understanding how storage engines, indexes, and consensus protocols behave under failure turns black-box infrastructure into predictable engineering choices.',
-          chips: ['Architecture', 'Systems']
+          chips: ['Architecture', 'Systems'],
+          link: '',
+          cover: ''
         },
         {
           title: 'The Psychology of Money',
           meta: 'Morgan Housel • 5/5',
           desc: 'Timeless lessons on patience, compounding, risk management, and keeping long-term perspective.\n\nKey Takeaway: Financial outcomes are driven far more by behavior, margin of safety, and avoiding catastrophic interruption than by spreadsheet optimization.',
-          chips: ['Mindset', 'Finance']
+          chips: ['Mindset', 'Finance'],
+          link: '',
+          cover: ''
         }
       ],
       blog: [
@@ -1486,13 +1806,17 @@
           title: 'Keeping a Living Portfolio Without Heavy Frameworks',
           meta: 'Nov 2026',
           desc: 'Why a clean single-file glass interface paired with Firestore gives fast loads, zero monthly cost, and effortless mobile updates.\n\nBy keeping layout, styling, and Firebase SDK logic inside a single self-contained HTML file hosted on Cloudflare Pages, there are zero build pipelines to break, zero server bills, and instant updates directly from a phone browser.',
-          chips: ['Portfolio', 'Notes', 'Firebase']
+          chips: ['Portfolio', 'Notes', 'Firebase'],
+          link: '',
+          cover: ''
         },
         {
           title: 'Designing Calm Glass Interfaces for Pitch Black & Daytime',
           meta: 'Nov 2026',
           desc: 'Balancing OLED pitch-black contrast and crisp daytime translucency so reading stays comfortable in any lighting.\n\nTrue OLED black eliminates backlight bleed at night, while subtle 1px specular borders and soft layered blurs preserve spatial depth without visual clutter.',
-          chips: ['UI Design', 'Glassmorphism']
+          chips: ['UI Design', 'Glassmorphism'],
+          link: '',
+          cover: ''
         }
       ]
     };
@@ -1501,6 +1825,7 @@
     let currentSection = 'all';
     let activeChip = null;
     let isAdminSignedIn = false;
+    let editingTarget = null; // { group, index } when editing an existing item
 
     const urlParams = new URLSearchParams(window.location.search);
     const hasAdminQuery = urlParams.get('admin') === '1';
@@ -1508,6 +1833,7 @@
     function updateAdminVisibility() {
       const unlocked = isAdminSignedIn || hasAdminQuery;
       document.body.classList.toggle('admin-unlocked', unlocked);
+      document.body.classList.toggle('admin-signed-in', isAdminSignedIn);
       const btnLabel = document.getElementById('customizeBtnLabel');
       if (btnLabel) {
         btnLabel.textContent = isAdminSignedIn ? 'Customize • Admin' : 'Customize';
@@ -1562,8 +1888,19 @@
       if (!Array.isArray(chips) || !chips.length) return '';
       return `<div class="chip-row">${chips.map(c => {
         const isActive = activeChip && c.toLowerCase() === activeChip.toLowerCase();
-        return `<button type="button" class="mini-chip ${isActive ? 'active-chip' : ''}" onclick="toggleChipFilter('${escapeAttr(c)}')">#${escapeHtml(c)}</button>`;
+        return `<button type="button" class="mini-chip ${isActive ? 'active-chip' : ''}" data-cursor-tag="Filter #${escapeAttr(c)}" onclick="toggleChipFilter('${escapeAttr(c)}')">#${escapeHtml(c)}</button>`;
       }).join('')}</div>`;
+    }
+
+    function renderCardAdminBar(group, realIdx, totalLen) {
+      return `
+        <div class="card-admin-bar">
+          <button type="button" class="mini-admin-btn" onclick="editExistingEntry('${group}', ${realIdx})">Edit</button>
+          <button type="button" class="mini-admin-btn" ${realIdx === 0 ? 'disabled' : ''} onclick="moveEntry('${group}', ${realIdx}, -1)">↑</button>
+          <button type="button" class="mini-admin-btn" ${realIdx >= totalLen - 1 ? 'disabled' : ''} onclick="moveEntry('${group}', ${realIdx}, 1)">↓</button>
+          <button type="button" class="mini-admin-btn danger" onclick="deleteEntry('${group}', ${realIdx})">Delete</button>
+        </div>
+      `;
     }
 
     function renderAll() {
@@ -1588,9 +1925,13 @@
         banner.classList.remove('visible');
       }
 
-      const resumeItems = (state.resume || []).filter(matchesChip);
-      document.getElementById('resumeGrid').innerHTML = resumeItems.length ? resumeItems.map(item => `
-        <article class="item-card">
+      const allResume = state.resume || [];
+      const resumeItems = allResume.filter(matchesChip);
+      document.getElementById('resumeGrid').innerHTML = resumeItems.length ? resumeItems.map(item => {
+        const realIdx = allResume.indexOf(item);
+        return `
+        <article class="item-card" data-cursor-tag="Role • ${escapeAttr(item.meta || 'Resume')}">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
           <div class="card-meta-row">
             <span>EXPERIENCE</span>
             <span>${escapeHtml(item.meta || '')}</span>
@@ -1600,31 +1941,44 @@
           <p class="card-desc">${escapeHtml(item.desc || '')}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
+            ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">Visit ↗</a>` : ''}
           </div>
+          ${renderCardAdminBar('resume', realIdx, allResume.length)}
         </article>
-      `).join('') : '<p class="card-desc">No resume entries match this tag.</p>';
+      `;
+      }).join('') : '<p class="card-desc">No resume entries match this tag.</p>';
 
-      const achItems = (state.achievements || []).filter(matchesChip);
-      document.getElementById('achievementsGrid').innerHTML = achItems.length ? achItems.map((item, idx) => `
-        <article class="item-card ${idx === 0 && !activeChip && achItems.length > 2 ? 'featured-bento' : ''}">
+      const allAch = state.achievements || [];
+      const achItems = allAch.filter(matchesChip);
+      document.getElementById('achievementsGrid').innerHTML = achItems.length ? achItems.map((item, idx) => {
+        const realIdx = allAch.indexOf(item);
+        const isFeatured = idx === 0 && !activeChip && achItems.length > 2;
+        return `
+        <article class="item-card ${isFeatured ? 'featured-bento' : ''}" data-cursor-tag="${isFeatured ? 'Featured Milestone' : 'Milestone'}">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
           <div class="card-meta-row">
-            <span>${idx === 0 && !activeChip ? 'FEATURED MILESTONE' : 'MILESTONE'}</span>
+            <span>${isFeatured ? 'FEATURED MILESTONE' : 'MILESTONE'}</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
           <p class="card-desc">${escapeHtml(item.desc || '')}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
+            ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">View ↗</a>` : ''}
           </div>
+          ${renderCardAdminBar('achievements', realIdx, allAch.length)}
         </article>
-      `).join('') : '<p class="card-desc">No achievements match this tag.</p>';
+      `;
+      }).join('') : '<p class="card-desc">No achievements match this tag.</p>';
 
-      const bookItems = (state.books || []).filter(matchesChip);
+      const allBooks = state.books || [];
+      const bookItems = allBooks.filter(matchesChip);
       document.getElementById('booksGrid').innerHTML = bookItems.length ? bookItems.map((item) => {
-        const realIdx = (state.books || []).indexOf(item);
+        const realIdx = allBooks.indexOf(item);
         const firstPara = String(item.desc || '').split('\n\n')[0];
         return `
-        <article class="item-card">
+        <article class="item-card" data-cursor-tag="Book Takeaways">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
           <div class="card-meta-row">
             <span>READING LOG</span>
             <span>${escapeHtml(item.meta || '')}</span>
@@ -1633,18 +1987,24 @@
           <p class="card-desc">${escapeHtml(firstPara)}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
-            <button type="button" class="read-more-link" onclick="openReader('books', ${realIdx})">Notes →</button>
+            <div class="card-actions-group">
+              ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">Link ↗</a>` : ''}
+              <button type="button" class="read-more-link" onclick="openReader('books', ${realIdx})">Notes →</button>
+            </div>
           </div>
+          ${renderCardAdminBar('books', realIdx, allBooks.length)}
         </article>
       `;
       }).join('') : '<p class="card-desc">No books match this tag.</p>';
 
-      const blogItems = (state.blog || []).filter(matchesChip);
+      const allBlog = state.blog || [];
+      const blogItems = allBlog.filter(matchesChip);
       document.getElementById('blogGrid').innerHTML = blogItems.length ? blogItems.map((item) => {
-        const realIdx = (state.blog || []).indexOf(item);
+        const realIdx = allBlog.indexOf(item);
         const firstPara = String(item.desc || '').split('\n\n')[0];
         return `
-        <article class="item-card">
+        <article class="item-card" data-cursor-tag="Read Essay">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
           <div class="card-meta-row">
             <span>BLOG NOTE</span>
             <span>${escapeHtml(item.meta || '')}</span>
@@ -1653,23 +2013,69 @@
           <p class="card-desc">${escapeHtml(firstPara)}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
-            <button type="button" class="read-more-link" onclick="openReader('blog', ${realIdx})">Read Note →</button>
+            <div class="card-actions-group">
+              ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">Link ↗</a>` : ''}
+              <button type="button" class="read-more-link" onclick="openReader('blog', ${realIdx})">Read Note →</button>
+            </div>
           </div>
+          ${renderCardAdminBar('blog', realIdx, allBlog.length)}
         </article>
       `;
       }).join('') : '<p class="card-desc">No blog notes match this tag.</p>';
 
       applySectionFilter();
+      if (document.getElementById('adminModal').classList.contains('open')) {
+        renderManageList();
+      }
     }
 
-    /* Cursor-Tracking Specular Glass Highlight */
+    /* Dynamic Cursor Aura, Specular Border Sheen, 3D Card Tilt & Interactive Cursor Tag */
+    const cursorTagEl = document.getElementById('cursorTag');
+    let activeTiltCard = null;
+
     document.addEventListener('pointermove', (e) => {
       if (e.pointerType !== 'mouse') return;
+
+      document.documentElement.style.setProperty('--page-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--page-y', `${e.clientY}px`);
+
+      const taggedEl = e.target.closest('[data-cursor-tag]');
+      if (cursorTagEl) {
+        if (taggedEl) {
+          cursorTagEl.textContent = taggedEl.getAttribute('data-cursor-tag');
+          cursorTagEl.style.transform = `translate3d(${e.clientX + 14}px, ${e.clientY + 14}px, 0) scale(1)`;
+          cursorTagEl.classList.add('visible');
+        } else {
+          cursorTagEl.classList.remove('visible');
+        }
+      }
+
       const card = e.target.closest('.item-card');
-      if (!card) return;
-      const rect = card.getBoundingClientRect();
-      card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-      card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
+      if (activeTiltCard && activeTiltCard !== card) {
+        activeTiltCard.style.transform = '';
+        activeTiltCard = null;
+      }
+
+      if (card) {
+        activeTiltCard = card;
+        const rect = card.getBoundingClientRect();
+        const relX = e.clientX - rect.left;
+        const relY = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${relX}px`);
+        card.style.setProperty('--mouse-y', `${relY}px`);
+
+        const rotateY = ((relX / rect.width) - 0.5) * 3.2;
+        const rotateX = (0.5 - (relY / rect.height)) * 3.2;
+        card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-2px)`;
+      }
+    });
+
+    document.addEventListener('pointerleave', () => {
+      if (cursorTagEl) cursorTagEl.classList.remove('visible');
+      if (activeTiltCard) {
+        activeTiltCard.style.transform = '';
+        activeTiltCard = null;
+      }
     });
 
     window.toggleChipFilter = function(tag) {
@@ -1700,6 +2106,23 @@
       document.getElementById('readerMeta').textContent = `${label} • ${item.meta || ''} • ${mins} MIN READ`;
       document.getElementById('readerTitle').textContent = item.title || '';
       document.getElementById('readerContent').textContent = item.desc || '';
+
+      const coverEl = document.getElementById('readerCover');
+      if (item.cover) {
+        coverEl.src = item.cover;
+        coverEl.style.display = 'block';
+      } else {
+        coverEl.style.display = 'none';
+      }
+
+      const extEl = document.getElementById('readerExtLink');
+      if (item.link) {
+        extEl.href = item.link;
+        extEl.style.display = 'inline-flex';
+      } else {
+        extEl.style.display = 'none';
+      }
+
       document.getElementById('readerChips').innerHTML = (item.chips || []).map(c => `<span class="mini-chip">#${escapeHtml(c)}</span>`).join('');
       document.getElementById('readerModal').classList.add('open');
     };
@@ -1821,18 +2244,116 @@
       }
     });
 
+    /* Admin Studio Tabs, Edit, Reorder & Delete Controls */
+    window.switchStudioTab = function(tabName) {
+      document.querySelectorAll('.studio-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-studio-tab') === tabName);
+      });
+      document.getElementById('studioTabEntry').style.display = tabName === 'entry' ? 'block' : 'none';
+      document.getElementById('studioTabManage').style.display = tabName === 'manage' ? 'block' : 'none';
+      document.getElementById('studioTabProfile').style.display = tabName === 'profile' ? 'block' : 'none';
+      if (tabName === 'manage') renderManageList();
+    };
+
     function syncEditorInputs() {
       document.getElementById('editName').value = state.name || '';
       document.getElementById('editRole').value = state.roleBadge || '';
+      document.getElementById('editLocation').value = state.locationBadge || '';
+      document.getElementById('editExpLabel').value = state.experienceLabel || '';
       document.getElementById('editCurrently').value = state.currentlyStatus || '';
       document.getElementById('editBio').value = state.bio || '';
     }
+
+    window.resetEntryForm = function() {
+      editingTarget = null;
+      document.getElementById('entryFormHeading').textContent = 'Add New Entry';
+      document.getElementById('submitEntryBtn').textContent = '+ Add Entry to Draft';
+      document.getElementById('cancelEditBtn').style.display = 'none';
+      document.getElementById('newEntryType').disabled = false;
+      document.getElementById('newEntryTitle').value = '';
+      document.getElementById('newEntrySubtitle').value = '';
+      document.getElementById('newEntryMeta').value = '';
+      document.getElementById('newEntryDesc').value = '';
+      document.getElementById('newEntryLink').value = '';
+      document.getElementById('newEntryCover').value = '';
+      document.getElementById('newEntryChips').value = '';
+    };
+
+    window.editExistingEntry = function(group, index) {
+      const item = (state[group] || [])[index];
+      if (!item) return;
+      editingTarget = { group, index };
+      openAdminModal();
+      switchStudioTab('entry');
+      document.getElementById('entryFormHeading').textContent = `Editing Item #${index + 1} in ${group.toUpperCase()}`;
+      document.getElementById('submitEntryBtn').textContent = 'Update Draft Item';
+      document.getElementById('cancelEditBtn').style.display = 'inline-flex';
+      document.getElementById('newEntryType').value = group;
+      document.getElementById('newEntryType').disabled = true;
+      document.getElementById('newEntryMeta').value = item.meta || '';
+      document.getElementById('newEntryTitle').value = item.title || '';
+      document.getElementById('newEntrySubtitle').value = item.subtitle || '';
+      document.getElementById('newEntryDesc').value = item.desc || '';
+      document.getElementById('newEntryLink').value = item.link || '';
+      document.getElementById('newEntryCover').value = item.cover || '';
+      document.getElementById('newEntryChips').value = Array.isArray(item.chips) ? item.chips.join(', ') : '';
+    };
+
+    window.moveEntry = function(group, index, delta) {
+      const list = state[group];
+      if (!Array.isArray(list)) return;
+      const targetIdx = index + delta;
+      if (targetIdx < 0 || targetIdx >= list.length) return;
+      const [moved] = list.splice(index, 1);
+      list.splice(targetIdx, 0, moved);
+      renderAll();
+      showToast('Reordered in draft. Publish Live to save to cloud.');
+    };
+
+    window.deleteEntry = function(group, index) {
+      const list = state[group];
+      if (!Array.isArray(list) || !list[index]) return;
+      const title = list[index].title || 'entry';
+      list.splice(index, 1);
+      if (editingTarget && editingTarget.group === group && editingTarget.index === index) {
+        resetEntryForm();
+      }
+      renderAll();
+      showToast(`Removed "${title}" from draft.`);
+    };
+
+    window.renderManageList = function() {
+      const group = document.getElementById('manageSectionSelect').value;
+      const list = state[group] || [];
+      const container = document.getElementById('manageItemsList');
+      if (!list.length) {
+        container.innerHTML = '<p class="card-desc">No items in this section yet.</p>';
+        return;
+      }
+      container.innerHTML = list.map((item, idx) => `
+        <div class="manage-row">
+          <div class="manage-row-info">
+            <div class="manage-row-title">${escapeHtml(item.title || 'Untitled')}</div>
+            <div class="manage-row-sub">${escapeHtml(item.meta || '')}</div>
+          </div>
+          <div style="display:flex;gap:5px;flex-shrink:0;">
+            <button type="button" class="mini-admin-btn" onclick="editExistingEntry('${group}', ${idx})">Edit</button>
+            <button type="button" class="mini-admin-btn" ${idx === 0 ? 'disabled' : ''} onclick="moveEntry('${group}', ${idx}, -1)">↑</button>
+            <button type="button" class="mini-admin-btn" ${idx >= list.length - 1 ? 'disabled' : ''} onclick="moveEntry('${group}', ${idx}, 1)">↓</button>
+            <button type="button" class="mini-admin-btn danger" onclick="deleteEntry('${group}', ${idx})">Del</button>
+          </div>
+        </div>
+      `).join('');
+    };
 
     window.openAdminModal = function() {
       const modal = document.getElementById('adminModal');
       document.getElementById('adminLoginPanel').style.display = isAdminSignedIn ? 'none' : 'block';
       document.getElementById('adminEditorPanel').style.display = isAdminSignedIn ? 'block' : 'none';
-      if (isAdminSignedIn) syncEditorInputs();
+      if (isAdminSignedIn) {
+        syncEditorInputs();
+        renderManageList();
+      }
       modal.classList.add('open');
     };
 
@@ -1859,6 +2380,7 @@
       try {
         await signOut(auth);
         isAdminSignedIn = false;
+        resetEntryForm();
         updateAdminVisibility();
         closeAdminModal();
         showToast('Signed out.');
@@ -1867,25 +2389,37 @@
       }
     };
 
-    window.addEntryToDraft = function() {
-      const type = document.getElementById('newEntryType').value;
+    window.saveEntryToDraft = function() {
+      const type = editingTarget ? editingTarget.group : document.getElementById('newEntryType').value;
       const meta = document.getElementById('newEntryMeta').value.trim();
       const title = document.getElementById('newEntryTitle').value.trim();
+      const subtitle = document.getElementById('newEntrySubtitle').value.trim();
       const desc = document.getElementById('newEntryDesc').value.trim();
+      const link = document.getElementById('newEntryLink').value.trim();
+      const cover = document.getElementById('newEntryCover').value.trim();
       const chipsRaw = document.getElementById('newEntryChips').value.trim();
+
       if (!title) {
         showToast('Please enter a title.');
         return;
       }
+
       const chips = chipsRaw ? chipsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
       if (!Array.isArray(state[type])) state[type] = [];
-      state[type].unshift({ title, meta, desc, chips });
-      document.getElementById('newEntryTitle').value = '';
-      document.getElementById('newEntryMeta').value = '';
-      document.getElementById('newEntryDesc').value = '';
-      document.getElementById('newEntryChips').value = '';
-      renderAll();
-      showToast('Added to draft. Click Publish Live to Firestore.');
+
+      const payload = { title, subtitle, meta, desc, link, cover, chips };
+
+      if (editingTarget && state[type][editingTarget.index]) {
+        state[type][editingTarget.index] = payload;
+        resetEntryForm();
+        renderAll();
+        showToast('Updated draft item. Click Publish Live to Firestore.');
+      } else {
+        state[type].unshift(payload);
+        resetEntryForm();
+        renderAll();
+        showToast('Added to draft. Click Publish Live to Firestore.');
+      }
     };
 
     window.savePortfolioToCloud = async function() {
@@ -1895,6 +2429,8 @@
       }
       state.name = document.getElementById('editName').value.trim() || DEFAULT_DATA.name;
       state.roleBadge = document.getElementById('editRole').value.trim() || DEFAULT_DATA.roleBadge;
+      state.locationBadge = document.getElementById('editLocation').value.trim() || DEFAULT_DATA.locationBadge;
+      state.experienceLabel = document.getElementById('editExpLabel').value.trim() || DEFAULT_DATA.experienceLabel;
       state.currentlyStatus = document.getElementById('editCurrently').value.trim() || DEFAULT_DATA.currentlyStatus;
       state.bio = document.getElementById('editBio').value.trim() || DEFAULT_DATA.bio;
       state.headline = `Living ${state.name.split(' ')[0]} resume, milestones, reading log & personal notes.`;
@@ -1942,6 +2478,7 @@
         document.getElementById('adminLoginPanel').style.display = 'none';
         document.getElementById('adminEditorPanel').style.display = 'block';
         syncEditorInputs();
+        renderManageList();
       }
     });
 
