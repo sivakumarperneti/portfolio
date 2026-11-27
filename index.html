@@ -3,8 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Sivakumar Perneti — Living Portfolio, Resume, Achievements, Books &amp; Blog</title>
+  <meta name="theme-color" content="#000000" id="metaThemeColor" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <title>Shiva Perneti — Talent Acquisition Professional • Technology Enthusiast • Builder</title>
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%237c6cff'/%3E%3Cstop offset='100%25' stop-color='%2322d3ee'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='18' fill='%2305060a'/%3E%3Cpath d='M32 8L52 20V44L32 56L12 44V20L32 8Z' fill='none' stroke='url(%23g)' stroke-width='4' stroke-linejoin='round'/%3E%3Ccircle cx='32' cy='32' r='7.5' fill='%2338bdf8'/%3E%3C/svg%3E" />
+  <link rel="manifest" href="data:application/manifest+json,%7B%22name%22%3A%22Shiva%20Perneti%20%E2%80%94%20Digital%20Identity%22%2C%22short_name%22%3A%22Shiva%20Perneti%22%2C%22start_url%22%3A%22.%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23000000%22%2C%22theme_color%22%3A%22%23000000%22%7D" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
@@ -13,68 +17,66 @@
       /* Dynamic Brand Accent Palette (Default: Astral Violet) */
       --accent-primary: #7c6cff;
       --accent-secondary: #22d3ee;
-      --accent-tertiary: #10b981;
       --accent-rgb: 124, 108, 255;
       --accent-sec-rgb: 34, 211, 238;
 
-      /* Pitch Black (OLED Void) Mode - Default */
+      /* Pitch Black OLED Void (Default) — Tuned for 60 FPS Android & Desktop */
       --bg-void: #000000;
       --bg-base: #000000;
       --ambient-grad:
-        radial-gradient(ellipse 68% 44% at 15% -4%, rgba(var(--accent-rgb), 0.17), transparent 65%),
-        radial-gradient(ellipse 52% 38% at 88% 10%, rgba(var(--accent-sec-rgb), 0.11), transparent 65%),
-        radial-gradient(ellipse 58% 42% at 50% 104%, rgba(16, 185, 129, 0.07), transparent 70%),
-        linear-gradient(180deg, #000000 0%, #020305 55%, #000000 100%);
-      --grid-line: rgba(255, 255, 255, 0.032);
-      --grid-opacity: 0.24;
+        radial-gradient(ellipse 65% 40% at 15% -2%, rgba(var(--accent-rgb), 0.14), transparent 65%),
+        radial-gradient(ellipse 50% 35% at 88% 8%, rgba(var(--accent-sec-rgb), 0.09), transparent 65%),
+        linear-gradient(180deg, #000000 0%, #030408 60%, #000000 100%);
+      --grid-line: rgba(255, 255, 255, 0.028);
+      --grid-opacity: 0.22;
 
-      --topbar-bg: rgba(4, 5, 9, 0.84);
-      --glass-surface: rgba(8, 10, 16, 0.76);
-      --glass-elevated: rgba(14, 17, 26, 0.88);
-      --glass-dropdown: rgba(5, 7, 12, 0.96);
-      --stat-bg: rgba(5, 7, 12, 0.82);
-      --modal-bg: rgba(7, 9, 15, 0.97);
-      --modal-backdrop: rgba(0, 0, 0, 0.82);
+      /* Selective Blur & High-Opacity Translucent Surfaces for Zero-Stutter Scrolling */
+      --topbar-bg: rgba(6, 8, 14, 0.90);
+      --glass-surface: rgba(11, 14, 22, 0.92);
+      --glass-elevated: rgba(16, 20, 32, 0.95);
+      --glass-dropdown: rgba(8, 10, 18, 0.98);
+      --stat-bg: rgba(7, 9, 15, 0.94);
+      --modal-bg: rgba(8, 11, 18, 0.98);
+      --modal-backdrop: rgba(0, 0, 0, 0.84);
       --input-bg: rgba(255, 255, 255, 0.04);
-      --chip-bg: rgba(255, 255, 255, 0.05);
+      --chip-bg: rgba(255, 255, 255, 0.045);
       --chip-border: rgba(255, 255, 255, 0.08);
       --hover-tint: rgba(255, 255, 255, 0.06);
-      --trigger-bg: rgba(12, 15, 24, 0.92);
-      --specular-glow: rgba(var(--accent-rgb), 0.22);
-      --specular-border: rgba(var(--accent-rgb), 0.55);
-      --featured-glow: linear-gradient(135deg, rgba(var(--accent-rgb), 0.14), rgba(var(--accent-sec-rgb), 0.07) 50%, rgba(8, 10, 16, 0.84));
+      --trigger-bg: rgba(15, 19, 30, 0.96);
+      --specular-glow: rgba(var(--accent-rgb), 0.16);
+      --specular-border: rgba(var(--accent-rgb), 0.45);
+      --featured-glow: linear-gradient(135deg, rgba(var(--accent-rgb), 0.12), rgba(var(--accent-sec-rgb), 0.05) 55%, rgba(11, 14, 22, 0.95));
 
-      --glass-border: rgba(255, 255, 255, 0.09);
-      --glass-border-bright: rgba(255, 255, 255, 0.19);
+      --glass-border: rgba(255, 255, 255, 0.075);
+      --glass-border-bright: rgba(255, 255, 255, 0.15);
       --text-primary: #f4f7fc;
       --text-secondary: #a4b0c2;
       --text-muted: #6c778b;
 
-      --accent-indigo: var(--accent-primary);
-      --accent-cyan: var(--accent-secondary);
       --accent-emerald: #10b981;
       --accent-amber: #f59e0b;
       --accent-rose: #fb7185;
+      --accent-cyan: var(--accent-secondary);
 
       --violet-pill-text: #d8d0ff;
-      --violet-pill-bg: rgba(var(--accent-rgb), 0.16);
-      --violet-pill-border: rgba(var(--accent-rgb), 0.38);
+      --violet-pill-bg: rgba(var(--accent-rgb), 0.14);
+      --violet-pill-border: rgba(var(--accent-rgb), 0.32);
 
       --cyan-pill-text: #67e8f9;
-      --cyan-pill-bg: rgba(var(--accent-sec-rgb), 0.12);
-      --cyan-pill-border: rgba(var(--accent-sec-rgb), 0.3);
+      --cyan-pill-bg: rgba(var(--accent-sec-rgb), 0.11);
+      --cyan-pill-border: rgba(var(--accent-sec-rgb), 0.28);
 
       --emerald-pill-text: #6ee7b7;
       --emerald-pill-bg: rgba(16, 185, 129, 0.12);
-      --emerald-pill-border: rgba(16, 185, 129, 0.3);
+      --emerald-pill-border: rgba(16, 185, 129, 0.28);
 
       --nav-active-text: #ffffff;
-      --nav-active-bg: rgba(var(--accent-rgb), 0.25);
-      --nav-active-border: rgba(var(--accent-rgb), 0.55);
+      --nav-active-bg: rgba(var(--accent-rgb), 0.24);
+      --nav-active-border: rgba(var(--accent-rgb), 0.48);
 
       --btn-primary-text: #ffffff;
       --btn-primary-bg: linear-gradient(135deg, rgba(var(--accent-rgb), 0.42), rgba(var(--accent-sec-rgb), 0.24));
-      --btn-primary-border: rgba(var(--accent-rgb), 0.58);
+      --btn-primary-border: rgba(var(--accent-rgb), 0.55);
 
       --hero-grad: linear-gradient(90deg, var(--accent-primary) 0%, var(--accent-secondary) 55%, #34d399 100%);
       --font-sans: 'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -82,9 +84,8 @@
       --radius-pill: 999px;
       --radius-card: 20px;
       --radius-sm: 12px;
-      --blur-glass: blur(22px);
-      --shadow-glass: 0 20px 50px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.07);
-      --shadow-topbar: 0 14px 36px rgba(0, 0, 0, 0.65);
+      --shadow-card: 0 12px 32px rgba(0, 0, 0, 0.52), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      --shadow-topbar: 0 10px 28px rgba(0, 0, 0, 0.55);
     }
 
     html[data-accent="cyan"] {
@@ -116,61 +117,65 @@
       --bg-void: #f7f9fc;
       --bg-base: #ffffff;
       --ambient-grad:
-        radial-gradient(ellipse 70% 45% at 15% -5%, rgba(var(--accent-rgb), 0.14), transparent 65%),
-        radial-gradient(ellipse 55% 40% at 88% 12%, rgba(var(--accent-sec-rgb), 0.11), transparent 65%),
-        radial-gradient(ellipse 60% 45% at 50% 105%, rgba(16, 185, 129, 0.08), transparent 70%),
-        linear-gradient(180deg, #ffffff 0%, #f4f7fb 55%, #eef2f8 100%);
-      --grid-line: rgba(15, 23, 42, 0.045);
-      --grid-opacity: 0.55;
+        radial-gradient(ellipse 68% 42% at 15% -4%, rgba(var(--accent-rgb), 0.12), transparent 65%),
+        radial-gradient(ellipse 52% 38% at 88% 10%, rgba(var(--accent-sec-rgb), 0.09), transparent 65%),
+        linear-gradient(180deg, #ffffff 0%, #f5f7fb 55%, #eef2f8 100%);
+      --grid-line: rgba(15, 23, 42, 0.04);
+      --grid-opacity: 0.45;
 
-      --topbar-bg: rgba(255, 255, 255, 0.82);
-      --glass-surface: rgba(255, 255, 255, 0.78);
-      --glass-elevated: rgba(255, 255, 255, 0.92);
-      --glass-dropdown: rgba(255, 255, 255, 0.97);
-      --stat-bg: rgba(248, 250, 252, 0.92);
-      --modal-bg: rgba(255, 255, 255, 0.98);
+      --topbar-bg: rgba(255, 255, 255, 0.90);
+      --glass-surface: rgba(255, 255, 255, 0.92);
+      --glass-elevated: rgba(255, 255, 255, 0.97);
+      --glass-dropdown: rgba(255, 255, 255, 0.98);
+      --stat-bg: rgba(248, 250, 252, 0.96);
+      --modal-bg: rgba(255, 255, 255, 0.99);
       --modal-backdrop: rgba(15, 23, 42, 0.45);
       --input-bg: rgba(15, 23, 42, 0.035);
       --chip-bg: rgba(15, 23, 42, 0.045);
       --chip-border: rgba(15, 23, 42, 0.09);
       --hover-tint: rgba(15, 23, 42, 0.05);
-      --trigger-bg: rgba(248, 250, 252, 0.95);
-      --specular-glow: rgba(var(--accent-rgb), 0.12);
-      --specular-border: rgba(var(--accent-rgb), 0.42);
-      --featured-glow: linear-gradient(135deg, rgba(var(--accent-rgb), 0.09), rgba(var(--accent-sec-rgb), 0.05) 50%, rgba(255, 255, 255, 0.90));
+      --trigger-bg: rgba(248, 250, 252, 0.97);
+      --specular-glow: rgba(var(--accent-rgb), 0.10);
+      --specular-border: rgba(var(--accent-rgb), 0.38);
+      --featured-glow: linear-gradient(135deg, rgba(var(--accent-rgb), 0.08), rgba(var(--accent-sec-rgb), 0.04) 50%, rgba(255, 255, 255, 0.96));
 
-      --glass-border: rgba(15, 23, 42, 0.09);
-      --glass-border-bright: rgba(15, 23, 42, 0.18);
+      --glass-border: rgba(15, 23, 42, 0.08);
+      --glass-border-bright: rgba(15, 23, 42, 0.16);
       --text-primary: #0f172a;
       --text-secondary: #475569;
       --text-muted: #64748b;
 
       --violet-pill-text: #3730a3;
-      --violet-pill-bg: rgba(var(--accent-rgb), 0.11);
-      --violet-pill-border: rgba(var(--accent-rgb), 0.30);
+      --violet-pill-bg: rgba(var(--accent-rgb), 0.10);
+      --violet-pill-border: rgba(var(--accent-rgb), 0.28);
 
       --cyan-pill-text: #0369a1;
       --cyan-pill-bg: rgba(var(--accent-sec-rgb), 0.09);
-      --cyan-pill-border: rgba(var(--accent-sec-rgb), 0.25);
+      --cyan-pill-border: rgba(var(--accent-sec-rgb), 0.24);
 
       --emerald-pill-text: #047857;
       --emerald-pill-bg: rgba(5, 150, 105, 0.09);
-      --emerald-pill-border: rgba(5, 150, 105, 0.26);
+      --emerald-pill-border: rgba(5, 150, 105, 0.24);
 
       --nav-active-text: #1e1b4b;
-      --nav-active-bg: rgba(var(--accent-rgb), 0.14);
-      --nav-active-border: rgba(var(--accent-rgb), 0.38);
+      --nav-active-bg: rgba(var(--accent-rgb), 0.13);
+      --nav-active-border: rgba(var(--accent-rgb), 0.34);
 
       --btn-primary-text: #ffffff;
       --btn-primary-bg: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-secondary) 100%);
-      --btn-primary-border: rgba(var(--accent-rgb), 0.65);
+      --btn-primary-border: rgba(var(--accent-rgb), 0.6);
 
-      --shadow-glass: 0 14px 36px rgba(15, 23, 42, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-      --shadow-topbar: 0 10px 28px rgba(15, 23, 42, 0.08);
+      --shadow-card: 0 10px 28px rgba(15, 23, 42, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.95);
+      --shadow-topbar: 0 8px 24px rgba(15, 23, 42, 0.07);
     }
 
     *, *::before, *::after {
       box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
     }
 
     html, body {
@@ -183,26 +188,30 @@
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 0.25s ease, color 0.25s ease;
     }
 
-    /* Ambient glass glow layers + interactive cursor spotlight */
+    /* Top Scroll Progress Indicator (GPU-accelerated scaleX) */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      z-index: 200;
+      background: var(--hero-grad);
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    /* Static Ambient Background (No heavy animated blurs on mobile) */
     .ambient-bg {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: 0;
       background: var(--ambient-grad);
-      transition: background 0.3s ease;
-    }
-
-    .cursor-aura {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      background: radial-gradient(650px circle at var(--page-x, 50vw) var(--page-y, 25vh), rgba(var(--accent-rgb), 0.09), transparent 65%);
-      transition: opacity 0.3s ease;
     }
 
     .grid-overlay {
@@ -215,11 +224,11 @@
         linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
         linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
       background-size: 48px 48px;
-      mask-image: radial-gradient(ellipse at 50% 25%, #000 35%, transparent 85%);
-      -webkit-mask-image: radial-gradient(ellipse at 50% 25%, #000 35%, transparent 85%);
+      mask-image: radial-gradient(ellipse at 50% 22%, #000 35%, transparent 82%);
+      -webkit-mask-image: radial-gradient(ellipse at 50% 22%, #000 35%, transparent 82%);
     }
 
-    /* Floating Mouse Follower Tag */
+    /* Desktop-only Cursor Follower Tag */
     .cursor-tag {
       position: fixed;
       top: 0;
@@ -235,10 +244,10 @@
       font-size: 0.7rem;
       font-weight: 600;
       letter-spacing: 0.02em;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
       opacity: 0;
-      transform: translate3d(-100px, -100px, 0) scale(0.92);
-      transition: opacity 0.16s ease, transform 0.12s ease-out;
+      transform: translate3d(-100px, -100px, 0);
+      transition: opacity 0.15s ease;
       white-space: nowrap;
     }
 
@@ -247,7 +256,7 @@
     }
 
     @media (hover: none), (pointer: coarse) {
-      .cursor-tag, .cursor-aura {
+      .cursor-tag {
         display: none !important;
       }
     }
@@ -257,59 +266,55 @@
       z-index: 1;
       max-width: 1180px;
       margin: 0 auto;
-      padding: 18px 20px 64px;
+      padding: 16px 20px 72px;
     }
 
-    /* Glass surfaces */
+    /* Glass Panels — Selective Light Blur on Topbar/Modals Only, Opaque-Translucent on Cards */
     .glass-panel {
       background: var(--glass-surface);
-      backdrop-filter: var(--blur-glass);
-      -webkit-backdrop-filter: var(--blur-glass);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-card);
-      box-shadow: var(--shadow-glass);
-      transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      box-shadow: var(--shadow-card);
     }
 
-    /* Top Navigation Bar */
+    /* Compact Floating Top Navigation Bar */
     .topbar {
       position: sticky;
-      top: 12px;
+      top: 10px;
       z-index: 60;
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 10px;
-      padding: 10px 14px;
+      padding: 8px 14px;
       border-radius: var(--radius-pill);
       background: var(--topbar-bg);
-      backdrop-filter: blur(26px);
-      -webkit-backdrop-filter: blur(26px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border: 1px solid var(--glass-border);
       box-shadow: var(--shadow-topbar);
-      transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 9px;
       text-decoration: none;
       color: var(--text-primary);
       font-weight: 700;
-      font-size: 0.96rem;
+      font-size: 0.94rem;
       letter-spacing: -0.01em;
       white-space: nowrap;
     }
 
     .brand-mark {
-      width: 34px;
-      height: 34px;
-      border-radius: 11px;
+      width: 32px;
+      height: 32px;
+      border-radius: 10px;
       display: grid;
       place-items: center;
-      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.26), rgba(var(--accent-sec-rgb), 0.18));
-      border: 1px solid rgba(var(--accent-rgb), 0.45);
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.24), rgba(var(--accent-sec-rgb), 0.16));
+      border: 1px solid rgba(var(--accent-rgb), 0.42);
       flex-shrink: 0;
     }
 
@@ -317,34 +322,34 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 16px;
-      height: 16px;
+      width: 15px;
+      height: 15px;
       border-radius: 50%;
-      background: rgba(var(--accent-rgb), 0.22);
+      background: rgba(var(--accent-rgb), 0.2);
       color: var(--accent-primary);
     }
 
     .desktop-nav {
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 3px;
     }
 
     .nav-btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 8px 13px;
+      gap: 6px;
+      padding: 7px 12px;
       border-radius: var(--radius-pill);
       border: 1px solid transparent;
       background: transparent;
       color: var(--text-secondary);
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.18s ease;
+      transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
     }
 
     .nav-btn:hover {
@@ -356,10 +361,9 @@
       color: var(--nav-active-text);
       background: var(--nav-active-bg);
       border-color: var(--nav-active-border);
-      box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.22);
     }
 
-    /* Mobile Dropdown Navigation (< 768px) */
+    /* Mobile Dropdown Navigation (< 840px) */
     .mobile-nav-wrap {
       display: none;
       position: relative;
@@ -368,14 +372,14 @@
     .mobile-dropdown-trigger {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
-      padding: 8px 14px;
+      gap: 6px;
+      padding: 7px 12px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border-bright);
       background: var(--trigger-bg);
       color: var(--text-primary);
       font-family: var(--font-sans);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
@@ -384,26 +388,21 @@
     .mobile-dropdown-menu {
       display: none;
       position: absolute;
-      top: calc(100% + 10px);
-      left: 50%;
-      transform: translateX(-50%);
-      min-width: 230px;
-      width: max-content;
-      max-width: calc(100vw - 28px);
-      padding: 8px;
-      border-radius: 18px;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 205px;
+      padding: 6px;
+      border-radius: 16px;
       background: var(--glass-dropdown);
-      backdrop-filter: blur(28px);
-      -webkit-backdrop-filter: blur(28px);
       border: 1px solid var(--glass-border-bright);
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
       z-index: 90;
     }
 
     .mobile-dropdown-menu.open {
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .mobile-dropdown-item {
@@ -411,23 +410,18 @@
       align-items: center;
       gap: 10px;
       width: 100%;
-      padding: 10px 14px;
+      min-height: 42px;
+      padding: 9px 12px;
       border: 1px solid transparent;
-      border-radius: 12px;
+      border-radius: 11px;
       background: transparent;
       color: var(--text-secondary);
       font-family: var(--font-sans);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 600;
       text-align: left;
       white-space: nowrap;
       cursor: pointer;
-      transition: all 0.16s ease;
-    }
-
-    .mobile-dropdown-item:hover {
-      color: var(--text-primary);
-      background: var(--hover-tint);
     }
 
     .mobile-dropdown-item.active {
@@ -439,72 +433,49 @@
     .topbar-right {
       display: flex;
       align-items: center;
-      gap: 7px;
+      gap: 6px;
     }
 
-    /* Quick Search Trigger, Accent Swatch & Theme Toggle */
     .icon-pill-btn {
       display: inline-flex;
       align-items: center;
-      gap: 7px;
-      padding: 7px 11px;
+      justify-content: center;
+      gap: 6px;
+      min-height: 36px;
+      padding: 6px 11px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border-bright);
       background: var(--input-bg);
       color: var(--text-primary);
       font-family: var(--font-sans);
-      font-size: 0.8rem;
+      font-size: 0.79rem;
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.18s ease;
+      transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
     }
 
     .icon-pill-btn:hover {
       background: var(--hover-tint);
       border-color: var(--specular-border);
-      transform: translateY(-1px);
     }
 
     .accent-swatch-dot {
-      width: 11px;
-      height: 11px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-      box-shadow: 0 0 10px rgba(var(--accent-rgb), 0.7);
       flex-shrink: 0;
     }
 
     .kbd-hint {
       font-family: var(--font-mono);
-      font-size: 0.68rem;
-      padding: 2px 6px;
-      border-radius: 6px;
+      font-size: 0.66rem;
+      padding: 2px 5px;
+      border-radius: 5px;
       background: var(--chip-bg);
       border: 1px solid var(--chip-border);
       color: var(--text-muted);
-    }
-
-    .sync-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 10px;
-      border-radius: var(--radius-pill);
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      color: var(--accent-emerald);
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.28);
-      white-space: nowrap;
-    }
-
-    .sync-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: var(--accent-emerald);
-      box-shadow: 0 0 8px var(--accent-emerald);
     }
 
     .admin-only {
@@ -518,8 +489,10 @@
     .btn-primary-glass {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 7px;
-      padding: 8px 15px;
+      min-height: 40px;
+      padding: 8px 16px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--btn-primary-border);
       background: var(--btn-primary-bg);
@@ -529,7 +502,7 @@
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.18s ease;
+      transition: transform 0.18s ease, border-color 0.18s ease;
     }
 
     .btn-primary-glass:hover {
@@ -540,8 +513,10 @@
     .btn-ghost-glass {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 7px;
-      padding: 8px 13px;
+      min-height: 40px;
+      padding: 8px 14px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border);
       background: var(--input-bg);
@@ -551,7 +526,7 @@
       font-weight: 600;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.18s ease;
+      transition: color 0.18s ease, background-color 0.18s ease, border-color 0.18s ease;
     }
 
     .btn-ghost-glass:hover {
@@ -560,57 +535,51 @@
       background: var(--hover-tint);
     }
 
-    /* Hero Card */
+    /* Executive Hero Redesign */
     .hero {
-      margin-top: 22px;
-      padding: 28px;
+      margin-top: 18px;
+      padding: 32px;
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    .hero-mesh {
       position: absolute;
-      top: -90px;
-      right: -70px;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(var(--accent-rgb), 0.24), transparent 70%);
+      inset: 0;
       pointer-events: none;
+      background:
+        radial-gradient(circle at 86% 18%, rgba(var(--accent-rgb), 0.18), transparent 45%),
+        radial-gradient(circle at 12% 88%, rgba(var(--accent-sec-rgb), 0.10), transparent 45%);
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
     }
 
     .hero-top-meta {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       margin-bottom: 14px;
     }
 
     .tag-pill {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       padding: 5px 12px;
       border-radius: var(--radius-pill);
-      font-size: 0.78rem;
+      font-size: 0.77rem;
       font-weight: 600;
       border: 1px solid var(--glass-border);
       background: var(--input-bg);
       color: var(--text-secondary);
-    }
-
-    .tag-pill.violet {
-      color: var(--violet-pill-text);
-      background: var(--violet-pill-bg);
-      border-color: var(--violet-pill-border);
-    }
-
-    .tag-pill.cyan {
-      color: var(--cyan-pill-text);
-      background: var(--cyan-pill-bg);
-      border-color: var(--cyan-pill-border);
     }
 
     .tag-pill.emerald {
@@ -619,29 +588,47 @@
       border-color: var(--emerald-pill-border);
     }
 
+    .tag-pill.cyan {
+      color: var(--cyan-pill-text);
+      background: var(--cyan-pill-bg);
+      border-color: var(--cyan-pill-border);
+    }
+
     .pulse-dot {
       width: 7px;
       height: 7px;
       border-radius: 50%;
       background: var(--accent-emerald);
-      animation: pulseRing 2.2s infinite;
+      animation: pulseOpacity 2.4s ease-in-out infinite;
     }
 
-    @keyframes pulseRing {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.45; transform: scale(0.82); }
+    @keyframes pulseOpacity {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
     }
 
-    .hero-title {
-      margin: 0 0 12px;
-      font-size: clamp(1.85rem, 4vw, 2.85rem);
+    .hero-name {
+      margin: 0 0 6px;
+      font-size: clamp(2.1rem, 4.6vw, 3.35rem);
       font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-      max-width: 24ch;
+      line-height: 1.08;
+      letter-spacing: -0.035em;
+      color: var(--text-primary);
     }
 
-    .hero-title span.grad {
+    .hero-name span.dot {
+      background: var(--hero-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-tagline {
+      margin: 0 0 12px;
+      font-size: clamp(1.02rem, 2vw, 1.24rem);
+      font-weight: 700;
+      line-height: 1.35;
+      letter-spacing: -0.015em;
       background: var(--hero-grad);
       -webkit-background-clip: text;
       background-clip: text;
@@ -649,10 +636,10 @@
     }
 
     .hero-bio {
-      margin: 0 0 22px;
-      max-width: 68ch;
+      margin: 0 0 20px;
+      max-width: 62ch;
       color: var(--text-secondary);
-      font-size: 0.98rem;
+      font-size: 0.96rem;
     }
 
     .hero-actions {
@@ -660,7 +647,113 @@
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
-      margin-bottom: 24px;
+    }
+
+    /* Profile Avatar / Minimalist Monogram Emblem */
+    .hero-avatar-card {
+      width: 148px;
+      height: 148px;
+      border-radius: 28px;
+      padding: 6px;
+      background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.35), rgba(var(--accent-sec-rgb), 0.25));
+      border: 1px solid var(--glass-border-bright);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .hero-avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 22px;
+      background: var(--stat-bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      overflow: hidden;
+    }
+
+    .hero-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-monogram {
+      font-size: 2.1rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      background: var(--hero-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-monogram-sub {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    /* Verifiable Recruiter Metrics Row */
+    .stats-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .stat-widget {
+      padding: 14px 15px;
+      border-radius: 16px;
+      background: var(--stat-bg);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .stat-widget:hover {
+      border-color: var(--specular-border);
+      transform: translateY(-2px);
+    }
+
+    .widget-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .widget-icon.purple { background: rgba(var(--accent-rgb), 0.16); border: 1px solid rgba(var(--accent-rgb), 0.34); }
+    .widget-icon.cyan { background: rgba(34, 211, 238, 0.13); border: 1px solid rgba(34, 211, 238, 0.30); }
+    .widget-icon.emerald { background: rgba(16, 185, 129, 0.13); border: 1px solid rgba(16, 185, 129, 0.30); }
+    .widget-icon.amber { background: rgba(245, 158, 11, 0.13); border: 1px solid rgba(245, 158, 11, 0.30); }
+    .widget-icon.rose { background: rgba(251, 113, 133, 0.13); border: 1px solid rgba(251, 113, 133, 0.30); }
+
+    .stat-value {
+      font-size: 1.2rem;
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    .stat-label {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 500;
     }
 
     /* Active Chip Filter Banner */
@@ -683,60 +776,11 @@
       display: flex;
     }
 
-    .stats-row {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .stat-widget {
-      padding: 15px 16px;
-      border-radius: 16px;
-      background: var(--stat-bg);
-      border: 1px solid var(--glass-border);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      cursor: pointer;
-      transition: background-color 0.25s ease, border-color 0.25s ease, transform 0.18s ease;
-    }
-
-    .stat-widget:hover {
-      border-color: var(--specular-border);
-      transform: translateY(-2px);
-    }
-
-    .widget-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 12px;
-      display: grid;
-      place-items: center;
-      flex-shrink: 0;
-    }
-
-    .widget-icon.purple { background: rgba(var(--accent-rgb), 0.18); border: 1px solid rgba(var(--accent-rgb), 0.36); }
-    .widget-icon.cyan { background: rgba(34, 211, 238, 0.14); border: 1px solid rgba(34, 211, 238, 0.32); }
-    .widget-icon.emerald { background: rgba(16, 185, 129, 0.14); border: 1px solid rgba(16, 185, 129, 0.32); }
-    .widget-icon.amber { background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.32); }
-    .widget-icon.rose { background: rgba(251, 113, 133, 0.14); border: 1px solid rgba(251, 113, 133, 0.32); }
-
-    .stat-value {
-      font-size: 1.25rem;
-      font-weight: 800;
-      line-height: 1.15;
-      letter-spacing: -0.02em;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      font-weight: 500;
-    }
-
-    /* Sections */
-    .section-block {
-      margin-top: 26px;
+    /* Content Rendering Optimization for Below-the-Fold Sections */
+    .portfolio-section {
+      margin-top: 32px;
+      content-visibility: auto;
+      contain-intrinsic-size: auto 480px;
     }
 
     .section-header {
@@ -745,7 +789,7 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .section-heading {
@@ -753,11 +797,54 @@
       align-items: center;
       gap: 10px;
       margin: 0;
-      font-size: 1.25rem;
+      font-size: 1.24rem;
       font-weight: 700;
       letter-spacing: -0.02em;
     }
 
+    .section-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+    }
+
+    /* Interactive Chronological Career Timeline */
+    .timeline-list {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      padding-left: 22px;
+    }
+
+    .timeline-list::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      bottom: 12px;
+      left: 6px;
+      width: 2px;
+      background: linear-gradient(180deg, var(--accent-primary), var(--accent-secondary), transparent);
+      opacity: 0.45;
+    }
+
+    .timeline-node {
+      position: relative;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -21px;
+      top: 22px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--bg-void);
+      border: 2.5px solid var(--accent-primary);
+      box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.16);
+    }
+
+    /* Consistent Premium Card System */
     .cards-grid-2 {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -770,43 +857,40 @@
       gap: 16px;
     }
 
-    /* Tactile Specular Glass Cards, 3D Tilt & Bento Highlight */
     .item-card {
       position: relative;
       overflow: hidden;
       padding: 20px;
       border-radius: 18px;
       background: var(--glass-surface);
-      backdrop-filter: var(--blur-glass);
-      -webkit-backdrop-filter: var(--blur-glass);
       border: 1px solid var(--glass-border);
-      box-shadow: var(--shadow-glass);
-      transform-style: preserve-3d;
-      transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.25s ease;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
-    .item-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0;
-      background: radial-gradient(380px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), var(--specular-glow), transparent 65%);
-      transition: opacity 0.25s ease;
-    }
-
-    .item-card:hover::after {
-      opacity: 1;
-    }
-
-    .item-card:hover {
-      border-color: var(--specular-border);
+    @media (hover: hover) and (pointer: fine) {
+      .item-card:hover {
+        transform: translateY(-2px);
+        border-color: var(--specular-border);
+      }
     }
 
     .item-card.featured-bento {
       grid-column: span 2;
       background: var(--featured-glow);
       border-color: var(--violet-pill-border);
+    }
+
+    /* Entrance Animation (Runs Once via IntersectionObserver) */
+    .reveal-card {
+      opacity: 0;
+      transform: translateY(14px);
+      transition: opacity 0.42s ease, transform 0.42s ease, border-color 0.2s ease;
+    }
+
+    .reveal-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .card-cover {
@@ -823,14 +907,14 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
-      margin-bottom: 10px;
-      font-size: 0.78rem;
+      margin-bottom: 8px;
+      font-size: 0.76rem;
       color: var(--text-muted);
       font-family: var(--font-mono);
     }
 
     .card-title {
-      margin: 0 0 6px;
+      margin: 0 0 5px;
       font-size: 1.04rem;
       font-weight: 700;
       color: var(--text-primary);
@@ -838,7 +922,7 @@
 
     .card-subtitle {
       margin: 0 0 10px;
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--accent-cyan);
     }
@@ -847,6 +931,27 @@
       margin: 0;
       font-size: 0.9rem;
       color: var(--text-secondary);
+    }
+
+    .timeline-extra {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--glass-border);
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+    }
+
+    .timeline-extra.open {
+      display: block;
+    }
+
+    .timeline-extra ul {
+      margin: 0;
+      padding-left: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
     }
 
     .card-footer-row {
@@ -867,19 +972,20 @@
     .chip-row {
       display: flex;
       flex-wrap: wrap;
-      gap: 7px;
+      gap: 6px;
     }
 
     .mini-chip {
+      min-height: 28px;
       padding: 4px 10px;
       border-radius: var(--radius-pill);
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       font-weight: 600;
       background: var(--chip-bg);
       border: 1px solid var(--chip-border);
       color: var(--text-secondary);
       cursor: pointer;
-      transition: all 0.16s ease;
+      transition: color 0.16s ease, background-color 0.16s ease, border-color 0.16s ease;
     }
 
     .mini-chip:hover, .mini-chip.active-chip {
@@ -892,7 +998,8 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      padding: 4px 10px;
+      min-height: 30px;
+      padding: 4px 11px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--cyan-pill-border);
       background: var(--cyan-pill-bg);
@@ -902,11 +1009,45 @@
       text-decoration: none;
       cursor: pointer;
       white-space: nowrap;
-      transition: all 0.16s ease;
     }
 
-    .read-more-link:hover {
-      transform: translateX(2px);
+    /* Contact & Social Card */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .contact-tile {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--glass-surface);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--shadow-card);
+    }
+
+    .contact-tile-info {
+      min-width: 0;
+    }
+
+    .contact-tile-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    .contact-tile-val {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Inline Admin Card Controls */
@@ -924,7 +1065,8 @@
     }
 
     .mini-admin-btn {
-      padding: 4px 9px;
+      min-height: 32px;
+      padding: 4px 10px;
       border-radius: 8px;
       border: 1px solid var(--glass-border-bright);
       background: var(--input-bg);
@@ -933,25 +1075,54 @@
       font-size: 0.72rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .mini-admin-btn:hover {
-      color: var(--text-primary);
-      border-color: var(--specular-border);
-      background: var(--hover-tint);
     }
 
     .mini-admin-btn.danger:hover {
       color: #fda4af;
       border-color: rgba(251, 113, 133, 0.5);
-      background: rgba(251, 113, 133, 0.14);
+    }
+
+    /* Floating Quick-Jump & Smart Back-to-Top Controls */
+    .floating-controls {
+      position: fixed;
+      right: 18px;
+      bottom: 20px;
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+    }
+
+    .back-to-top-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1px solid var(--glass-border-bright);
+      background: var(--topbar-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: var(--text-primary);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      box-shadow: var(--shadow-topbar);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .back-to-top-btn.visible {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
     }
 
     /* Footer */
     .site-footer {
-      margin-top: 40px;
-      padding: 20px 22px;
+      margin-top: 38px;
+      padding: 18px 22px;
       border-radius: 18px;
       display: flex;
       flex-wrap: wrap;
@@ -962,7 +1133,7 @@
       color: var(--text-muted);
     }
 
-    /* Modal & Reader Drawer */
+    /* Modals */
     .modal-backdrop {
       display: none;
       position: fixed;
@@ -971,7 +1142,7 @@
       background: var(--modal-backdrop);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      padding: 20px;
+      padding: 18px;
       overflow-y: auto;
     }
 
@@ -985,11 +1156,11 @@
       width: 100%;
       max-width: 740px;
       margin: auto;
-      padding: 24px;
+      padding: 22px;
       border-radius: 22px;
       background: var(--modal-bg);
       border: 1px solid var(--glass-border-bright);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 28px 70px rgba(0, 0, 0, 0.5);
     }
 
     .modal-head {
@@ -997,12 +1168,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .modal-title {
       margin: 0;
-      font-size: 1.15rem;
+      font-size: 1.12rem;
       font-weight: 700;
     }
 
@@ -1032,7 +1203,6 @@
       background: var(--input-bg);
       text-align: left;
       cursor: pointer;
-      transition: all 0.16s ease;
     }
 
     .search-result-item:hover {
@@ -1049,6 +1219,7 @@
     }
 
     .studio-tab {
+      min-height: 36px;
       padding: 7px 13px;
       border-radius: var(--radius-pill);
       border: 1px solid var(--glass-border);
@@ -1128,6 +1299,7 @@
 
     .input-glass, .textarea-glass, .select-glass {
       width: 100%;
+      min-height: 42px;
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid var(--glass-border);
@@ -1150,33 +1322,45 @@
     .toast {
       position: fixed;
       bottom: 22px;
-      right: 22px;
+      left: 50%;
       z-index: 200;
-      padding: 11px 16px;
-      border-radius: 14px;
+      padding: 10px 16px;
+      border-radius: var(--radius-pill);
       background: var(--modal-bg);
       border: 1px solid rgba(16, 185, 129, 0.45);
       color: var(--text-primary);
-      font-size: 0.84rem;
+      font-size: 0.82rem;
       font-weight: 600;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.4);
       opacity: 0;
-      transform: translateY(10px);
+      transform: translate(-50%, 10px);
       pointer-events: none;
-      transition: all 0.22s ease;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
     }
 
     .toast.show {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate(-50%, 0);
+    }
+
+    /* Reduced Motion Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
     }
 
     /* Clean Recruiter Print Stylesheet */
     @media print {
-      .ambient-bg, .cursor-aura, .cursor-tag, .grid-overlay, .topbar,
-      .hero-actions, .stats-row, #sec-achievements, #sec-books, #sec-blog,
-      .site-footer, .modal-backdrop, .toast, .filter-banner, .read-more-link,
-      .card-admin-bar {
+      .scroll-progress-bar, .ambient-bg, .cursor-tag, .grid-overlay, .topbar,
+      .hero-actions, .stats-row, #sec-projects, #sec-achievements, #sec-books,
+      #sec-blog, #sec-contact, .site-footer, .modal-backdrop, .toast,
+      .filter-banner, .read-more-link, .card-admin-bar, .floating-controls {
         display: none !important;
       }
       body, html {
@@ -1191,40 +1375,45 @@
         background: #ffffff !important;
         border: 1px solid #cbd5e1 !important;
         box-shadow: none !important;
-        backdrop-filter: none !important;
         color: #0f172a !important;
         break-inside: avoid;
       }
-      .item-card.featured-bento {
-        grid-column: span 1 !important;
-      }
-      #sec-resume {
+      .timeline-extra {
         display: block !important;
       }
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 1024px) {
+      .desktop-nav {
+        display: none;
+      }
+      .mobile-nav-wrap {
+        display: block;
+      }
+    }
+
+    @media (max-width: 900px) {
       .stats-row {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .cards-grid-3 {
+      .cards-grid-3, .contact-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
+    /* Android & Compact Mobile Portrait Optimization */
     @media (max-width: 767px) {
       .app-shell {
-        padding: 10px 12px 52px;
+        padding: 10px 12px 68px;
       }
       .topbar {
-        top: 8px;
-        padding: 7px 10px;
+        top: 6px;
+        padding: 6px 10px;
         gap: 6px;
-        width: 100%;
       }
       .brand {
         gap: 7px;
-        font-size: 0.84rem;
+        font-size: 0.86rem;
         min-width: 0;
         flex: 1 1 auto;
       }
@@ -1241,66 +1430,40 @@
       .brand-verified {
         display: none;
       }
-      .desktop-nav {
-        display: none;
-      }
-      .mobile-nav-wrap {
-        display: block;
-        flex-shrink: 0;
-      }
       .mobile-dropdown-trigger {
+        min-height: 36px;
         padding: 6px 10px;
         font-size: 0.78rem;
-        gap: 5px;
-      }
-      .mobile-dropdown-menu {
-        left: auto;
-        right: 0;
-        transform: none;
-        min-width: 195px;
       }
       .topbar-right {
         gap: 5px;
         flex-shrink: 0;
       }
-      .sync-badge {
-        padding: 6px 8px;
-      }
-      .sync-badge .sync-text,
       .icon-pill-btn .pill-label,
       .icon-pill-btn .kbd-hint {
         display: none;
       }
       .icon-pill-btn {
-        padding: 7px;
-      }
-      .btn-primary-glass, .btn-ghost-glass {
-        padding: 7px 12px;
-        font-size: 0.79rem;
+        width: 36px;
+        height: 36px;
+        padding: 0;
       }
       .hero {
-        margin-top: 14px;
+        margin-top: 12px;
         padding: 18px 16px;
       }
-      .hero-top-meta {
-        gap: 7px;
-        margin-bottom: 12px;
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
       }
-      .tag-pill {
-        font-size: 0.73rem;
-        padding: 4px 10px;
-        max-width: 100%;
+      .hero-avatar-card {
+        display: none;
       }
-      #heroCurrentlyBadge {
-        border-radius: 14px;
-        line-height: 1.35;
+      .hero-name {
+        font-size: 1.95rem;
       }
-      #heroCurrentlyBadge .pulse-dot {
-        flex-shrink: 0;
-      }
-      .hero-title {
-        font-size: 1.58rem;
-        line-height: 1.2;
+      .hero-tagline {
+        font-size: 0.96rem;
       }
       .hero-bio {
         font-size: 0.9rem;
@@ -1310,26 +1473,25 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 8px;
-        margin-bottom: 18px;
       }
       .hero-actions button {
-        justify-content: center;
         width: 100%;
       }
       .hero-actions button:nth-child(3) {
         grid-column: span 2;
       }
       .stats-row {
+        margin-top: 18px;
+        padding-top: 16px;
         gap: 8px;
       }
       .stat-widget {
-        padding: 11px 10px;
+        padding: 10px;
         gap: 9px;
       }
       .widget-icon {
         width: 34px;
         height: 34px;
-        border-radius: 10px;
       }
       .stat-value {
         font-size: 1.05rem;
@@ -1338,103 +1500,80 @@
         font-size: 0.72rem;
         line-height: 1.25;
       }
-      .cards-grid-2, .cards-grid-3, .form-grid {
+      .cards-grid-2, .cards-grid-3, .contact-grid, .form-grid {
         grid-template-columns: 1fr;
       }
       .item-card.featured-bento {
         grid-column: span 1;
       }
+      .timeline-list {
+        padding-left: 18px;
+      }
+      .timeline-dot {
+        left: -17px;
+      }
     }
 
-    @media (max-width: 400px) {
+    @media (max-width: 390px) {
       .brand #brandName {
-        max-width: 112px;
-      }
-      .topbar-right .sync-badge {
-        display: none;
+        max-width: 105px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
   <div class="ambient-bg"></div>
-  <div class="cursor-aura"></div>
   <div class="grid-overlay"></div>
   <div class="cursor-tag" id="cursorTag" aria-hidden="true">Explore</div>
 
   <div class="app-shell">
-    <!-- Top Glass Bar -->
+    <!-- Compact Floating Glass Navigation Bar -->
     <header class="topbar">
-      <a class="brand" href="#top" data-cursor-tag="Home • Overview" onclick="clearChipFilter(); setSection('all'); return false;">
+      <a class="brand" href="#top" data-cursor-tag="Top • Overview" onclick="clearChipFilter(); scrollToSection('top'); return false;">
         <span class="brand-mark" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
             <path d="M12 2L20.5 7V17L12 22L3.5 17V7L12 2Z" stroke="#a78bfa" stroke-width="2" stroke-linejoin="round"/>
             <circle cx="12" cy="12" r="3.2" fill="#38bdf8"/>
           </svg>
         </span>
-        <span id="brandName">Sivakumar Perneti</span>
-        <span class="brand-verified" title="Verified Personal Edition" aria-hidden="true">
-          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+        <span id="brandName">Shiva Perneti</span>
+        <span class="brand-verified" title="Verified Digital Identity" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
         </span>
       </a>
 
-      <!-- Desktop Navigation -->
+      <!-- Desktop Scroll-Spy Navigation -->
       <nav class="desktop-nav" aria-label="Primary sections">
-        <button class="nav-btn active" data-section="all" data-cursor-tag="All Sections" onclick="setSection('all')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-          Overview
-        </button>
-        <button class="nav-btn" data-section="resume" data-cursor-tag="Career & Roles" onclick="setSection('resume')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/></svg>
-          Resume
-        </button>
-        <button class="nav-btn" data-section="achievements" data-cursor-tag="Key Milestones" onclick="setSection('achievements')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
-          Achievements
-        </button>
-        <button class="nav-btn" data-section="books" data-cursor-tag="Reading Shelf" onclick="setSection('books')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-          Books Read
-        </button>
-        <button class="nav-btn" data-section="blog" data-cursor-tag="Essays & Notes" onclick="setSection('blog')">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          Blog
-        </button>
+        <button type="button" class="nav-btn active" data-spy="top" onclick="scrollToSection('top')">Overview</button>
+        <button type="button" class="nav-btn" data-spy="sec-resume" onclick="scrollToSection('sec-resume')">Resume</button>
+        <button type="button" class="nav-btn" data-spy="sec-projects" onclick="scrollToSection('sec-projects')">Projects</button>
+        <button type="button" class="nav-btn" data-spy="sec-achievements" onclick="scrollToSection('sec-achievements')">Achievements</button>
+        <button type="button" class="nav-btn" data-spy="sec-books" onclick="scrollToSection('sec-books')">Books</button>
+        <button type="button" class="nav-btn" data-spy="sec-blog" onclick="scrollToSection('sec-blog')">Blog</button>
+        <button type="button" class="nav-btn" data-spy="sec-contact" onclick="scrollToSection('sec-contact')">Contact</button>
       </nav>
 
-      <!-- Mobile Glass Dropdown (< 768px) -->
+      <!-- Mobile Glass Dropdown (< 1024px) -->
       <div class="mobile-nav-wrap" id="mobileNavWrap">
         <button type="button" class="mobile-dropdown-trigger" id="mobileNavTrigger" onclick="toggleMobileDropdown(event)" aria-expanded="false">
           <span id="mobileNavLabel">Overview</span>
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div class="mobile-dropdown-menu" id="mobileNavMenu" role="menu">
-          <button type="button" class="mobile-dropdown-item active" data-section="all" onclick="selectMobileSection('all', 'Overview')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-            <span>Overview</span>
-          </button>
-          <button type="button" class="mobile-dropdown-item" data-section="resume" onclick="selectMobileSection('resume', 'Resume')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/></svg>
-            <span>Resume</span>
-          </button>
-          <button type="button" class="mobile-dropdown-item" data-section="achievements" onclick="selectMobileSection('achievements', 'Achievements')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
-            <span>Achievements</span>
-          </button>
-          <button type="button" class="mobile-dropdown-item" data-section="books" onclick="selectMobileSection('books', 'Books Read')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            <span>Books Read</span>
-          </button>
-          <button type="button" class="mobile-dropdown-item" data-section="blog" onclick="selectMobileSection('blog', 'Blog')">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-            <span>Blog</span>
-          </button>
+          <button type="button" class="mobile-dropdown-item active" data-spy="top" onclick="selectMobileSection('top', 'Overview')">Overview</button>
+          <button type="button" class="mobile-dropdown-item" data-spy="sec-resume" onclick="selectMobileSection('sec-resume', 'Resume')">Resume &amp; Timeline</button>
+          <button type="button" class="mobile-dropdown-item" data-spy="sec-projects" onclick="selectMobileSection('sec-projects', 'Projects')">Projects &amp; Lab</button>
+          <button type="button" class="mobile-dropdown-item" data-spy="sec-achievements" onclick="selectMobileSection('sec-achievements', 'Achievements')">Achievements</button>
+          <button type="button" class="mobile-dropdown-item" data-spy="sec-books" onclick="selectMobileSection('sec-books', 'Books')">Books Read</button>
+          <button type="button" class="mobile-dropdown-item" data-spy="sec-blog" onclick="selectMobileSection('sec-blog', 'Blog')">Blog &amp; Notes</button>
+          <button type="button" class="mobile-dropdown-item" data-spy="sec-contact" onclick="selectMobileSection('sec-contact', 'Contact')">Contact &amp; Links</button>
         </div>
       </div>
 
-      <!-- Right Search, Accent Cycler, Theme Switcher, Live Status & Admin Controls -->
+      <!-- Right Search, Accent Cycler, Theme Switcher & Hidden Admin Controls -->
       <div class="topbar-right">
-        <button type="button" class="icon-pill-btn" data-cursor-tag="Instant Search" onclick="openSearchModal()" aria-label="Search portfolio" title="Instant Search (Ctrl+K)">
+        <button type="button" class="icon-pill-btn" data-cursor-tag="Search (Ctrl+K)" onclick="openSearchModal()" aria-label="Search portfolio" title="Instant Search (Ctrl+K)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
           <span class="pill-label">Search</span>
           <span class="kbd-hint">Ctrl+K</span>
@@ -1452,12 +1591,7 @@
           <span class="pill-label" id="themeToggleText">Daytime</span>
         </button>
 
-        <span class="sync-badge" id="cloudStatusBadge" title="Live Firestore status">
-          <span class="sync-dot" id="cloudStatusDot"></span>
-          <span class="sync-text" id="cloudStatusText">Firestore Live</span>
-        </span>
-        <button type="button" class="btn-primary-glass admin-only" id="customizeBtn" data-cursor-tag="Admin Studio" onclick="openAdminModal()">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        <button type="button" class="btn-primary-glass admin-only" id="customizeBtn" onclick="openAdminModal()">
           <span id="customizeBtnLabel">Customize</span>
         </button>
         <button type="button" class="btn-ghost-glass admin-only" id="signOutBtn" onclick="signOutAdmin()" title="Sign out of Admin">
@@ -1466,66 +1600,79 @@
       </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Executive Digital Identity Hero -->
     <section class="glass-panel hero" id="top">
-      <div class="hero-top-meta">
-        <span class="tag-pill violet" id="heroRoleBadge">Senior Talent Acquisition &amp; Builder</span>
-        <span class="tag-pill cyan" id="heroLocationBadge">Hyderabad, India</span>
-        <span class="tag-pill emerald" id="heroCurrentlyBadge">
-          <span class="pulse-dot"></span>
-          <span id="heroCurrentlyText">Now: Designing Data-Intensive Applications &amp; Glass UIs</span>
-        </span>
-      </div>
-      <h1 class="hero-title" id="heroHeadline">
-        Living <span class="grad">resume</span>, milestones, reading log &amp; personal notes.
-      </h1>
-      <p class="hero-bio" id="heroBio">
-        Personal space tracking career highlights, key achievements, books I have read, and short essays—synced live with Firebase Cloud Firestore and viewable cleanly across Android and Windows.
-      </p>
-      <div class="hero-actions">
-        <button type="button" class="btn-primary-glass" data-cursor-tag="Open Resume" onclick="setSection('resume')">View Resume</button>
-        <button type="button" class="btn-ghost-glass" data-cursor-tag="Open Blog" onclick="setSection('blog')">Read Blog</button>
-        <button type="button" class="btn-ghost-glass" data-cursor-tag="Export A4 PDF" onclick="printResumePdf()" title="Print or save a clean recruiter-ready resume PDF">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-          Print / PDF Resume
-        </button>
+      <div class="hero-mesh"></div>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-top-meta">
+            <span class="tag-pill emerald" id="heroAvailabilityBadge">
+              <span class="pulse-dot"></span>
+              <span id="heroAvailabilityText">Available for connections</span>
+            </span>
+            <span class="tag-pill cyan" id="heroLocationBadge">Hyderabad, India</span>
+          </div>
+
+          <h1 class="hero-name" id="heroName">Shiva Perneti<span class="dot">.</span></h1>
+          <div class="hero-tagline" id="heroTagline">Talent Acquisition Professional. Technology Enthusiast. Builder.</div>
+          <p class="hero-bio" id="heroBio">
+            Building meaningful connections between people, technology and opportunities.
+          </p>
+
+          <div class="hero-actions">
+            <button type="button" class="btn-primary-glass" data-cursor-tag="Career Timeline" onclick="scrollToSection('sec-resume')">View Resume</button>
+            <button type="button" class="btn-ghost-glass" data-cursor-tag="Projects & Lab" onclick="scrollToSection('sec-projects')">Explore My Journey</button>
+            <button type="button" class="btn-ghost-glass" data-cursor-tag="Export A4 PDF" onclick="printResumePdf()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+              Print / PDF Resume
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-avatar-card" aria-hidden="true">
+          <div class="hero-avatar-inner" id="heroAvatarContainer">
+            <div class="hero-monogram">SP</div>
+            <div class="hero-monogram-sub">HYD • IN</div>
+          </div>
+        </div>
       </div>
 
+      <!-- Verifiable Career & Builder Metrics -->
       <div class="stats-row">
-        <div class="stat-widget" data-cursor-tag="Jump to Resume" onclick="setSection('resume')">
+        <div class="stat-widget" data-cursor-tag="Career Experience" onclick="scrollToSection('sec-resume')">
           <div class="widget-icon purple">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--accent-primary)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--accent-primary)" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
           </div>
           <div>
             <div class="stat-value" id="statExperience">8+ Yrs</div>
-            <div class="stat-label">Career &amp; Talent</div>
+            <div class="stat-label">Talent Acquisition</div>
           </div>
         </div>
-        <div class="stat-widget" data-cursor-tag="Jump to Achievements" onclick="setSection('achievements')">
+        <div class="stat-widget" data-cursor-tag="Hiring Impact" onclick="scrollToSection('sec-achievements')">
           <div class="widget-icon emerald">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><circle cx="12" cy="8" r="5"/><path d="M8.5 13.5L7 22l5-3 5 3-1.5-8.5"/></svg>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           </div>
           <div>
-            <div class="stat-value" id="statAchievements">3</div>
-            <div class="stat-label">Achievements</div>
+            <div class="stat-value" id="statClosures">250+</div>
+            <div class="stat-label">Roles Closed</div>
           </div>
         </div>
-        <div class="stat-widget" data-cursor-tag="Jump to Books" onclick="setSection('books')">
+        <div class="stat-widget" data-cursor-tag="Projects Built" onclick="scrollToSection('sec-projects')">
+          <div class="widget-icon cyan">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+          <div>
+            <div class="stat-value" id="statProjects">4</div>
+            <div class="stat-label">Builds &amp; Tools</div>
+          </div>
+        </div>
+        <div class="stat-widget" data-cursor-tag="Reading & Notes" onclick="scrollToSection('sec-books')">
           <div class="widget-icon amber">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           </div>
           <div>
             <div class="stat-value" id="statBooks">3</div>
-            <div class="stat-label">Books Read</div>
-          </div>
-        </div>
-        <div class="stat-widget" data-cursor-tag="Jump to Blog" onclick="setSection('blog')">
-          <div class="widget-icon rose">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
-          </div>
-          <div>
-            <div class="stat-value" id="statPosts">2</div>
-            <div class="stat-label">Blog Notes</div>
+            <div class="stat-label">Books &amp; Notes</div>
           </div>
         </div>
       </div>
@@ -1537,21 +1684,36 @@
       <button type="button" class="btn-ghost-glass" onclick="clearChipFilter()">Clear Filter</button>
     </div>
 
-    <!-- Resume Section -->
-    <section class="section-block" id="sec-resume" data-group="resume">
+    <!-- Chronological Career Timeline & Resume Section -->
+    <section class="portfolio-section" id="sec-resume" data-group="resume">
       <div class="section-header">
         <h2 class="section-heading">
           <span class="widget-icon cyan" style="width:32px;height:32px;border-radius:10px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
           </span>
-          Resume &amp; Experience
+          Career Timeline &amp; Resume
         </h2>
+        <span class="section-sub">CHRONOLOGICAL EXPERIENCE</span>
       </div>
-      <div class="cards-grid-2" id="resumeGrid"></div>
+      <div class="timeline-list" id="resumeGrid"></div>
     </section>
 
-    <!-- Achievements Section -->
-    <section class="section-block" id="sec-achievements" data-group="achievements">
+    <!-- Projects & Experiments Section -->
+    <section class="portfolio-section" id="sec-projects" data-group="projects">
+      <div class="section-header">
+        <h2 class="section-heading">
+          <span class="widget-icon purple" style="width:32px;height:32px;border-radius:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="color:var(--accent-primary)" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </span>
+          Projects &amp; Experiments
+        </h2>
+        <span class="section-sub">SELF-HOSTED • UI/UX • AUTOMATION</span>
+      </div>
+      <div class="cards-grid-2" id="projectsGrid"></div>
+    </section>
+
+    <!-- Achievements & Milestones Section -->
+    <section class="portfolio-section" id="sec-achievements" data-group="achievements">
       <div class="section-header">
         <h2 class="section-heading">
           <span class="widget-icon emerald" style="width:32px;height:32px;border-radius:10px;">
@@ -1559,53 +1721,99 @@
           </span>
           Achievements &amp; Milestones
         </h2>
+        <span class="section-sub">VERIFIABLE IMPACT</span>
       </div>
       <div class="cards-grid-3" id="achievementsGrid"></div>
     </section>
 
     <!-- Books Read Section -->
-    <section class="section-block" id="sec-books" data-group="books">
+    <section class="portfolio-section" id="sec-books" data-group="books">
       <div class="section-header">
         <h2 class="section-heading">
           <span class="widget-icon amber" style="width:32px;height:32px;border-radius:10px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
           </span>
-          Books Read
+          Books Read &amp; Takeaways
         </h2>
+        <span class="section-sub">CURATED READING LOG</span>
       </div>
       <div class="cards-grid-3" id="booksGrid"></div>
     </section>
 
-    <!-- Personal Blog Section -->
-    <section class="section-block" id="sec-blog" data-group="blog">
+    <!-- Personal Blog & Notes Section -->
+    <section class="portfolio-section" id="sec-blog" data-group="blog">
       <div class="section-header">
         <h2 class="section-heading">
           <span class="widget-icon rose" style="width:32px;height:32px;border-radius:10px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fb7185" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
           </span>
-          Personal Blog &amp; Notes
+          Blog &amp; Field Notes
         </h2>
+        <span class="section-sub">RECRUITMENT • TECH • PRODUCTIVITY</span>
       </div>
       <div class="cards-grid-2" id="blogGrid"></div>
     </section>
 
+    <!-- Contact & Social Section -->
+    <section class="portfolio-section" id="sec-contact">
+      <div class="section-header">
+        <h2 class="section-heading">
+          <span class="widget-icon cyan" style="width:32px;height:32px;border-radius:10px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </span>
+          Connect &amp; Social
+        </h2>
+        <span class="section-sub">DIRECT CHANNELS</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-tile">
+          <div class="contact-tile-info">
+            <div class="contact-tile-label">Email</div>
+            <div class="contact-tile-val" id="contactEmailVal">shivakumarperneti@gmail.com</div>
+          </div>
+          <button type="button" class="btn-ghost-glass" style="min-height:34px;padding:5px 11px;font-size:0.76rem;" onclick="copyContactValue('contactEmailVal', 'Email copied')">Copy</button>
+        </div>
+        <div class="contact-tile">
+          <div class="contact-tile-info">
+            <div class="contact-tile-label">LinkedIn</div>
+            <div class="contact-tile-val" id="contactLinkedinVal">linkedin.com/in/sivakumarperneti</div>
+          </div>
+          <a id="contactLinkedinLink" class="read-more-link" href="https://www.linkedin.com/in/sivakumarperneti" target="_blank" rel="noopener noreferrer">Open ↗</a>
+        </div>
+        <div class="contact-tile">
+          <div class="contact-tile-info">
+            <div class="contact-tile-label">GitHub</div>
+            <div class="contact-tile-val" id="contactGithubVal">github.com/sivakumarperneti</div>
+          </div>
+          <a id="contactGithubLink" class="read-more-link" href="https://github.com/sivakumarperneti" target="_blank" rel="noopener noreferrer">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Footer -->
     <footer class="glass-panel site-footer">
-      <div>© <span id="footerYear">2026</span> Sivakumar Perneti • Glassmorphic Personal Portfolio</div>
+      <div>© <span id="footerYear">2026</span> Shiva Perneti • Personal Digital Identity</div>
       <div class="admin-only" style="gap:8px;">
         <button type="button" class="btn-ghost-glass" onclick="downloadBackupHtml()">Download Backup HTML</button>
       </div>
     </footer>
   </div>
 
-  <!-- Instant Search Command Palette (Ctrl+K) -->
+  <!-- Smart Back-to-Top Floating Button -->
+  <div class="floating-controls">
+    <button type="button" class="back-to-top-btn" id="backToTopBtn" onclick="scrollToSection('top')" aria-label="Back to top" title="Back to top">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="18 15 12 9 6 15"/></svg>
+    </button>
+  </div>
+
+  <!-- Command Palette (Ctrl+K) — Search Content & Jump Destinations -->
   <div class="modal-backdrop" id="searchModal" role="dialog" aria-modal="true" aria-labelledby="searchModalTitle">
     <div class="modal-card">
       <div class="modal-head">
-        <h3 class="modal-title" id="searchModalTitle">Quick Search</h3>
-        <button type="button" class="btn-ghost-glass" onclick="closeSearchModal()">Esc</button>
+        <h3 class="modal-title" id="searchModalTitle">Command Palette</h3>
+        <button type="button" class="btn-ghost-glass" style="min-height:34px;padding:5px 12px;" onclick="closeSearchModal()">Esc</button>
       </div>
-      <input type="search" id="searchInput" class="input-glass" placeholder="Search experience, achievements, books, blog notes, or tags..." oninput="runSearchQuery(this.value)" />
+      <input type="search" id="searchInput" class="input-glass" placeholder="Jump to section or search resume, projects, books, blog..." />
       <div class="search-result-list" id="searchResultsList"></div>
     </div>
   </div>
@@ -1618,9 +1826,9 @@
           <div class="card-meta-row" style="margin-bottom:4px;" id="readerMeta">BLOG NOTE • 2 MIN READ</div>
           <h3 class="modal-title" id="readerTitle">Title</h3>
         </div>
-        <button type="button" class="btn-ghost-glass" onclick="closeReaderModal()">Close</button>
+        <button type="button" class="btn-ghost-glass" style="min-height:34px;padding:5px 12px;" onclick="closeReaderModal()">Close</button>
       </div>
-      <img id="readerCover" class="card-cover" style="display:none;height:210px;" alt="" />
+      <img id="readerCover" class="card-cover" style="display:none;height:210px;" alt="" loading="lazy" />
       <div class="reader-body" id="readerContent"></div>
       <div class="card-footer-row" style="margin-top:18px;">
         <div class="chip-row" id="readerChips"></div>
@@ -1629,12 +1837,12 @@
     </div>
   </div>
 
-  <!-- Admin Studio Modal (Profile, Add/Edit Entry & Manage/Reorder/Delete) -->
+  <!-- Admin Studio Modal (Authenticated Admin Only) -->
   <div class="modal-backdrop" id="adminModal" role="dialog" aria-modal="true" aria-labelledby="adminModalTitle">
     <div class="modal-card">
       <div class="modal-head">
         <h3 class="modal-title" id="adminModalTitle">Admin Studio</h3>
-        <button type="button" class="btn-ghost-glass" onclick="closeAdminModal()">Close</button>
+        <button type="button" class="btn-ghost-glass" style="min-height:34px;padding:5px 12px;" onclick="closeAdminModal()">Close</button>
       </div>
 
       <!-- Login View -->
@@ -1651,12 +1859,12 @@
         <button type="button" class="btn-primary-glass" onclick="signInAdmin()">Sign In to Cloud</button>
       </div>
 
-      <!-- Editor View (Shown only when authenticated) -->
+      <!-- Editor View -->
       <div id="adminEditorPanel" style="display:none;">
         <div class="studio-tabs">
           <button type="button" class="studio-tab active" data-studio-tab="entry" onclick="switchStudioTab('entry')">Add / Edit Entry</button>
           <button type="button" class="studio-tab" data-studio-tab="manage" onclick="switchStudioTab('manage')">Manage &amp; Reorder</button>
-          <button type="button" class="studio-tab" data-studio-tab="profile" onclick="switchStudioTab('profile')">Profile &amp; Brand</button>
+          <button type="button" class="studio-tab" data-studio-tab="profile" onclick="switchStudioTab('profile')">Identity &amp; Contact</button>
         </div>
 
         <!-- Tab 1: Add or Edit Entry -->
@@ -1666,35 +1874,40 @@
             <div class="form-field">
               <label for="newEntryType">Section</label>
               <select id="newEntryType" class="select-glass">
-                <option value="resume">Resume / Experience</option>
-                <option value="achievements">Achievement</option>
-                <option value="books">Book Read</option>
-                <option value="blog">Blog Note</option>
+                <option value="resume">Career Timeline / Resume</option>
+                <option value="projects">Projects &amp; Experiments</option>
+                <option value="achievements">Achievements &amp; Milestones</option>
+                <option value="books">Books Read</option>
+                <option value="blog">Blog &amp; Field Notes</option>
               </select>
             </div>
             <div class="form-field">
               <label for="newEntryMeta">Date / Subtitle / Rating</label>
-              <input type="text" id="newEntryMeta" class="input-glass" placeholder="e.g., Nov 2026 or 5/5" />
+              <input type="text" id="newEntryMeta" class="input-glass" placeholder="e.g., 2024 – Present or 5/5" />
             </div>
           </div>
           <div class="form-grid">
             <div class="form-field">
               <label for="newEntryTitle">Title</label>
-              <input type="text" id="newEntryTitle" class="input-glass" placeholder="Role, milestone, book title, or note title" />
+              <input type="text" id="newEntryTitle" class="input-glass" placeholder="Role, project, milestone, book, or note title" />
             </div>
             <div class="form-field">
-              <label for="newEntrySubtitle">Organization / Subtitle (Optional)</label>
-              <input type="text" id="newEntrySubtitle" class="input-glass" placeholder="e.g., Company or Author note" />
+              <label for="newEntrySubtitle">Organization / Stack / Subtitle</label>
+              <input type="text" id="newEntrySubtitle" class="input-glass" placeholder="e.g., Skillmine Technology • Hyderabad" />
             </div>
           </div>
           <div class="form-field">
-            <label for="newEntryDesc">Details / Full Article</label>
-            <textarea id="newEntryDesc" class="textarea-glass" placeholder="Write highlights or full notes (use blank lines for paragraphs)..."></textarea>
+            <label for="newEntryDesc">Summary / Full Article</label>
+            <textarea id="newEntryDesc" class="textarea-glass" placeholder="Write concise summary or full notes (use blank lines for paragraphs)..."></textarea>
+          </div>
+          <div class="form-field">
+            <label for="newEntryBullets">Expandable Highlights (one bullet per line — great for Resume roles)</label>
+            <textarea id="newEntryBullets" class="textarea-glass" style="min-height:68px;" placeholder="Led end-to-end technical hiring across cloud & product teams&#10;Built automated candidate tracking workflows"></textarea>
           </div>
           <div class="form-grid">
             <div class="form-field">
               <label for="newEntryLink">External Link URL (Optional)</label>
-              <input type="url" id="newEntryLink" class="input-glass" placeholder="https://github.com/..." />
+              <input type="url" id="newEntryLink" class="input-glass" placeholder="https://..." />
             </div>
             <div class="form-field">
               <label for="newEntryCover">Cover / Thumbnail Image URL (Optional)</label>
@@ -1703,7 +1916,7 @@
           </div>
           <div class="form-field">
             <label for="newEntryChips">Tags (comma-separated)</label>
-            <input type="text" id="newEntryChips" class="input-glass" placeholder="e.g., Firebase, UI Design, Leadership" />
+            <input type="text" id="newEntryChips" class="input-glass" placeholder="e.g., Talent Acquisition, Firebase, UI/UX" />
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:10px;margin-top:8px;">
             <button type="button" class="btn-ghost-glass" id="submitEntryBtn" onclick="saveEntryToDraft()">+ Add Entry to Draft</button>
@@ -1712,22 +1925,23 @@
           </div>
         </div>
 
-        <!-- Tab 2: Manage, Reorder & Delete Existing Items -->
+        <!-- Tab 2: Manage, Reorder & Delete -->
         <div id="studioTabManage" style="display:none;">
           <div class="form-field">
             <label for="manageSectionSelect">Select Section to Manage</label>
             <select id="manageSectionSelect" class="select-glass" onchange="renderManageList()">
-              <option value="resume">Resume &amp; Experience</option>
+              <option value="resume">Career Timeline / Resume</option>
+              <option value="projects">Projects &amp; Experiments</option>
               <option value="achievements">Achievements &amp; Milestones</option>
               <option value="books">Books Read</option>
-              <option value="blog">Personal Blog &amp; Notes</option>
+              <option value="blog">Blog &amp; Field Notes</option>
             </select>
           </div>
           <div class="manage-list" id="manageItemsList"></div>
           <button type="button" class="btn-primary-glass" onclick="savePortfolioToCloud()">Publish Order &amp; Edits to Firestore</button>
         </div>
 
-        <!-- Tab 3: Profile & Brand Identity -->
+        <!-- Tab 3: Identity, Metrics & Contact -->
         <div id="studioTabProfile" style="display:none;">
           <div class="form-grid">
             <div class="form-field">
@@ -1735,27 +1949,47 @@
               <input type="text" id="editName" class="input-glass" />
             </div>
             <div class="form-field">
-              <label for="editRole">Role Badge</label>
-              <input type="text" id="editRole" class="input-glass" />
+              <label for="editAvailability">Availability Status</label>
+              <input type="text" id="editAvailability" class="input-glass" />
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="editTagline">Positioning Tagline</label>
+            <input type="text" id="editTagline" class="input-glass" />
+          </div>
+          <div class="form-field">
+            <label for="editBio">Hero Value Statement</label>
+            <textarea id="editBio" class="textarea-glass"></textarea>
+          </div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="editLocation">Location</label>
+              <input type="text" id="editLocation" class="input-glass" />
+            </div>
+            <div class="form-field">
+              <label for="editAvatarUrl">Profile Photo URL (Optional)</label>
+              <input type="url" id="editAvatarUrl" class="input-glass" placeholder="https://... (leave blank for SP monogram)" />
             </div>
           </div>
           <div class="form-grid">
             <div class="form-field">
-              <label for="editLocation">Location Badge</label>
-              <input type="text" id="editLocation" class="input-glass" />
+              <label for="editExpLabel">Experience Stat</label>
+              <input type="text" id="editExpLabel" class="input-glass" placeholder="8+ Yrs" />
             </div>
             <div class="form-field">
-              <label for="editExpLabel">Experience Stat</label>
-              <input type="text" id="editExpLabel" class="input-glass" placeholder="e.g., 8+ Yrs" />
+              <label for="editClosuresLabel">Roles Closed Stat</label>
+              <input type="text" id="editClosuresLabel" class="input-glass" placeholder="250+" />
             </div>
           </div>
-          <div class="form-field">
-            <label for="editCurrently">Live "Now" Status Pill</label>
-            <input type="text" id="editCurrently" class="input-glass" placeholder="Now: Reading & building..." />
-          </div>
-          <div class="form-field">
-            <label for="editBio">Hero Bio</label>
-            <textarea id="editBio" class="textarea-glass"></textarea>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="editEmail">Public Contact Email</label>
+              <input type="email" id="editEmail" class="input-glass" />
+            </div>
+            <div class="form-field">
+              <label for="editLinkedin">LinkedIn URL</label>
+              <input type="url" id="editLinkedin" class="input-glass" />
+            </div>
           </div>
           <button type="button" class="btn-primary-glass" onclick="savePortfolioToCloud()">Publish Profile to Firestore</button>
         </div>
@@ -1802,6 +2036,8 @@
       const normalized = theme === 'light' ? 'light' : 'dark';
       document.documentElement.setAttribute('data-theme', normalized);
       document.documentElement.classList.toggle('dark', normalized === 'dark');
+      const metaTheme = document.getElementById('metaThemeColor');
+      if (metaTheme) metaTheme.setAttribute('content', normalized === 'dark' ? '#000000' : '#f7f9fc');
       const iconEl = document.getElementById('themeToggleIcon');
       const textEl = document.getElementById('themeToggleText');
       if (iconEl) iconEl.innerHTML = normalized === 'dark' ? SUN_ICON : MOON_ICON;
@@ -1820,7 +2056,7 @@
       const next = current === 'dark' ? 'light' : 'dark';
       localStorage.setItem(THEME_KEY, next);
       applyTheme(next);
-      showToast(next === 'light' ? 'Switched to Daytime mode' : 'Switched to Pitch Black mode');
+      showToast(next === 'light' ? 'Daytime mode enabled' : 'Pitch Black OLED mode enabled');
     };
 
     window.cycleAccent = function() {
@@ -1829,61 +2065,122 @@
       const next = ACCENTS[(idx + 1) % ACCENTS.length];
       localStorage.setItem(ACCENT_KEY, next.id);
       applyAccent(next.id);
-      showToast(`Brand accent: ${next.label}`);
+      showToast(`Accent: ${next.label}`);
     };
 
     applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
     applyAccent(localStorage.getItem(ACCENT_KEY) || 'violet');
 
     const DEFAULT_DATA = {
-      name: 'Sivakumar Perneti',
-      roleBadge: 'Senior Talent Acquisition & Builder',
+      name: 'Shiva Perneti',
+      availability: 'Available for connections',
       locationBadge: 'Hyderabad, India',
-      currentlyStatus: 'Now: Designing Data-Intensive Applications & Glass UIs',
-      headline: 'Living resume, milestones, reading log & personal notes.',
-      bio: 'Personal space tracking career highlights, key achievements, books I have read, and short essays—synced live with Firebase Cloud Firestore and viewable cleanly across Android and Windows.',
+      tagline: 'Talent Acquisition Professional. Technology Enthusiast. Builder.',
+      bio: 'Building meaningful connections between people, technology and opportunities.',
+      avatarUrl: '',
       experienceLabel: '8+ Yrs',
+      closuresLabel: '250+',
+      contactEmail: 'shivakumarperneti@gmail.com',
+      contactLinkedin: 'https://www.linkedin.com/in/sivakumarperneti',
+      contactGithub: 'https://github.com/sivakumarperneti',
       resume: [
         {
           title: 'Senior Talent Acquisition Executive',
           meta: '2024 – Present • Hyderabad',
-          subtitle: 'End-to-End Hiring & Stakeholder Alignment',
-          desc: 'Leading requirement prioritization, structured candidate pipelines, interview coordination, and consolidated reporting across technical and business roles.',
-          chips: ['Talent Strategy', 'Stakeholder Ops', 'Hiring Pipelines'],
+          subtitle: 'Skillmine Technology • Full-Lifecycle Tech & Leadership Hiring',
+          desc: 'Owning requirement prioritization, multi-channel talent sourcing, structured stakeholder alignment, and end-to-end interview coordination across high-priority engineering and business roles.',
+          bullets: [
+            'Partner directly with hiring managers and clients to calibrate role scorecards, shorten feedback loops, and improve offer-to-join ratios.',
+            'Manage consolidated daily and weekly hiring trackers across Naukri, LinkedIn Recruiter, Instahyre, and Hirist.',
+            'Streamline candidate screening workflows using structured evaluation notes and interview intelligence.'
+          ],
+          chips: ['Talent Acquisition', 'Tech Hiring', 'Stakeholder Ops'],
           link: '',
           cover: ''
         },
         {
-          title: 'Self-Hosted Tools & Web Workflows',
-          meta: '2025 – Present • Personal Lab',
-          subtitle: 'Glassmorphic UIs, Static Hosting & Personal Media',
-          desc: 'Building lightweight browser tools, clean dark-glass interfaces, and self-hosted utilities tailored for mobile and desktop productivity.',
+          title: 'Talent Acquisition Specialist',
+          meta: '2018 – 2024 • India',
+          subtitle: 'IT Staffing, Product Engineering & Enterprise Delivery',
+          desc: 'Executed high-volume and niche technical hiring across cloud, full-stack, data, and enterprise transformation mandates.',
+          bullets: [
+            'Built talent pipelines for specialized engineering skill sets with consistent turnaround SLAs.',
+            'Coordinated technical panels, compensation benchmarking, and candidate closing negotiations.'
+          ],
+          chips: ['Sourcing Strategy', 'Pipeline Building', 'Offer Closing'],
+          link: '',
+          cover: ''
+        }
+      ],
+      projects: [
+        {
+          title: 'Living Digital Identity & Cloud CMS',
+          meta: '2026 • Web Architecture',
+          subtitle: 'Single-File Glass UI + Firebase Firestore + Cloudflare Pages',
+          desc: 'Zero-cost personal digital identity platform featuring pitch-black OLED and daytime modes, live Firestore content publishing from Android or Windows, and sub-second edge delivery.',
+          bullets: [],
           chips: ['HTML/CSS/JS', 'Firebase', 'Cloudflare Pages'],
-          link: 'https://shiva.pages.dev',
+          link: 'https://shivaperneti.pages.dev',
+          cover: ''
+        },
+        {
+          title: 'NuvioMobile Custom Fork & Glassmorphic UI',
+          meta: '2026 • Android & UI/UX',
+          subtitle: 'Custom APK Build • Smooth Scrolling & Translucent Components',
+          desc: 'Customized an open-source Android media client with pill-shaped outlines, dynamic color rings, glassmorphic cards, and touch-optimized scrolling.',
+          bullets: [],
+          chips: ['Android', 'UI/UX', 'Open Source'],
+          link: 'https://github.com/sivakumarperneti',
+          cover: ''
+        },
+        {
+          title: 'Self-Hosted Media & Personal Catalog Addons',
+          meta: '2025 – 2026 • Self-Hosted Lab',
+          subtitle: 'Node.js Metadata Addon & Navidrome Audio Server',
+          desc: 'Built and deployed a custom Node.js regional movie catalog addon alongside a self-hosted Navidrome music streaming setup for offline-first listening.',
+          bullets: [],
+          chips: ['Node.js', 'Self-Hosted', 'Automation'],
+          link: 'https://github.com/sivakumarperneti',
+          cover: ''
+        },
+        {
+          title: 'Recruiter Workflow & Tracker Automation',
+          meta: '2025 – 2026 • Productivity',
+          subtitle: 'Structured Candidate Summaries & Reporting Templates',
+          desc: 'Designed repeatable intake templates and consolidated tracker formats that cut daily status reporting overhead.',
+          bullets: [],
+          chips: ['Recruitment Ops', 'Productivity'],
+          link: '',
           cover: ''
         }
       ],
       achievements: [
         {
-          title: 'Zero-Cost Cloud Portfolio Architecture',
-          meta: 'Nov 2026',
-          desc: 'Deployed a responsive glassmorphic portfolio backed by Firebase Firestore with role-protected admin editing and instant global edge delivery on Cloudflare Pages.',
-          chips: ['Firestore', 'Auth', 'Cloudflare Pages'],
-          link: 'https://shiva.pages.dev',
-          cover: ''
-        },
-        {
-          title: 'Consistent Multi-Channel Sourcing Execution',
-          meta: '2025 – 2026',
-          desc: 'Maintained high-signal candidate engagement and clean weekly tracker visibility across active requisitions.',
-          chips: ['Execution', 'Reporting'],
+          title: '250+ Successful Technical & Business Hires',
+          meta: 'Career Milestone',
+          subtitle: 'Consistent Closure & Offer Conversion',
+          desc: 'Delivered sustained hiring closures across competitive engineering and enterprise stacks while maintaining strong candidate and client satisfaction.',
+          bullets: [],
+          chips: ['Hiring Impact', 'Execution'],
           link: '',
           cover: ''
         },
         {
-          title: 'Cross-Device Personal Knowledge Setup',
+          title: 'Zero-Cost Global Edge Portfolio Deployment',
+          meta: 'Nov 2026',
+          subtitle: 'Cloudflare Pages + Firebase Security Rules',
+          desc: 'Architected a role-protected portfolio where visitors get instant read-only access while authenticated updates publish live in milliseconds.',
+          bullets: [],
+          chips: ['Firestore', 'Security'],
+          link: 'https://shivaperneti.pages.dev',
+          cover: ''
+        },
+        {
+          title: 'Cross-Device Personal Knowledge System',
           meta: '2026',
-          desc: 'Unified reading notes, milestones, and resume snapshots accessible smoothly on Android and Windows.',
+          subtitle: 'Unified Android & Windows Workflow',
+          desc: 'Consolidated career milestones, reading takeaways, and technical experiments into a single searchable digital garden.',
+          bullets: [],
           chips: ['Android', 'Windows'],
           link: '',
           cover: ''
@@ -1893,15 +2190,19 @@
         {
           title: 'Atomic Habits',
           meta: 'James Clear • 5/5',
+          subtitle: 'Systems Over Goals',
           desc: 'Practical framework for small environmental cues, identity-based habits, and compounding daily consistency.\n\nKey Takeaway: You do not rise to the level of your goals; you fall to the level of your systems. Designing friction-free defaults beats relying on daily willpower.',
+          bullets: [],
           chips: ['Habits', 'Systems'],
           link: '',
           cover: ''
         },
         {
           title: 'Designing Data-Intensive Applications',
-          meta: 'Martin Kleppmann • Notes',
-          desc: 'Clear mental models for reliability, replication, partitioning, and trade-offs in distributed systems.\n\nKey Takeaway: Understanding how storage engines, indexes, and consensus protocols behave under failure turns black-box infrastructure into predictable engineering choices.',
+          meta: 'Martin Kleppmann • 5/5',
+          subtitle: 'Distributed Systems & Reliability',
+          desc: 'Clear mental models for reliability, replication, partitioning, and trade-offs in modern data systems.\n\nKey Takeaway: Understanding how storage engines, indexes, and consensus protocols behave under failure turns black-box infrastructure into predictable engineering choices.',
+          bullets: [],
           chips: ['Architecture', 'Systems'],
           link: '',
           cover: ''
@@ -1909,7 +2210,9 @@
         {
           title: 'The Psychology of Money',
           meta: 'Morgan Housel • 5/5',
+          subtitle: 'Compounding & Margin of Safety',
           desc: 'Timeless lessons on patience, compounding, risk management, and keeping long-term perspective.\n\nKey Takeaway: Financial outcomes are driven far more by behavior, margin of safety, and avoiding catastrophic interruption than by spreadsheet optimization.',
+          bullets: [],
           chips: ['Mindset', 'Finance'],
           link: '',
           cover: ''
@@ -1917,18 +2220,22 @@
       ],
       blog: [
         {
-          title: 'Keeping a Living Portfolio Without Heavy Frameworks',
-          meta: 'Nov 2026',
-          desc: 'Why a clean single-file glass interface paired with Firestore gives fast loads, zero monthly cost, and effortless mobile updates.\n\nBy keeping layout, styling, and Firebase SDK logic inside a single self-contained HTML file hosted on Cloudflare Pages, there are zero build pipelines to break, zero server bills, and instant updates directly from a phone browser.',
-          chips: ['Portfolio', 'Notes', 'Firebase'],
+          title: 'What Great Technical Recruiters Look For Beyond Keywords',
+          meta: 'Nov 2026 • Recruitment',
+          subtitle: 'Signal vs. Noise in Engineering Profiles',
+          desc: 'Why ownership, clear problem-solving trade-offs, and shipped side projects stand out far more than buzzword-stuffed resumes.\n\nWhen reviewing hundreds of profiles each week, the candidates who stand out fastest explain what broke, how they measured impact, and why they chose a specific architecture.',
+          bullets: [],
+          chips: ['Recruitment', 'Career'],
           link: '',
           cover: ''
         },
         {
-          title: 'Designing Calm Glass Interfaces for Pitch Black & Daytime',
-          meta: 'Nov 2026',
-          desc: 'Balancing OLED pitch-black contrast and crisp daytime translucency so reading stays comfortable in any lighting.\n\nTrue OLED black eliminates backlight bleed at night, while subtle 1px specular borders and soft layered blurs preserve spatial depth without visual clutter.',
-          chips: ['UI Design', 'Glassmorphism'],
+          title: 'Keeping a Living Portfolio Without Heavy Frameworks',
+          meta: 'Nov 2026 • Technology',
+          subtitle: '60 FPS Scrolling on Android & Instant Cloud Edits',
+          desc: 'Why a clean single-file glass interface paired with selective backdrop-filter and Firestore gives native-feeling Android scrolling and zero monthly cost.\n\nBy keeping layout, styling, and Firebase SDK logic inside a self-contained HTML file hosted on Cloudflare Pages, there are zero build pipelines to break and instant updates from any phone.',
+          bullets: [],
+          chips: ['Technology', 'UI/UX', 'Firebase'],
           link: '',
           cover: ''
         }
@@ -1936,10 +2243,9 @@
     };
 
     let state = structuredClone(DEFAULT_DATA);
-    let currentSection = 'all';
     let activeChip = null;
     let isAdminSignedIn = false;
-    let editingTarget = null; // { group, index } when editing an existing item
+    let editingTarget = null;
 
     const urlParams = new URLSearchParams(window.location.search);
     const hasAdminQuery = urlParams.get('admin') === '1';
@@ -1950,7 +2256,7 @@
       document.body.classList.toggle('admin-signed-in', isAdminSignedIn);
       const btnLabel = document.getElementById('customizeBtnLabel');
       if (btnLabel) {
-        btnLabel.textContent = isAdminSignedIn ? 'Customize • Admin' : 'Customize';
+        btnLabel.textContent = isAdminSignedIn ? 'Customize' : 'Admin';
       }
     }
 
@@ -1960,24 +2266,7 @@
       box.textContent = msg;
       box.classList.add('show');
       clearTimeout(window.__toastTimer);
-      window.__toastTimer = setTimeout(() => box.classList.remove('show'), 2600);
-    }
-
-    function setCloudBadge(mode, text) {
-      const dot = document.getElementById('cloudStatusDot');
-      const label = document.getElementById('cloudStatusText');
-      if (label) label.textContent = text;
-      if (!dot) return;
-      if (mode === 'live') {
-        dot.style.background = '#10b981';
-        dot.style.boxShadow = '0 0 8px #10b981';
-      } else if (mode === 'local') {
-        dot.style.background = '#f59e0b';
-        dot.style.boxShadow = '0 0 8px #f59e0b';
-      } else {
-        dot.style.background = '#fb7185';
-        dot.style.boxShadow = '0 0 8px #fb7185';
-      }
+      window.__toastTimer = setTimeout(() => box.classList.remove('show'), 2500);
     }
 
     function escapeHtml(str) {
@@ -2018,18 +2307,36 @@
     }
 
     function renderAll() {
-      document.getElementById('brandName').textContent = state.name || DEFAULT_DATA.name;
-      document.getElementById('heroRoleBadge').textContent = state.roleBadge || DEFAULT_DATA.roleBadge;
+      const displayName = state.name || DEFAULT_DATA.name;
+      document.getElementById('brandName').textContent = displayName;
+      document.getElementById('heroName').innerHTML = `${escapeHtml(displayName)}<span class="dot">.</span>`;
+      document.getElementById('heroTagline').textContent = state.tagline || DEFAULT_DATA.tagline;
+      document.getElementById('heroAvailabilityText').textContent = state.availability || DEFAULT_DATA.availability;
       document.getElementById('heroLocationBadge').textContent = state.locationBadge || DEFAULT_DATA.locationBadge;
-      document.getElementById('heroCurrentlyText').textContent = state.currentlyStatus || DEFAULT_DATA.currentlyStatus;
-      document.getElementById('heroHeadline').textContent = state.headline || DEFAULT_DATA.headline;
       document.getElementById('heroBio').textContent = state.bio || DEFAULT_DATA.bio;
 
+      const avatarContainer = document.getElementById('heroAvatarContainer');
+      if (state.avatarUrl) {
+        avatarContainer.innerHTML = `<img src="${escapeAttr(state.avatarUrl)}" alt="${escapeAttr(displayName)}" class="hero-avatar-img" />`;
+      } else {
+        const initials = displayName.split(/\s+/).filter(Boolean).slice(0, 2).map(w => w[0].toUpperCase()).join('') || 'SP';
+        avatarContainer.innerHTML = `<div class="hero-monogram">${escapeHtml(initials)}</div><div class="hero-monogram-sub">HYD • IN</div>`;
+      }
+
       document.getElementById('statExperience').textContent = state.experienceLabel || '8+ Yrs';
-      document.getElementById('statAchievements').textContent = String((state.achievements || []).length);
+      document.getElementById('statClosures').textContent = state.closuresLabel || '250+';
+      document.getElementById('statProjects').textContent = String((state.projects || []).length);
       document.getElementById('statBooks').textContent = String((state.books || []).length);
-      document.getElementById('statPosts').textContent = String((state.blog || []).length);
       document.getElementById('footerYear').textContent = String(new Date().getFullYear());
+
+      const emailVal = state.contactEmail || DEFAULT_DATA.contactEmail;
+      const liVal = state.contactLinkedin || DEFAULT_DATA.contactLinkedin;
+      const ghVal = state.contactGithub || DEFAULT_DATA.contactGithub;
+      document.getElementById('contactEmailVal').textContent = emailVal;
+      document.getElementById('contactLinkedinVal').textContent = liVal.replace(/^https?:\/\/(www\.)?/, '');
+      document.getElementById('contactLinkedinLink').href = liVal;
+      document.getElementById('contactGithubVal').textContent = ghVal.replace(/^https?:\/\/(www\.)?/, '');
+      document.getElementById('contactGithubLink').href = ghVal;
 
       const banner = document.getElementById('chipFilterBanner');
       if (activeChip) {
@@ -2039,15 +2346,48 @@
         banner.classList.remove('visible');
       }
 
+      /* 1. Chronological Career Timeline */
       const allResume = state.resume || [];
       const resumeItems = allResume.filter(matchesChip);
-      document.getElementById('resumeGrid').innerHTML = resumeItems.length ? resumeItems.map(item => {
+      document.getElementById('resumeGrid').innerHTML = resumeItems.length ? resumeItems.map((item, idx) => {
         const realIdx = allResume.indexOf(item);
+        const bullets = Array.isArray(item.bullets) ? item.bullets.filter(Boolean) : [];
         return `
-        <article class="item-card" data-cursor-tag="Role • ${escapeAttr(item.meta || 'Resume')}">
-          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
+        <div class="timeline-node">
+          <span class="timeline-dot" aria-hidden="true"></span>
+          <article class="item-card reveal-card" data-cursor-tag="Role • ${escapeAttr(item.meta || 'Career')}">
+            <div class="card-meta-row">
+              <span>CAREER MILESTONE</span>
+              <span>${escapeHtml(item.meta || '')}</span>
+            </div>
+            <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
+            ${item.subtitle ? `<div class="card-subtitle">${escapeHtml(item.subtitle)}</div>` : ''}
+            <p class="card-desc">${escapeHtml(item.desc || '')}</p>
+            ${bullets.length ? `
+              <div class="timeline-extra ${idx === 0 ? 'open' : ''}" id="tl-extra-${realIdx}">
+                <ul>${bullets.map(b => `<li>${escapeHtml(b)}</li>`).join('')}</ul>
+              </div>
+            ` : ''}
+            <div class="card-footer-row">
+              ${renderChipsHtml(item.chips)}
+              ${bullets.length ? `<button type="button" class="read-more-link" onclick="toggleTimelineDetails(${realIdx}, this)">${idx === 0 ? 'Hide Highlights ↑' : 'Key Highlights ↓'}</button>` : ''}
+            </div>
+            ${renderCardAdminBar('resume', realIdx, allResume.length)}
+          </article>
+        </div>
+      `;
+      }).join('') : '<p class="card-desc">No career entries match this tag.</p>';
+
+      /* 2. Projects & Experiments */
+      const allProjects = state.projects || [];
+      const projectItems = allProjects.filter(matchesChip);
+      document.getElementById('projectsGrid').innerHTML = projectItems.length ? projectItems.map((item) => {
+        const realIdx = allProjects.indexOf(item);
+        return `
+        <article class="item-card reveal-card" data-cursor-tag="Project • ${escapeAttr(item.meta || 'Build')}">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" width="600" height="148" />` : ''}
           <div class="card-meta-row">
-            <span>EXPERIENCE</span>
+            <span>BUILD / LAB</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
@@ -2055,26 +2395,28 @@
           <p class="card-desc">${escapeHtml(item.desc || '')}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
-            ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">Visit ↗</a>` : ''}
+            ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">Open Build ↗</a>` : ''}
           </div>
-          ${renderCardAdminBar('resume', realIdx, allResume.length)}
+          ${renderCardAdminBar('projects', realIdx, allProjects.length)}
         </article>
       `;
-      }).join('') : '<p class="card-desc">No resume entries match this tag.</p>';
+      }).join('') : '<p class="card-desc">No projects match this tag.</p>';
 
+      /* 3. Achievements & Milestones */
       const allAch = state.achievements || [];
       const achItems = allAch.filter(matchesChip);
       document.getElementById('achievementsGrid').innerHTML = achItems.length ? achItems.map((item, idx) => {
         const realIdx = allAch.indexOf(item);
         const isFeatured = idx === 0 && !activeChip && achItems.length > 2;
         return `
-        <article class="item-card ${isFeatured ? 'featured-bento' : ''}" data-cursor-tag="${isFeatured ? 'Featured Milestone' : 'Milestone'}">
-          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
+        <article class="item-card reveal-card ${isFeatured ? 'featured-bento' : ''}" data-cursor-tag="${isFeatured ? 'Featured Milestone' : 'Milestone'}">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" width="600" height="148" />` : ''}
           <div class="card-meta-row">
             <span>${isFeatured ? 'FEATURED MILESTONE' : 'MILESTONE'}</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
+          ${item.subtitle ? `<div class="card-subtitle">${escapeHtml(item.subtitle)}</div>` : ''}
           <p class="card-desc">${escapeHtml(item.desc || '')}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
@@ -2085,25 +2427,27 @@
       `;
       }).join('') : '<p class="card-desc">No achievements match this tag.</p>';
 
+      /* 4. Books Read & Takeaways */
       const allBooks = state.books || [];
       const bookItems = allBooks.filter(matchesChip);
       document.getElementById('booksGrid').innerHTML = bookItems.length ? bookItems.map((item) => {
         const realIdx = allBooks.indexOf(item);
         const firstPara = String(item.desc || '').split('\n\n')[0];
         return `
-        <article class="item-card" data-cursor-tag="Book Takeaways">
-          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
+        <article class="item-card reveal-card" data-cursor-tag="Book Takeaways">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" width="400" height="148" />` : ''}
           <div class="card-meta-row">
-            <span>READING LOG</span>
+            <span>BOOK LOG</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
+          ${item.subtitle ? `<div class="card-subtitle">${escapeHtml(item.subtitle)}</div>` : ''}
           <p class="card-desc">${escapeHtml(firstPara)}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
             <div class="card-actions-group">
               ${item.link ? `<a class="read-more-link" href="${escapeAttr(item.link)}" target="_blank" rel="noopener noreferrer">Link ↗</a>` : ''}
-              <button type="button" class="read-more-link" onclick="openReader('books', ${realIdx})">Notes →</button>
+              <button type="button" class="read-more-link" onclick="openReader('books', ${realIdx})">Takeaways →</button>
             </div>
           </div>
           ${renderCardAdminBar('books', realIdx, allBooks.length)}
@@ -2111,19 +2455,21 @@
       `;
       }).join('') : '<p class="card-desc">No books match this tag.</p>';
 
+      /* 5. Blog & Field Notes */
       const allBlog = state.blog || [];
       const blogItems = allBlog.filter(matchesChip);
       document.getElementById('blogGrid').innerHTML = blogItems.length ? blogItems.map((item) => {
         const realIdx = allBlog.indexOf(item);
         const firstPara = String(item.desc || '').split('\n\n')[0];
         return `
-        <article class="item-card" data-cursor-tag="Read Essay">
-          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" />` : ''}
+        <article class="item-card reveal-card" data-cursor-tag="Read Note">
+          ${item.cover ? `<img src="${escapeAttr(item.cover)}" alt="" class="card-cover" loading="lazy" width="600" height="148" />` : ''}
           <div class="card-meta-row">
-            <span>BLOG NOTE</span>
+            <span>FIELD NOTE</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
           <h3 class="card-title">${escapeHtml(item.title || '')}</h3>
+          ${item.subtitle ? `<div class="card-subtitle">${escapeHtml(item.subtitle)}</div>` : ''}
           <p class="card-desc">${escapeHtml(firstPara)}</p>
           <div class="card-footer-row">
             ${renderChipsHtml(item.chips)}
@@ -2137,60 +2483,119 @@
       `;
       }).join('') : '<p class="card-desc">No blog notes match this tag.</p>';
 
-      applySectionFilter();
+      observeRevealCards();
       if (document.getElementById('adminModal').classList.contains('open')) {
         renderManageList();
       }
     }
 
-    /* Dynamic Cursor Aura, Specular Border Sheen, 3D Card Tilt & Interactive Cursor Tag */
-    const cursorTagEl = document.getElementById('cursorTag');
-    let activeTiltCard = null;
+    /* One-Time IntersectionObserver Card Entrance Animation */
+    let cardObserver = null;
+    function observeRevealCards() {
+      const cards = document.querySelectorAll('.reveal-card');
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach(c => c.classList.add('is-visible'));
+        return;
+      }
+      if (!cardObserver) {
+        cardObserver = new IntersectionObserver((entries, obs) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              obs.unobserve(entry.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -30px 0px', threshold: 0.05 });
+      }
+      cards.forEach(c => cardObserver.observe(c));
+    }
 
-    document.addEventListener('pointermove', (e) => {
-      if (e.pointerType !== 'mouse') return;
+    /* Scroll Progress Bar, Back-to-Top & Active Section Scroll-Spy (rAF Throttled) */
+    const progressBar = document.getElementById('scrollProgressBar');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    const spySections = ['top', 'sec-resume', 'sec-projects', 'sec-achievements', 'sec-books', 'sec-blog', 'sec-contact'];
+    const spyLabels = {
+      'top': 'Overview',
+      'sec-resume': 'Resume',
+      'sec-projects': 'Projects',
+      'sec-achievements': 'Achievements',
+      'sec-books': 'Books',
+      'sec-blog': 'Blog',
+      'sec-contact': 'Contact'
+    };
 
-      document.documentElement.style.setProperty('--page-x', `${e.clientX}px`);
-      document.documentElement.style.setProperty('--page-y', `${e.clientY}px`);
+    let scrollTicking = false;
+    function onScrollFrame() {
+      scrollTicking = false;
+      const scrollTop = window.scrollY || document.documentElement.scrollTop;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(1, Math.max(0, scrollTop / docHeight)) : 0;
+      if (progressBar) {
+        progressBar.style.transform = `scaleX(${progress.toFixed(4)})`;
+      }
+      if (backToTopBtn) {
+        backToTopBtn.classList.toggle('visible', scrollTop > 420);
+      }
 
-      const taggedEl = e.target.closest('[data-cursor-tag]');
-      if (cursorTagEl) {
-        if (taggedEl) {
-          cursorTagEl.textContent = taggedEl.getAttribute('data-cursor-tag');
-          cursorTagEl.style.transform = `translate3d(${e.clientX + 14}px, ${e.clientY + 14}px, 0) scale(1)`;
-          cursorTagEl.classList.add('visible');
-        } else {
-          cursorTagEl.classList.remove('visible');
+      let activeId = 'top';
+      const offset = 150;
+      for (const id of spySections) {
+        const el = document.getElementById(id);
+        if (el && el.getBoundingClientRect().top <= offset) {
+          activeId = id;
         }
       }
-
-      const card = e.target.closest('.item-card');
-      if (activeTiltCard && activeTiltCard !== card) {
-        activeTiltCard.style.transform = '';
-        activeTiltCard = null;
+      document.querySelectorAll('[data-spy]').forEach(el => {
+        el.classList.toggle('active', el.getAttribute('data-spy') === activeId);
+      });
+      const mobileLabel = document.getElementById('mobileNavLabel');
+      if (mobileLabel && spyLabels[activeId]) {
+        mobileLabel.textContent = spyLabels[activeId];
       }
+    }
 
-      if (card) {
-        activeTiltCard = card;
-        const rect = card.getBoundingClientRect();
-        const relX = e.clientX - rect.left;
-        const relY = e.clientY - rect.top;
-        card.style.setProperty('--mouse-x', `${relX}px`);
-        card.style.setProperty('--mouse-y', `${relY}px`);
-
-        const rotateY = ((relX / rect.width) - 0.5) * 3.2;
-        const rotateX = (0.5 - (relY / rect.height)) * 3.2;
-        card.style.transform = `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-2px)`;
+    window.addEventListener('scroll', () => {
+      if (!scrollTicking) {
+        scrollTicking = true;
+        requestAnimationFrame(onScrollFrame);
       }
-    });
+    }, { passive: true });
+
+    /* Desktop-only Lightweight Cursor Tag */
+    const cursorTagEl = document.getElementById('cursorTag');
+    document.addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse' || !cursorTagEl) return;
+      const taggedEl = e.target.closest('[data-cursor-tag]');
+      if (taggedEl) {
+        cursorTagEl.textContent = taggedEl.getAttribute('data-cursor-tag');
+        cursorTagEl.style.transform = `translate3d(${e.clientX + 14}px, ${e.clientY + 14}px, 0)`;
+        cursorTagEl.classList.add('visible');
+      } else {
+        cursorTagEl.classList.remove('visible');
+      }
+    }, { passive: true });
 
     document.addEventListener('pointerleave', () => {
       if (cursorTagEl) cursorTagEl.classList.remove('visible');
-      if (activeTiltCard) {
-        activeTiltCard.style.transform = '';
-        activeTiltCard = null;
-      }
     });
+
+    window.scrollToSection = function(id) {
+      if (id === 'top') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    };
+
+    window.toggleTimelineDetails = function(idx, btn) {
+      const box = document.getElementById(`tl-extra-${idx}`);
+      if (!box) return;
+      const isOpen = box.classList.toggle('open');
+      if (btn) btn.textContent = isOpen ? 'Hide Highlights ↑' : 'Key Highlights ↓';
+    };
 
     window.toggleChipFilter = function(tag) {
       activeChip = (activeChip && activeChip.toLowerCase() === tag.toLowerCase()) ? null : tag;
@@ -2203,10 +2608,18 @@
     };
 
     window.printResumePdf = function() {
-      const prevSection = currentSection;
-      setSection('resume');
       window.print();
-      setSection(prevSection);
+    };
+
+    window.copyContactValue = async function(elId, toastMsg) {
+      const text = document.getElementById(elId)?.textContent?.trim();
+      if (!text) return;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(toastMsg || 'Copied to clipboard');
+      } catch (_) {
+        showToast(text);
+      }
     };
 
     /* Full-Article & Book Takeaways Reader */
@@ -2216,7 +2629,7 @@
       if (!item) return;
       const words = String(item.desc || '').trim().split(/\s+/).filter(Boolean).length;
       const mins = Math.max(1, Math.round(words / 180));
-      const label = group === 'books' ? 'BOOK TAKEAWAYS' : 'BLOG ESSAY';
+      const label = group === 'books' ? 'BOOK TAKEAWAYS' : 'FIELD NOTE';
       document.getElementById('readerMeta').textContent = `${label} • ${item.meta || ''} • ${mins} MIN READ`;
       document.getElementById('readerTitle').textContent = item.title || '';
       document.getElementById('readerContent').textContent = item.desc || '';
@@ -2245,7 +2658,13 @@
       document.getElementById('readerModal').classList.remove('open');
     };
 
-    /* Instant Command Palette Search (Ctrl+K) */
+    /* Debounced Command Palette Search (Ctrl+K) */
+    let searchDebounceTimer = null;
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => runSearchQuery(e.target.value), 120);
+    });
+
     window.openSearchModal = function() {
       const modal = document.getElementById('searchModal');
       const input = document.getElementById('searchInput');
@@ -2261,8 +2680,17 @@
 
     window.runSearchQuery = function(query) {
       const q = String(query || '').trim().toLowerCase();
+      const destinations = [
+        { title: 'Jump to Career Timeline & Resume', meta: 'SECTION', sec: 'sec-resume' },
+        { title: 'Jump to Projects & Experiments', meta: 'SECTION', sec: 'sec-projects' },
+        { title: 'Jump to Achievements & Milestones', meta: 'SECTION', sec: 'sec-achievements' },
+        { title: 'Jump to Books Read & Takeaways', meta: 'SECTION', sec: 'sec-books' },
+        { title: 'Jump to Blog & Field Notes', meta: 'SECTION', sec: 'sec-blog' },
+        { title: 'Jump to Connect & Social', meta: 'SECTION', sec: 'sec-contact' }
+      ];
+
       const entries = [];
-      ['resume', 'achievements', 'books', 'blog'].forEach(group => {
+      ['resume', 'projects', 'achievements', 'books', 'blog'].forEach(group => {
         (state[group] || []).forEach((item, idx) => {
           const hay = `${item.title || ''} ${item.subtitle || ''} ${item.desc || ''} ${(item.chips || []).join(' ')}`.toLowerCase();
           if (!q || hay.includes(q)) {
@@ -2272,62 +2700,46 @@
       });
 
       const listEl = document.getElementById('searchResultsList');
-      if (!entries.length) {
+      const matchingDest = destinations.filter(d => !q || d.title.toLowerCase().includes(q));
+
+      if (!entries.length && !matchingDest.length) {
         listEl.innerHTML = '<p class="card-desc">No matching entries found.</p>';
         return;
       }
 
-      const labelMap = { resume: 'Resume', achievements: 'Achievement', books: 'Book', blog: 'Blog Note' };
-      listEl.innerHTML = entries.slice(0, 12).map(({ group, idx, item }) => `
+      const labelMap = { resume: 'Resume', projects: 'Project', achievements: 'Achievement', books: 'Book', blog: 'Blog Note' };
+      const destHtml = (!q ? matchingDest.slice(0, 3) : matchingDest).map(d => `
+        <button type="button" class="search-result-item" onclick="closeSearchModal(); scrollToSection('${d.sec}')">
+          <div class="card-meta-row" style="margin-bottom:2px;">
+            <span>NAVIGATION</span>
+            <span>→</span>
+          </div>
+          <strong style="color:var(--text-primary);font-size:0.9rem;">${escapeHtml(d.title)}</strong>
+        </button>
+      `).join('');
+
+      const itemsHtml = entries.slice(0, 10).map(({ group, idx, item }) => `
         <button type="button" class="search-result-item" onclick="handleSearchSelect('${group}', ${idx})">
           <div class="card-meta-row" style="margin-bottom:2px;">
             <span>${labelMap[group]}</span>
             <span>${escapeHtml(item.meta || '')}</span>
           </div>
-          <strong style="color:var(--text-primary);font-size:0.94rem;">${escapeHtml(item.title || '')}</strong>
-          <span style="color:var(--text-secondary);font-size:0.82rem;">${escapeHtml(String(item.desc || '').slice(0, 110))}...</span>
+          <strong style="color:var(--text-primary);font-size:0.92rem;">${escapeHtml(item.title || '')}</strong>
+          <span style="color:var(--text-secondary);font-size:0.8rem;">${escapeHtml(String(item.desc || '').slice(0, 100))}...</span>
         </button>
       `).join('');
+
+      listEl.innerHTML = destHtml + itemsHtml;
     };
 
     window.handleSearchSelect = function(group, idx) {
       closeSearchModal();
       clearChipFilter();
-      setSection(group);
       if (group === 'books' || group === 'blog') {
         openReader(group, idx);
       } else {
-        const target = document.getElementById(`sec-${group}`);
-        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        scrollToSection(`sec-${group}`);
       }
-    };
-
-    function applySectionFilter() {
-      const sections = document.querySelectorAll('.section-block[data-group]');
-      sections.forEach(sec => {
-        const group = sec.getAttribute('data-group');
-        sec.style.display = (currentSection === 'all' || currentSection === group) ? '' : 'none';
-      });
-      document.querySelectorAll('.desktop-nav .nav-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-section') === currentSection);
-      });
-      document.querySelectorAll('.mobile-dropdown-item').forEach(item => {
-        item.classList.toggle('active', item.getAttribute('data-section') === currentSection);
-      });
-    }
-
-    window.setSection = function(section) {
-      currentSection = section || 'all';
-      applySectionFilter();
-      const labelMap = {
-        all: 'Overview',
-        resume: 'Resume',
-        achievements: 'Achievements',
-        books: 'Books Read',
-        blog: 'Blog'
-      };
-      const mobileLabel = document.getElementById('mobileNavLabel');
-      if (mobileLabel) mobileLabel.textContent = labelMap[currentSection] || 'Overview';
     };
 
     window.toggleMobileDropdown = function(event) {
@@ -2339,12 +2751,12 @@
       if (trigger) trigger.setAttribute('aria-expanded', String(isOpen));
     };
 
-    window.selectMobileSection = function(section, label) {
-      setSection(section);
+    window.selectMobileSection = function(sectionId, label) {
       const mobileLabel = document.getElementById('mobileNavLabel');
       if (mobileLabel) mobileLabel.textContent = label;
       const menu = document.getElementById('mobileNavMenu');
       if (menu) menu.classList.remove('open');
+      scrollToSection(sectionId);
     };
 
     document.addEventListener('click', (e) => {
@@ -2371,11 +2783,15 @@
 
     function syncEditorInputs() {
       document.getElementById('editName').value = state.name || '';
-      document.getElementById('editRole').value = state.roleBadge || '';
-      document.getElementById('editLocation').value = state.locationBadge || '';
-      document.getElementById('editExpLabel').value = state.experienceLabel || '';
-      document.getElementById('editCurrently').value = state.currentlyStatus || '';
+      document.getElementById('editAvailability').value = state.availability || '';
+      document.getElementById('editTagline').value = state.tagline || '';
       document.getElementById('editBio').value = state.bio || '';
+      document.getElementById('editLocation').value = state.locationBadge || '';
+      document.getElementById('editAvatarUrl').value = state.avatarUrl || '';
+      document.getElementById('editExpLabel').value = state.experienceLabel || '';
+      document.getElementById('editClosuresLabel').value = state.closuresLabel || '';
+      document.getElementById('editEmail').value = state.contactEmail || '';
+      document.getElementById('editLinkedin').value = state.contactLinkedin || '';
     }
 
     window.resetEntryForm = function() {
@@ -2388,6 +2804,7 @@
       document.getElementById('newEntrySubtitle').value = '';
       document.getElementById('newEntryMeta').value = '';
       document.getElementById('newEntryDesc').value = '';
+      document.getElementById('newEntryBullets').value = '';
       document.getElementById('newEntryLink').value = '';
       document.getElementById('newEntryCover').value = '';
       document.getElementById('newEntryChips').value = '';
@@ -2408,6 +2825,8 @@
       document.getElementById('newEntryTitle').value = item.title || '';
       document.getElementById('newEntrySubtitle').value = item.subtitle || '';
       document.getElementById('newEntryDesc').value = item.desc || '';
+      document.getElementById('newEntryBullets').value = Array.isArray(item.bullets) ? item.bullets.join('
+') : '';
       document.getElementById('newEntryLink').value = item.link || '';
       document.getElementById('newEntryCover').value = item.cover || '';
       document.getElementById('newEntryChips').value = Array.isArray(item.chips) ? item.chips.join(', ') : '';
@@ -2421,7 +2840,7 @@
       const [moved] = list.splice(index, 1);
       list.splice(targetIdx, 0, moved);
       renderAll();
-      showToast('Reordered in draft. Publish Live to save to cloud.');
+      showToast('Reordered in draft. Publish Live to save.');
     };
 
     window.deleteEntry = function(group, index) {
@@ -2509,6 +2928,7 @@
       const title = document.getElementById('newEntryTitle').value.trim();
       const subtitle = document.getElementById('newEntrySubtitle').value.trim();
       const desc = document.getElementById('newEntryDesc').value.trim();
+      const bulletsRaw = document.getElementById('newEntryBullets').value.trim();
       const link = document.getElementById('newEntryLink').value.trim();
       const cover = document.getElementById('newEntryCover').value.trim();
       const chipsRaw = document.getElementById('newEntryChips').value.trim();
@@ -2519,9 +2939,11 @@
       }
 
       const chips = chipsRaw ? chipsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+      const bullets = bulletsRaw ? bulletsRaw.split('
+').map(s => s.trim()).filter(Boolean) : [];
       if (!Array.isArray(state[type])) state[type] = [];
 
-      const payload = { title, subtitle, meta, desc, link, cover, chips };
+      const payload = { title, subtitle, meta, desc, bullets, link, cover, chips };
 
       if (editingTarget && state[type][editingTarget.index]) {
         state[type][editingTarget.index] = payload;
@@ -2542,12 +2964,15 @@
         return;
       }
       state.name = document.getElementById('editName').value.trim() || DEFAULT_DATA.name;
-      state.roleBadge = document.getElementById('editRole').value.trim() || DEFAULT_DATA.roleBadge;
-      state.locationBadge = document.getElementById('editLocation').value.trim() || DEFAULT_DATA.locationBadge;
-      state.experienceLabel = document.getElementById('editExpLabel').value.trim() || DEFAULT_DATA.experienceLabel;
-      state.currentlyStatus = document.getElementById('editCurrently').value.trim() || DEFAULT_DATA.currentlyStatus;
+      state.availability = document.getElementById('editAvailability').value.trim() || DEFAULT_DATA.availability;
+      state.tagline = document.getElementById('editTagline').value.trim() || DEFAULT_DATA.tagline;
       state.bio = document.getElementById('editBio').value.trim() || DEFAULT_DATA.bio;
-      state.headline = `Living ${state.name.split(' ')[0]} resume, milestones, reading log & personal notes.`;
+      state.locationBadge = document.getElementById('editLocation').value.trim() || DEFAULT_DATA.locationBadge;
+      state.avatarUrl = document.getElementById('editAvatarUrl').value.trim();
+      state.experienceLabel = document.getElementById('editExpLabel').value.trim() || DEFAULT_DATA.experienceLabel;
+      state.closuresLabel = document.getElementById('editClosuresLabel').value.trim() || DEFAULT_DATA.closuresLabel;
+      state.contactEmail = document.getElementById('editEmail').value.trim() || DEFAULT_DATA.contactEmail;
+      state.contactLinkedin = document.getElementById('editLinkedin').value.trim() || DEFAULT_DATA.contactLinkedin;
 
       try {
         await setDoc(docRef, state, { merge: true });
@@ -2602,29 +3027,24 @@
         if (snap.exists()) {
           state = { ...DEFAULT_DATA, ...snap.data() };
           renderAll();
-          setCloudBadge('live', 'Firestore Live');
         } else {
           renderAll();
-          setCloudBadge('live', 'Firestore Ready');
         }
-      } catch (err) {
+      } catch (_) {
         renderAll();
-        setCloudBadge('local', 'Default View');
       }
 
       onSnapshot(docRef, (snap) => {
         if (snap.exists()) {
           state = { ...DEFAULT_DATA, ...snap.data() };
           renderAll();
-          setCloudBadge('live', 'Firestore Live');
         }
-      }, () => {
-        setCloudBadge('local', 'Default View');
       });
     }
 
     updateAdminVisibility();
     renderAll();
+    onScrollFrame();
     initCloudSync();
   </script>
 </body>
