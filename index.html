@@ -2825,8 +2825,7 @@
       document.getElementById('newEntryTitle').value = item.title || '';
       document.getElementById('newEntrySubtitle').value = item.subtitle || '';
       document.getElementById('newEntryDesc').value = item.desc || '';
-      document.getElementById('newEntryBullets').value = Array.isArray(item.bullets) ? item.bullets.join('
-') : '';
+      document.getElementById('newEntryBullets').value = Array.isArray(item.bullets) ? item.bullets.join('\n') : '';
       document.getElementById('newEntryLink').value = item.link || '';
       document.getElementById('newEntryCover').value = item.cover || '';
       document.getElementById('newEntryChips').value = Array.isArray(item.chips) ? item.chips.join(', ') : '';
@@ -2939,8 +2938,7 @@
       }
 
       const chips = chipsRaw ? chipsRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
-      const bullets = bulletsRaw ? bulletsRaw.split('
-').map(s => s.trim()).filter(Boolean) : [];
+      const bullets = bulletsRaw ? bulletsRaw.split('\n').map(s => s.trim()).filter(Boolean) : [];
       if (!Array.isArray(state[type])) state[type] = [];
 
       const payload = { title, subtitle, meta, desc, bullets, link, cover, chips };
@@ -3047,5 +3045,3 @@
     onScrollFrame();
     initCloudSync();
   </script>
-</body>
-</html>
