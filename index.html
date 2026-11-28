@@ -1467,7 +1467,11 @@
         gap: 14px;
       }
       .hero-avatar-card {
-        display: none;
+        display: grid;
+        width: 112px;
+        height: 112px;
+        border-radius: 23px;
+        margin: 0 auto;
       }
       .hero-name {
         font-size: 1.95rem;
@@ -1536,9 +1540,95 @@
         max-width: 105px;
       }
     }
+
+    /* V2 welcome experience + compact dropdown-first navigation */
+    .desktop-nav { display:none !important; }
+    .mobile-nav-wrap { display:block !important; }
+    .welcome-screen {
+      position: fixed; inset: 0; z-index: 300; display: grid; place-items: center;
+      padding: 24px; background:
+        radial-gradient(ellipse at 18% 20%, rgba(var(--accent-rgb),.22), transparent 42%),
+        radial-gradient(ellipse at 82% 78%, rgba(var(--accent-sec-rgb),.16), transparent 42%),
+        var(--bg-void); transition: opacity .45s ease, visibility .45s ease;
+    }
+    .welcome-screen.dismissed { opacity: 0; visibility: hidden; pointer-events: none; }
+    .welcome-inner { width: min(880px,100%); display:flex; align-items:center; justify-content:center; gap:clamp(24px,6vw,64px); }
+    .welcome-copy { min-width:0; }
+    .welcome-kicker { color:var(--text-muted); font:600 .75rem var(--font-mono); letter-spacing:.16em; text-transform:uppercase; margin-bottom:14px; }
+    .welcome-title { margin:0; font-size:clamp(2.25rem,7vw,5.2rem); line-height:1.08; letter-spacing:-.055em; font-weight:800; }
+    .welcome-title .typed { background:var(--hero-grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .typing-caret { display:inline-block; width:3px; height:.9em; margin-left:5px; vertical-align:-.05em; background:var(--accent-secondary); animation:caretBlink .8s steps(1) infinite; }
+    @keyframes caretBlink { 50% { opacity:0; } }
+    .welcome-caption { margin:18px 0 0; color:var(--text-secondary); font-size:.95rem; }
+    .welcome-photo-frame { width:clamp(124px,19vw,210px); aspect-ratio:1; flex:0 0 auto; padding:6px; border-radius:34px; background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary),#34d399); box-shadow:0 24px 80px rgba(var(--accent-rgb),.24); transform:rotate(3deg); }
+    .welcome-photo, .resume-photo { width:100%; height:100%; display:block; object-fit:cover; border-radius:28px; background:var(--glass-elevated); }
+    .welcome-photo-fallback { height:100%; display:grid; place-items:center; border-radius:28px; font-size:2.8rem; font-weight:800; color:var(--text-primary); background:linear-gradient(145deg,var(--glass-elevated),var(--input-bg)); }
+    .welcome-picker { width:min(520px,100%); margin:32px auto 0; padding:18px; border-radius:24px; background:var(--modal-bg); border:1px solid var(--glass-border-bright); box-shadow:0 26px 90px rgba(0,0,0,.32); animation:pickerIn .35s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes pickerIn { from { opacity:0; transform:translateY(16px) scale(.98); } to { opacity:1; transform:none; } }
+    .welcome-picker[hidden] { display:none; }
+    .welcome-picker-head { display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:12px; }
+    .welcome-picker-head strong { font-size:1rem; }
+    .welcome-picker-head span { color:var(--text-muted); font: .68rem var(--font-mono); }
+    .welcome-options { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+    .welcome-option { min-height:62px; display:flex; align-items:center; gap:11px; padding:12px; text-align:left; border-radius:15px; border:1px solid var(--glass-border); color:var(--text-primary); background:var(--input-bg); font:600 .86rem var(--font-sans); cursor:pointer; transition:.2s ease; }
+    .welcome-option:hover { transform:translateY(-2px); border-color:var(--specular-border); background:var(--violet-pill-bg); }
+    .welcome-option .option-icon { width:34px; height:34px; display:grid; place-items:center; border-radius:11px; background:var(--chip-bg); font-size:1rem; }
+    .welcome-skip { display:block; margin:13px auto 0; padding:7px 12px; border:0; background:transparent; color:var(--text-muted); font:600 .78rem var(--font-sans); cursor:pointer; }
+    .resume-intro-card { display:flex; align-items:center; gap:18px; padding:16px; margin:0 0 16px; border:1px solid var(--glass-border); border-radius:18px; background:var(--featured-glow); }
+    .resume-photo-wrap { width:84px; height:84px; flex:0 0 auto; padding:3px; border-radius:22px; background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary)); }
+    .resume-intro-card h3 { margin:0 0 4px; font-size:1rem; }
+    .resume-intro-card p { margin:0; color:var(--text-secondary); font-size:.84rem; }
+    .accent-menu-wrap { position:relative; }
+    .accent-menu { display:none; position:absolute; right:0; top:calc(100% + 9px); z-index:100; min-width:158px; padding:7px; border:1px solid var(--glass-border-bright); border-radius:15px; background:var(--glass-dropdown); box-shadow:0 18px 42px rgba(0,0,0,.28); }
+    .accent-menu.open { display:grid; gap:4px; }
+    .accent-choice { display:flex; align-items:center; gap:9px; padding:9px 10px; border:0; border-radius:10px; color:var(--text-secondary); background:transparent; text-align:left; font:600 .8rem var(--font-sans); cursor:pointer; }
+    .accent-choice:hover { background:var(--hover-tint); color:var(--text-primary); }
+    .accent-choice i { width:11px; height:11px; border-radius:50%; display:block; }
+    @media (max-width:767px) {
+      .welcome-inner { flex-direction:column-reverse; gap:20px; text-align:center; }
+      .welcome-photo-frame { width:128px; border-radius:27px; }
+      .welcome-photo, .welcome-photo-fallback { border-radius:21px; }
+      .welcome-picker { margin-top:24px; padding:14px; }
+      .welcome-options { grid-template-columns:1fr 1fr; }
+      .resume-intro-card { align-items:center; }
+      .resume-photo-wrap { width:70px; height:70px; }
+      .desktop-nav { display:none !important; }
+      .mobile-nav-wrap { display:block !important; }
+    }
+    @media (prefers-reduced-motion:reduce) { .typing-caret { animation:none; } }
+
   </style>
 </head>
 <body>
+
+  <section class="welcome-screen" id="welcomeScreen" aria-label="Welcome">
+    <div>
+      <div class="welcome-inner">
+        <div class="welcome-copy">
+          <div class="welcome-kicker">A personal space · Hyderabad, India</div>
+          <h1 class="welcome-title"><span class="typed" id="welcomeTyped"></span><span class="typing-caret" aria-hidden="true"></span></h1>
+          <p class="welcome-caption">Talent acquisition by profession. Technology by passion.</p>
+        </div>
+        <div class="welcome-photo-frame">
+          <div id="welcomeAvatarContainer" class="welcome-photo-fallback">SK</div>
+        </div>
+      </div>
+      <div class="welcome-picker" id="welcomePicker" hidden>
+        <div class="welcome-picker-head"><strong>Where would you like to go?</strong><span>EXPLORE THE PORTFOLIO</span></div>
+        <div class="welcome-options">
+          <button class="welcome-option" onclick="chooseLandingDestination('top')"><span class="option-icon">✦</span> Portfolio overview</button>
+          <button class="welcome-option" onclick="chooseLandingDestination('sec-resume')"><span class="option-icon">▤</span> Resume &amp; experience</button>
+          <button class="welcome-option" onclick="chooseLandingDestination('sec-projects')"><span class="option-icon">⌘</span> Projects &amp; lab</button>
+          <button class="welcome-option" onclick="chooseLandingDestination('sec-achievements')"><span class="option-icon">✧</span> Achievements</button>
+          <button class="welcome-option" onclick="chooseLandingDestination('sec-books')"><span class="option-icon">▣</span> Books &amp; reading</button>
+          <button class="welcome-option" onclick="chooseLandingDestination('sec-blog')"><span class="option-icon">✎</span> Blog &amp; notes</button>
+          <button class="welcome-option" onclick="chooseLandingDestination('sec-contact')"><span class="option-icon">↗</span> Contact &amp; links</button>
+        </div>
+        <button class="welcome-skip" onclick="chooseLandingDestination('top')">Skip intro · View overview</button>
+      </div>
+    </div>
+  </section>
+
   <div class="scroll-progress-bar" id="scrollProgressBar"></div>
   <div class="ambient-bg"></div>
   <div class="grid-overlay"></div>
@@ -1596,10 +1686,19 @@
           <span class="kbd-hint">Ctrl+K</span>
         </button>
 
-        <button type="button" class="icon-pill-btn" id="accentCycleBtn" data-cursor-tag="Shift Brand Hue" onclick="cycleAccent()" aria-label="Change brand accent color" title="Cycle brand accent color">
-          <span class="accent-swatch-dot" aria-hidden="true"></span>
-          <span class="pill-label" id="accentLabel">Violet</span>
-        </button>
+        <div class="accent-menu-wrap">
+          <button type="button" class="icon-pill-btn" id="accentCycleBtn" data-cursor-tag="Choose Brand Hue" onclick="toggleAccentMenu(event)" aria-label="Choose brand accent color" title="Choose accent color">
+            <span class="accent-swatch-dot" aria-hidden="true"></span>
+            <span class="pill-label" id="accentLabel">Violet</span>
+            <span aria-hidden="true">⌄</span>
+          </button>
+          <div class="accent-menu" id="accentMenu" role="menu">
+            <button class="accent-choice" onclick="setAccent('violet')"><i style="background:#8b7cff"></i> Violet</button>
+            <button class="accent-choice" onclick="setAccent('cyan')"><i style="background:#06b6d4"></i> Cyan</button>
+            <button class="accent-choice" onclick="setAccent('emerald')"><i style="background:#10b981"></i> Emerald</button>
+            <button class="accent-choice" onclick="setAccent('amber')"><i style="background:#f59e0b"></i> Amber</button>
+          </div>
+        </div>
 
         <button type="button" class="icon-pill-btn" id="themeToggleBtn" data-cursor-tag="Switch Surface" onclick="toggleTheme()" aria-label="Toggle pitch black and daytime theme" title="Switch between Pitch Black and Daytime mode">
           <span id="themeToggleIcon" aria-hidden="true">
@@ -1646,7 +1745,7 @@
           </div>
         </div>
 
-        <div class="hero-avatar-card" aria-hidden="true">
+        <div class="hero-avatar-card" aria-label="Profile photo">
           <div class="hero-avatar-inner" id="heroAvatarContainer">
             <div class="hero-monogram">SP</div>
             <div class="hero-monogram-sub">HYD • IN</div>
@@ -1711,6 +1810,10 @@
           Career Timeline &amp; Resume
         </h2>
         <span class="section-sub">CHRONOLOGICAL EXPERIENCE</span>
+      </div>
+      <div class="resume-intro-card">
+        <div class="resume-photo-wrap"><div id="resumeAvatarContainer" class="welcome-photo-fallback">SK</div></div>
+        <div><h3 id="resumeDisplayName">Shiva Kumar</h3><p>Talent Acquisition Professional · Technology Enthusiast · Builder</p></div>
       </div>
       <div class="timeline-list" id="resumeGrid"></div>
     </section>
@@ -2320,6 +2423,52 @@
     const urlParams = new URLSearchParams(window.location.search);
     const hasAdminQuery = urlParams.get('admin') === '1';
 
+
+    function renderProfilePhotos(displayName) {
+      const initials = (displayName || 'Shiva Kumar').split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0].toUpperCase()).join('') || 'SK';
+      const targets = [
+        ['welcomeAvatarContainer','welcome-photo'],
+        ['resumeAvatarContainer','resume-photo']
+      ];
+      targets.forEach(([id, cls]) => {
+        const el = document.getElementById(id);
+        if (!el) return;
+        if (state.avatarUrl) {
+          el.innerHTML = `<img src="${escapeAttr(state.avatarUrl)}" alt="${escapeAttr(displayName || 'Shiva Kumar')}" class="${cls}" loading="eager" />`;
+        } else {
+          el.className = 'welcome-photo-fallback';
+          el.textContent = initials;
+        }
+      });
+      const nameEl = document.getElementById('resumeDisplayName');
+      if (nameEl) nameEl.textContent = displayName || 'Shiva Kumar';
+    }
+
+    window.toggleAccentMenu = function(event) {
+      event?.stopPropagation();
+      document.getElementById('accentMenu')?.classList.toggle('open');
+    };
+    window.setAccent = function(id) {
+      const idx = ACCENTS.findIndex(a => a.id === id);
+      if (idx < 0) return;
+      localStorage.setItem(ACCENT_KEY, id);
+      applyAccent(id);
+      showToast(`Accent: ${ACCENTS[idx].label}`);
+      document.getElementById('accentMenu')?.classList.remove('open');
+    };
+    window.chooseLandingDestination = function(id) {
+      const screen = document.getElementById('welcomeScreen');
+      screen?.classList.add('dismissed');
+      document.body.classList.remove('welcome-open');
+      setTimeout(() => {
+        if (id === 'top') window.scrollTo({top:0,behavior:'smooth'});
+        else window.scrollToSection(id);
+      }, 120);
+    };
+    document.addEventListener('click', (event) => {
+      if (!event.target.closest('.accent-menu-wrap')) document.getElementById('accentMenu')?.classList.remove('open');
+    });
+
     function updateAdminVisibility() {
       const unlocked = isAdminSignedIn || hasAdminQuery;
       document.body.classList.toggle('admin-unlocked', unlocked);
@@ -2384,6 +2533,7 @@
       document.getElementById('heroAvailabilityText').textContent = state.availability || DEFAULT_DATA.availability;
       document.getElementById('heroLocationBadge').textContent = state.locationBadge || DEFAULT_DATA.locationBadge;
       document.getElementById('heroBio').textContent = state.bio || DEFAULT_DATA.bio;
+      renderProfilePhotos(displayName);
 
       const avatarContainer = document.getElementById('heroAvatarContainer');
       if (state.avatarUrl) {
@@ -3114,6 +3264,20 @@
     renderAll();
     onScrollFrame();
     initCloudSync();
+
+    /* First-visit keyboard-style welcome, followed by destination picker */
+    const welcomeMessage = 'Hi, This is Shiva Kumar';
+    const typedNode = document.getElementById('welcomeTyped');
+    let welcomeIndex = 0;
+    const typingTimer = setInterval(() => {
+      if (!typedNode || welcomeIndex >= welcomeMessage.length) {
+        clearInterval(typingTimer);
+        setTimeout(() => { const picker = document.getElementById('welcomePicker'); if (picker) picker.hidden = false; }, 520);
+        return;
+      }
+      typedNode.textContent += welcomeMessage.charAt(welcomeIndex++);
+    }, 82);
+
   </script>
 </body>
 </html>
